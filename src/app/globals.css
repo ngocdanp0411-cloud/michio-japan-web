@@ -1,26 +1,88 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Michio Japan — Bảng màu 02 */
+  --michio-deep-rose: #b83b68;
+  --michio-deep-navy: #13233f;
+  --michio-wine-pink: #7f2348;
+  --michio-soft-blush: #f4d9e2;
+  --michio-pearl: #fffff7;
+  --michio-taupe: #b8a9a4;
+  --michio-ink: #171923;
+  --michio-pearl-strong: #fffbf5;
+
+  --background: var(--michio-pearl);
+  --foreground: var(--michio-deep-navy);
+  --border: #e9ddd8;
+  --ring: var(--michio-deep-rose);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-michio-rose: var(--michio-deep-rose);
+  --color-michio-navy: var(--michio-deep-navy);
+  --color-michio-wine: var(--michio-wine-pink);
+  --color-michio-blush: var(--michio-soft-blush);
+  --color-michio-pearl: var(--michio-pearl);
+  --color-michio-taupe: var(--michio-taupe);
+  --color-michio-ink: var(--michio-ink);
+  --color-border: var(--border);
+  --font-sans: var(--font-be-vn);
+  --font-display: var(--font-barlow);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--border);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-be-vn), system-ui, sans-serif;
+}
+
+/* đồ họa: đường kẻ + sóng */
+.michio-line {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--michio-taupe) 20%,
+    var(--michio-taupe) 80%,
+    transparent
+  );
+}
+.michio-line-dashed {
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--michio-taupe) 0 6px,
+    transparent 6px 10px
+  );
+  opacity: 0.6;
+}
+
+@keyframes michio-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.michio-marquee {
+  animation: michio-marquee 28s linear infinite;
+}
+.michio-marquee:hover {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .michio-marquee {
+    animation: none;
+  }
 }
