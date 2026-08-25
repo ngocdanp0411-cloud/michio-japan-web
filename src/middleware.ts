@@ -3,13 +3,7 @@ import type { NextRequest } from "next/server";
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
-  // Protect /admin (except login API)
-  if (pathname.startsWith("/admin")) {
-    // Allow the login page itself to be visited without cookie, but API will check
-    // We just let it through, client will handle auth via API
-    return NextResponse.next();
-  }
-  // Protect /api/admin
+  // Only protect /api/admin (admin page itself is public, client handles auth)
   if (pathname.startsWith("/api/admin")) {
     if (pathname === "/api/admin/login") return NextResponse.next();
     const cookie = req.headers.get("cookie") || "";
@@ -21,5 +15,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/api/admin/:path*"],
+  matcher: ["/api/admin/:path*"],
 };
