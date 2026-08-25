@@ -11,11 +11,13 @@ export type Product = {
   badge?: string;
   excerpt: string;
   description: string;
+  active?: boolean;
 };
 
 import data from "../../data/products.json";
 
-export const PRODUCTS: Product[] = data as Product[];
+const ALL_PRODUCTS = data as Product[];
+export const PRODUCTS: Product[] = ALL_PRODUCTS.filter((product) => product.active !== false);
 
 export function getProductBySlug(slug: string) {
   return PRODUCTS.find((p) => p.slug === slug);
