@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { isAdminRequest, unauthorized } from "@/lib/admin-auth";
-import { readProducts, validateProductInput, writeProducts } from "@/lib/product-store";
+import { readCategories, readProducts, validateProductInput, writeProducts } from "@/lib/product-store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -25,7 +25,7 @@ export async function POST(req: Request) {
   if (!isAdminRequest(req)) return unauthorized();
 
   const input = await req.json().catch(() => null);
-  const parsed = validateProductInput(input);
+  const parsed = validateProductInput(input, await readCategories());
   if (!parsed.ok) return NextResponse.json({ error: parsed.error }, { status: 400 });
 
   const data = await readProducts();
