@@ -1,57 +1,39 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
+import { isAdminRequest, unauthorized } from "@/lib/admin-auth";
+import { readCategories, readProducts, validateProductInput, writeProducts } from "@/lib/product-store";
 
-const DATA_PATH = path.join(process.cwd(), "data", "products.json");
-
-function isAuthed(req: Request) {
-  const cookie = req.headers.get("cookie") || "";
-  return cookie.includes("michio_admin=1");
-}
-
-function readData() {
-  const raw = fs.readFileSync(DATA_PATH, "utf-8");
-  return JSON.parse(raw);
-}
-
-function writeData(data: any) {
-  fs.writeFileSync(DATA_PATH, JSON.stringify(data, null, 2), "utf-8");
-}
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function GET(req: Request) {
-  if (!isAuthed(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  const data = readData();
+  if (!isAdminRequest(req)) return unauthorized();
+
+  const data = await readProducts();
   const { searchParams } = new URL(req.url);
-  const q = (searchParams.get("q") || "").toLowerCase();
+  const q = (searchParams.get("q") || "").trim().toLowerCase();
   const cat = searchParams.get("cat") || "";
-  let filtered = data;
-  if (q) {
-    filtered = filtered.filter((p: any) => `${p.name} ${p.slug} ${p.excerpt}`.toLowerCase().includes(q));
-  }
-  if (cat) {
-    filtered = filtered.filter((p: any) => p.category === cat);
-  }
+  const filtered = data.filter((product) => {
+    const matchesQuery = !q || `${product.name} ${product.slug} ${product.excerpt}`.toLowerCase().includes(q);
+    const matchesCategory = !cat || product.category === cat;
+    return matchesQuery && matchesCategory;
+  });
+
   return NextResponse.json({ products: filtered, total: data.length });
 }
 
 export async function POST(req: Request) {
-  if (!isAuthed(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  const body = await req.json();
-  const data = readData();
-  // validate slug unique
-  if (data.find((p: any) => p.slug === body.slug)) {
-    return NextResponse.json({ error: "Slug đã tồn tại" }, { status: 400 });
+  if (!isAdminRequest(req)) return unauthorized();
+
+  const input = await req.json().catch(() => null);
+  const parsed = validateProductInput(input, await readCategories());
+  if (!parsed.ok) return NextResponse.json({ error: parsed.error }, { status: 400 });
+
+  const data = await readProducts();
+  if (data.some((product) => product.slug === parsed.product.slug)) {
+    return NextResponse.json({ error: "Slug đã tồn tại" }, { status: 409 });
   }
-  // basic validation
-  if (!body.slug || !body.name || !body.price) {
-    return NextResponse.json({ error: "Thiếu trường bắt buộc" }, { status: 400 });
-  }
-  // auto badge
-  if (body.originalPrice && body.originalPrice > body.price) {
-    const disc = Math.round((1 - body.price / body.originalPrice) * 100);
-    body.badge = `-${disc}%`;
-  }
-  data.unshift(body);
-  writeData(data);
-  return NextResponse.json({ ok: true, product: body });
+
+  data.unshift(parsed.product);
+  const saved = await writeProducts(data);
+  return NextResponse.json({ ok: true, product: parsed.product, storage: saved.mode }, { status: 201 });
 }

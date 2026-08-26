@@ -1,25 +1,30 @@
+import crypto from "node:crypto";
 import { NextResponse } from "next/server";
+import { clearAdminCookie, setAdminCookie } from "@/lib/admin-auth";
+
+export const runtime = "nodejs";
+
+function safeEqual(a: string, b: string) {
+  const left = Buffer.from(a);
+  const right = Buffer.from(b);
+  return left.length === right.length && crypto.timingSafeEqual(left, right);
+}
 
 export async function POST(req: Request) {
-  const { password } = await req.json().catch(() => ({ password: "" }));
-  const correct = process.env.ADMIN_PASSWORD || "michio2024";
-  if (password !== correct) {
+  const configuredPassword = process.env.ADMIN_PASSWORD;
+  if (!configuredPassword) {
+    return NextResponse.json({ ok: false, error: "Admin chưa được cấu hình ADMIN_PASSWORD trên server" }, { status: 503 });
+  }
+
+  const body = (await req.json().catch(() => ({}))) as { password?: unknown };
+  const password = typeof body.password === "string" ? body.password : "";
+  if (!safeEqual(password, configuredPassword)) {
     return NextResponse.json({ ok: false, error: "Sai mật khẩu" }, { status: 401 });
   }
-  const res = NextResponse.json({ ok: true });
-  // simple cookie, httpOnly
-  res.cookies.set("michio_admin", "1", {
-    httpOnly: true,
-    path: "/",
-    maxAge: 60 * 60 * 24 * 7,
-    sameSite: "lax",
-  });
-  // also set a token for client check
-  return res;
+
+  return setAdminCookie(NextResponse.json({ ok: true }));
 }
 
 export async function DELETE() {
-  const res = NextResponse.json({ ok: true });
-  res.cookies.set("michio_admin", "", { path: "/", maxAge: 0 });
-  return res;
+  return clearAdminCookie(NextResponse.json({ ok: true }));
 }
