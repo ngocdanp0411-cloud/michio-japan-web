@@ -21,14 +21,14 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   const products = getProductsByCategory(slug);
 
   return (
-    <div className="mx-auto max-w-[1280px] px-4 py-6">
-      <div className="rounded-xl border bg-white p-5">
-        <div className="text-xs tracking-[0.14em] text-[var(--michio-taupe)]">DANH MỤC</div>
-        <h1 className="font-display text-2xl font-bold tracking-wide">{cat.name}</h1>
-        <p className="mt-1 text-sm text-[var(--michio-deep-navy)]/60">{products.length} sản phẩm • Chọn đúng đồ Nhật – Sống thật mỗi ngày.</p>
-      </div>
-      <div className="mt-6">
-        {products.length ? <ProductGrid products={products} /> : <div className="rounded-xl border bg-white p-10 text-center text-sm">Chưa có sản phẩm trong danh mục này.</div>}
+    <div className="mx-auto max-w-[1280px] px-4 py-10 md:py-14">
+      <header className="border-l-2 border-[var(--michio-primary)] pl-5 md:pl-7">
+        <p className="michio-eyebrow">Danh mục / Michio Japan</p>
+        <h1 className="michio-h1 mt-3">{cat.name}</h1>
+        <p className="michio-body mt-4 max-w-[60ch]">{products.length} sản phẩm được chọn lọc — Chọn đúng đồ Nhật, sống thật mỗi ngày.</p>
+      </header>
+      <div className="mt-10">
+        {products.length ? <ProductGrid products={products} /> : <div className="border border-dashed border-[var(--michio-border-strong)] bg-[var(--michio-surface-muted)] p-10 text-center text-sm text-[var(--michio-text-muted)]">Chưa có sản phẩm trong danh mục này.</div>}
       </div>
     </div>
   );

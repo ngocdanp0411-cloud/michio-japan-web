@@ -26,41 +26,41 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const related = PRODUCTS.filter((x) => x.category === p.category && x.slug !== p.slug).slice(0, 5);
 
   return (
-    <div className="mx-auto max-w-[1280px] px-4 py-6">
-      <div className="michio-caption">
-        <Link href="/" className="hover:underline">Trang chủ</Link> <span className="mx-1">/</span>
-        <Link href={`/danh-muc/${p.category}`} className="hover:underline">{cat?.name ?? p.category}</Link> <span className="mx-1">/</span>
+    <div className="mx-auto max-w-[1280px] px-4 py-8 md:py-10">
+      <nav aria-label="Breadcrumb" className="michio-caption flex flex-wrap items-center gap-1.5">
+        <Link href="/" className="transition-colors hover:text-[var(--michio-primary)]">Trang chủ</Link><span aria-hidden="true">/</span>
+        <Link href={`/danh-muc/${p.category}`} className="transition-colors hover:text-[var(--michio-primary)]">{cat?.name ?? p.category}</Link><span aria-hidden="true">/</span>
         <span className="text-[var(--michio-text-subtle)]">{p.name}</span>
-      </div>
+      </nav>
 
-      <div className="mt-4 grid gap-6 md:grid-cols-2">
+      <div className="mt-6 grid gap-8 md:grid-cols-[1.02fr_0.98fr] md:gap-10">
         <ProductGallery images={p.gallery ?? [p.image]} name={p.name} />
 
         <div className="pb-24 md:pb-0">
-          <div className="michio-chip inline-flex rounded-full px-3 py-1">{cat?.name}</div>
+          <p className="michio-eyebrow">{cat?.name} / Sản phẩm chọn lọc</p>
           <h1 className="michio-h1 mt-2 text-[2rem] md:text-[2.5rem]">{p.name}</h1>
           <div className="mt-2 text-sm leading-6 text-[var(--michio-text-muted)]"><span aria-label={`Đánh giá ${p.rating.toFixed(1)} trên 5, ${p.ratingCount} lượt đánh giá`}><span aria-hidden="true">★</span> {p.rating.toFixed(1)} · {p.ratingCount} đánh giá</span> <span className="mx-2 text-[var(--michio-border-strong)]" aria-hidden="true">|</span> <span className="font-semibold text-[var(--michio-success)]">✓ Chính hãng</span></div>
 
-          <div className="michio-card mt-4 flex flex-wrap items-baseline gap-2 bg-[var(--michio-surface-warm)] p-4">
+          <div className="mt-5 flex flex-wrap items-baseline gap-3 border-y border-[var(--michio-border)] bg-[var(--michio-surface-warm)] px-4 py-5">
             <span className="text-2xl font-bold leading-7 text-[var(--michio-primary)]">{formatPrice(p.price)}</span>
             {p.originalPrice && <span className="text-sm leading-5 text-[var(--michio-text-subtle)] line-through">{formatPrice(p.originalPrice)}</span>}
-            {p.badge && <span className="rounded-full bg-[var(--michio-primary)] px-2.5 py-1 text-xs font-bold leading-5 text-white">{p.badge} • Freeship 499k</span>}
+            {p.badge && <span className="rounded-md bg-[var(--michio-primary)] px-2.5 py-1 text-xs font-bold leading-5 text-white">{p.badge} • Freeship 499k</span>}
           </div>
 
           <ProductDescription text={p.description} />
 
           {/* Desktop CTA */}
-          <div className="mt-6 hidden md:grid gap-2">
-            <a href={LINKS.zalo} target="_blank" rel="noopener" className="michio-btn-primary rounded-full px-5 py-3.5 text-center text-sm active:scale-[0.98]">
+          <div className="mt-8 hidden gap-2 md:grid">
+            <a href={LINKS.zalo} target="_blank" rel="noopener" className="michio-btn-primary rounded-md px-5 py-3.5 text-center text-sm active:scale-[0.98]">
               Chat Zalo — Tư vấn & đặt hàng
             </a>
-            <a href={LINKS.messenger} target="_blank" rel="noopener" className="michio-btn-secondary rounded-full px-5 py-3.5 text-center text-sm">
+            <a href={LINKS.messenger} target="_blank" rel="noopener" className="michio-btn-secondary rounded-md px-5 py-3.5 text-center text-sm">
               Inbox Fanpage
             </a>
-            <a href={LINKS.hotline} className="michio-btn-secondary rounded-full px-5 py-3 text-center text-sm">Gọi {LINKS.hotlineDisplay}</a>
+            <a href={LINKS.hotline} className="michio-btn-secondary rounded-md px-5 py-3 text-center text-sm">Gọi {LINKS.hotlineDisplay}</a>
           </div>
 
-          <div className="mt-6 rounded-xl border border-[var(--michio-border)] bg-[var(--michio-surface-muted)] p-4 text-sm leading-6">
+          <div className="mt-8 border-l-2 border-[var(--michio-primary)] bg-[var(--michio-surface-muted)] p-4 text-sm leading-6">
             <div className="font-semibold">Cam kết Michio Japan</div>
             <ul className="mt-1 list-disc pl-4 text-[var(--michio-deep-navy)]/70">
               <li>100% chính hãng, tem phụ rõ ràng</li>
@@ -72,8 +72,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       </div>
 
       {related.length > 0 && (
-        <div className="mt-10 pb-24 md:pb-0">
-          <h2 className="michio-h2">Sản phẩm liên quan</h2>
+        <div className="mt-14 border-t border-[var(--michio-border)] pb-24 pt-10 md:pb-0">
+          <p className="michio-eyebrow">Gợi ý cùng danh mục</p>
+          <h2 className="michio-h2 mt-1">Sản phẩm liên quan</h2>
           <div className="mt-4"><ProductGrid products={related} /></div>
         </div>
       )}
@@ -81,11 +82,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       {/* Mobile sticky bottom CTA - thumb zone */}
       <div className="fixed inset-x-0 bottom-0 z-40 border-t bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 p-3 pb-[max(12px,env(safe-area-inset-bottom))] md:hidden">
         <div className="mx-auto flex max-w-[640px] gap-2">
-          <a href={LINKS.messenger} target="_blank" rel="noopener" className="michio-btn-secondary flex-1 inline-flex h-12 items-center justify-center rounded-full text-sm active:scale-[0.98]">
+          <a href={LINKS.messenger} target="_blank" rel="noopener" className="michio-btn-secondary flex-1 inline-flex h-12 items-center justify-center rounded-md text-sm active:scale-[0.98]">
             Inbox
           </a>
-          <a href={LINKS.zalo} target="_blank" rel="noopener" className="michio-btn-primary flex-[1.6] inline-flex h-12 items-center justify-center gap-1.5 rounded-full text-sm shadow active:scale-[0.98]">
-            <span className="h-2 w-2 rounded-full bg-white animate-pulse" /> Chat Zalo — {LINKS.hotlineDisplay}
+          <a href={LINKS.zalo} target="_blank" rel="noopener" className="michio-btn-primary flex-[1.6] inline-flex h-12 items-center justify-center gap-1.5 rounded-md text-sm shadow active:scale-[0.98]">
+            <span className="h-2 w-2 rounded-md bg-white/95 animate-pulse" /> Chat Zalo — {LINKS.hotlineDisplay}
           </a>
         </div>
         <div className="michio-caption mt-1.5 text-center">Freeship nội thành HN 499k • {LINKS.address}</div>
