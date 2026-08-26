@@ -1,28 +1,43 @@
-import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
-const POSTS: Record<string, { title: string; body: string }> = {
-  "tu-the-nam-giam-mo-bung": { title: "Các tư thế nằm giảm mỡ bụng hiệu quả của người Nhật", body: "Người Nhật chú trọng tư thế nằm và hít thở sâu để hỗ trợ săn chắc cơ bụng. Kết hợp khăn cuộn lưng, hít thở bằng bụng và duy trì đều đặn sẽ hỗ trợ giảm mỡ." },
-  "tpcn-tot-cho-phu-nu": { title: "Những thực phẩm chức năng tốt cho phụ nữ", body: "Collagen, sắt, vitamin E, tảo Spirulina và placenta là nhóm được quan tâm. Chọn đúng liều và nguồn gốc Nhật giúp hỗ trợ da, tóc và sức khỏe." },
-  "tao-vang-spirulina": { title: "Viên uống tảo vàng Spirulina EX Nhật Bản", body: "Spirulina EX giàu protein, phycocyanin và vi chất — hỗ trợ dinh dưỡng, đề kháng và làm đẹp từ bên trong." },
-};
-export function generateStaticParams() { return Object.keys(POSTS).map((slug) => ({ slug })); }
+import { notFound } from "next/navigation";
+import { BlogContent } from "@/components/blog/blog-content";
+import { getBlogPost, getBlogPosts } from "@/lib/blog";
+
+export function generateStaticParams() {
+  return getBlogPosts().map((post) => ({ slug: post.slug }));
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const p = POSTS[slug];
-  return p ? { title: p.title } : {};
+  const post = getBlogPost(slug);
+  return post
+    ? { title: `${post.title} | Michio Japan`, description: post.description }
+    : {};
 }
+
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const p = POSTS[slug];
-  if (!p) notFound();
+  const post = getBlogPost(slug);
+  if (!post) notFound();
+
   return (
-    <div className="mx-auto max-w-[820px] px-4 py-10">
-      <Link href="/tin-tuc" className="text-sm underline">← Tin tức</Link>
-      <h1 className="mt-2 font-display text-2xl font-bold">{p.title}</h1>
-      <div className="michio-line my-6" />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={`https://picsum.photos/seed/${slug}/800/450`} alt={p.title} className="w-full rounded-xl border object-cover" />
-      <p className="mt-6 text-sm leading-7 text-[var(--michio-deep-navy)]/75">{p.body}</p>
-    </div>
+    <article className="mx-auto max-w-[920px] px-4 py-8">
+      <Link href="/tin-tuc" className="text-sm font-semibold text-[var(--michio-deep-rose)]">← Tin tức</Link>
+      <header className="mt-5">
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--michio-deep-rose)]">Michio Journal</p>
+        <h1 className="mt-2 font-display text-3xl font-bold leading-tight text-[var(--michio-deep-navy)] md:text-4xl">{post.title}</h1>
+        <p className="mt-4 max-w-3xl text-base leading-7 text-[var(--michio-deep-navy)]/70">{post.description}</p>
+      </header>
+      <Image src={post.image} alt={post.title} width={1600} height={900} priority className="mt-7 aspect-video w-full rounded-2xl border border-[var(--michio-line)] object-cover" />
+      <div className="mt-8 rounded-2xl border border-[var(--michio-line)] bg-white p-5 md:p-8">
+        <BlogContent content={post.content} />
+      </div>
+      <div className="mt-8 rounded-2xl bg-[var(--michio-deep-navy)] p-6 text-white">
+        <h2 className="font-display text-xl font-semibold">Chọn sản phẩm phù hợp với thói quen của bạn</h2>
+        <p className="mt-2 text-sm leading-6 text-white/75">Tham khảo các sản phẩm Nhật được chọn lọc tại Michio Japan và đọc kỹ thông tin trên nhãn trước khi mua.</p>
+        <Link href="/" className="mt-4 inline-flex rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[var(--michio-deep-navy)]">Về trang chủ Michio Japan</Link>
+      </div>
+    </article>
   );
 }

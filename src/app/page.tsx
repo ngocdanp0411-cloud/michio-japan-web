@@ -1,8 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ProductGrid } from "@/components/product/product-card";
 import { CategoryRail } from "@/components/product/category-rail";
 import { PRODUCTS } from "@/lib/products";
 import { LINKS } from "@/lib/links";
+import { getBlogPosts } from "@/lib/blog";
 
 function Section({ title, slug, products }: { title: string; slug: string; products: typeof PRODUCTS }) {
   return (
@@ -106,16 +108,13 @@ export default function HomePage() {
           <Link href="/tin-tuc" className="text-sm underline">Xem tất cả</Link>
         </div>
         <div className="mt-4 grid gap-3 md:grid-cols-3">
-          {[
-            { title: "Các tư thế nằm giảm mỡ bụng của người Nhật", slug: "tu-the-nam-giam-mo-bung" },
-            { title: "Những thực phẩm chức năng tốt cho phụ nữ", slug: "tpcn-tot-cho-phu-nu" },
-            { title: "Viên uống tảo vàng Spirulina EX Nhật Bản", slug: "tao-vang-spirulina" },
-          ].map((n) => (
-            <Link key={n.slug} href={`/tin-tuc/${n.slug}`} className="rounded-xl border bg-white p-4 hover:shadow-sm">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`https://picsum.photos/seed/${n.slug}/400/240`} alt={n.title} className="h-36 w-full rounded-lg object-cover" />
-              <div className="mt-3 text-sm font-medium leading-5 line-clamp-2">{n.title}</div>
-              <div className="mt-1 text-xs text-[var(--michio-taupe)]">Xem bài viết →</div>
+          {getBlogPosts().slice(0, 3).map((post) => (
+            <Link key={post.slug} href={`/tin-tuc/${post.slug}`} className="group overflow-hidden rounded-xl border bg-white hover:shadow-sm">
+              <Image src={post.image} alt={post.title} width={800} height={450} className="h-36 w-full object-cover transition duration-300 group-hover:scale-[1.02]" />
+              <div className="p-4">
+                <div className="text-sm font-medium leading-5 line-clamp-2">{post.title}</div>
+                <div className="mt-1 text-xs text-[var(--michio-taupe)]">Xem bài viết →</div>
+              </div>
             </Link>
           ))}
         </div>
