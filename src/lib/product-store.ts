@@ -150,8 +150,14 @@ async function writeGitHubFile(config: NonNullable<ReturnType<typeof githubConfi
 
 export async function readProducts() {
   const config = githubConfig();
-  if (config) return (await readGitHubJson<ProductRecord[]>(config, GITHUB_PRODUCTS_PATH)).data;
-  return readLocalJson<ProductRecord[]>(DATA_PATH);
+  if (!config) return readLocalJson<ProductRecord[]>(DATA_PATH);
+
+  try {
+    return (await readGitHubJson<ProductRecord[]>(config, GITHUB_PRODUCTS_PATH)).data;
+  } catch (error) {
+    console.error("[Admin storage] GitHub read products failed; using bundled catalog:", error);
+    return readLocalJson<ProductRecord[]>(DATA_PATH);
+  }
 }
 
 export async function writeProducts(products: ProductRecord[]) {
@@ -168,8 +174,14 @@ export async function writeProducts(products: ProductRecord[]) {
 
 export async function readCategories() {
   const config = githubConfig();
-  if (config) return (await readGitHubJson<Category[]>(config, GITHUB_CATEGORIES_PATH)).data;
-  return readLocalJson<Category[]>(CATEGORIES_PATH);
+  if (!config) return readLocalJson<Category[]>(CATEGORIES_PATH);
+
+  try {
+    return (await readGitHubJson<Category[]>(config, GITHUB_CATEGORIES_PATH)).data;
+  } catch (error) {
+    console.error("[Admin storage] GitHub read categories failed; using bundled categories:", error);
+    return readLocalJson<Category[]>(CATEGORIES_PATH);
+  }
 }
 
 export async function writeCategories(categories: Category[]) {
