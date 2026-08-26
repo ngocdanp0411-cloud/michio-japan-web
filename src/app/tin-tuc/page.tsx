@@ -19,7 +19,10 @@ export default function Page() {
       <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
           <Link key={post.slug} href={`/tin-tuc/${post.slug}`} className="group overflow-hidden border border-[var(--michio-border)] bg-[var(--michio-surface)] transition-[box-shadow,border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-[var(--michio-border-strong)] hover:shadow-[0_12px_30px_rgba(19,35,63,0.08)]">
-            <Image src={post.image} alt={post.title} width={1200} height={675} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="h-52 w-full object-cover transition duration-300 group-hover:scale-[1.02]" />
+            <div className="relative">
+              <Image src={post.image} alt={post.title} width={1200} height={675} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="h-52 w-full object-cover transition duration-300 group-hover:scale-[1.02]" />
+              <Image src="/images/brand/michio-authentic-logo.jpg" alt="" width={64} height={64} className="absolute bottom-3 right-3 h-10 w-10 rounded-full border border-white bg-white object-cover shadow-sm" />
+            </div>
             <div className="p-5">
               <p className="michio-eyebrow">Góc chăm sóc / 2026</p>
               <h2 className="michio-h3 mt-2 line-clamp-2 text-[1.35rem]">{post.title}</h2>

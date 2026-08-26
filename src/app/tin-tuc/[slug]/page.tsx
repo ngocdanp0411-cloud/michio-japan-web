@@ -29,7 +29,10 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         <h1 className="michio-h1 mt-3 max-w-[22ch]">{post.title}</h1>
         <p className="michio-body mt-5 max-w-3xl text-base md:text-lg">{post.description}</p>
       </header>
-      <Image src={post.image} alt={post.title} width={1600} height={900} priority sizes="(min-width: 1120px) 1120px, 100vw" className="mt-9 aspect-video w-full border border-[var(--michio-border)] bg-[var(--michio-surface-muted)] object-cover" />
+      <div className="relative mt-9">
+        <Image src={post.image} alt={post.title} width={1600} height={900} priority sizes="(min-width: 1120px) 1120px, 100vw" className="aspect-video w-full border border-[var(--michio-border)] bg-[var(--michio-surface-muted)] object-cover" />
+        <Image src="/images/brand/michio-authentic-logo.jpg" alt="" width={88} height={88} className="absolute bottom-4 right-4 h-14 w-14 rounded-full border-2 border-white bg-white object-cover shadow-md md:h-16 md:w-16" />
+      </div>
       <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_220px]">
         <div className="michio-card p-5 md:p-9">
         <BlogContent content={post.content} />

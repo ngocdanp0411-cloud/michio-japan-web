@@ -12,9 +12,8 @@ export function ProductCard({ p }: { p: Product }) {
   return (
     <div className="group flex flex-col overflow-hidden border border-[var(--michio-border)] bg-[var(--michio-surface)] transition-[box-shadow,border-color] duration-200 hover:border-[var(--michio-border-strong)] hover:shadow-[0_12px_30px_rgba(19,35,63,0.08)]">
       <Link href={`/san-pham/${p.slug}`} className="relative aspect-[4/5] overflow-hidden bg-[var(--michio-surface-muted)]">
-        {/* Tem chỉ chữ hồng, không nền - khít viền ngang */}
-        <span className="pointer-events-none absolute left-2 top-2 z-10 text-[8px] font-bold tracking-[0.18em] drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]">
-          <span className="text-[var(--michio-deep-rose)]">MICHIO</span> <span className="text-[var(--michio-deep-rose)]">JAPAN</span>
+        <span className="pointer-events-none absolute left-3 top-3 z-10 h-9 w-9 overflow-hidden rounded-full border border-white bg-white/95 shadow-sm">
+          <Image src="/images/brand/michio-authentic-logo.jpg" alt="" fill sizes="36px" className="object-cover" />
         </span>
         <Image src={p.image} alt={p.name} fill sizes="(min-width: 1280px) 20vw, (min-width: 768px) 30vw, 50vw" className="object-contain p-3 transition-transform duration-300 group-hover:scale-[1.03]" />
         {discount !== null && (
