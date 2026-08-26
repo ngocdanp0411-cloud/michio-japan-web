@@ -19,9 +19,9 @@ export function Header() {
             <input
               name="q"
               placeholder="Tìm collagen, Hatomugi, dầu gội..."
-              className="flex-1 bg-transparent text-sm leading-5 outline-none placeholder:text-[var(--michio-text-subtle)]"
+              className="michio-input min-h-0 flex-1 border-0 bg-transparent text-sm leading-5 outline-none placeholder:text-[var(--michio-text-subtle)] focus-visible:outline-0"
             />
-            <button type="submit" className="rounded-full bg-[var(--michio-navy)] px-4 py-1.5 text-xs font-semibold leading-5 text-white transition-colors duration-200 hover:bg-[var(--michio-navy-strong)]">Tìm kiếm</button>
+            <button type="submit" className="michio-btn-navy rounded-full px-4 py-1.5 text-xs leading-5">Tìm kiếm</button>
           </form>
 
           {/* Desktop CTAs */}
@@ -47,10 +47,10 @@ export function Header() {
           <input
             name="q"
             placeholder="Bạn cần tìm gì? (ví dụ: Kose, Collagen, Hatomugi)"
-            className="flex-1 bg-transparent text-[15px] leading-6 outline-none placeholder:text-[var(--michio-text-subtle)]"
+            className="michio-input min-h-0 flex-1 border-0 bg-transparent text-[15px] leading-6 outline-none placeholder:text-[var(--michio-text-subtle)] focus-visible:outline-0"
             autoComplete="off"
           />
-          <button type="submit" className="shrink-0 rounded-full bg-[var(--michio-navy)] px-4 py-1.5 text-xs font-semibold leading-5 text-white transition-colors duration-200 active:scale-95">Tìm</button>
+          <button type="submit" className="michio-btn-navy shrink-0 rounded-full px-4 py-1.5 text-xs leading-5 active:scale-95">Tìm</button>
         </form>
 
         {/* Category scroll - thumb friendly, snap */}

@@ -177,6 +177,40 @@ body {
   background: var(--michio-primary-hover);
 }
 
+.michio-btn-primary:active,
+.michio-btn-secondary:active {
+  transform: translateY(1px);
+}
+
+.michio-btn-primary:disabled,
+.michio-btn-secondary:disabled,
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.michio-btn-navy {
+  background: var(--michio-navy);
+  color: var(--michio-navy-foreground);
+  font-weight: 600;
+  transition: background-color 200ms ease, transform 160ms ease;
+}
+
+.michio-btn-navy:hover {
+  background: var(--michio-navy-strong);
+}
+
+.michio-btn-navy:active {
+  transform: translateY(1px);
+}
+
+.michio-btn-navy:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
 .michio-btn-secondary {
   background: var(--michio-surface);
   border: 1px solid var(--michio-navy);
@@ -187,6 +221,45 @@ body {
 
 .michio-btn-secondary:hover {
   background: var(--michio-surface-muted);
+}
+
+.michio-input {
+  min-height: 44px;
+  border: 1px solid var(--michio-border);
+  background: var(--michio-surface);
+  color: var(--michio-text);
+  transition: border-color 200ms ease, box-shadow 200ms ease, background-color 200ms ease;
+}
+
+.michio-input:hover {
+  border-color: var(--michio-border-strong);
+}
+
+.michio-input:focus-visible {
+  border-color: var(--michio-focus);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--michio-focus) 14%, transparent);
+}
+
+.michio-input:disabled {
+  cursor: not-allowed;
+  background: var(--michio-surface-muted);
+  color: var(--michio-text-subtle);
+  opacity: 0.65;
+}
+
+.michio-input::placeholder {
+  color: var(--michio-text-subtle);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--michio-primary);
+}
+
+input[type="checkbox"]:focus-visible,
+input[type="radio"]:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--michio-focus) 35%, transparent);
+  outline-offset: 2px;
 }
 
 .michio-chip {

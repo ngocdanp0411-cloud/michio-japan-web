@@ -60,7 +60,9 @@ Các token được khai báo tại `src/app/globals.css`. Component mới phả
 | Header | `--michio-surface` | `--michio-navy` | `--michio-border`, focus `--michio-focus` |
 | Search input | `--michio-surface` | `--michio-text` | Border `--michio-border`, focus ring rose |
 | Primary CTA | `--michio-primary` | `#FFFFFF` | Hover `--michio-primary-hover`, cao tối thiểu 44px |
-| Secondary CTA | `--michio-surface` | `--michio-navy` | Border navy, hover `--michio-surface-muted` |
+| Secondary CTA | `--michio-surface` | `--michio-navy` | Border navy, hover `--michio-surface-muted`, active translate 1px |
+| Navy CTA/search | `--michio-navy` | `#FFFFFF` | Hover `--michio-navy-strong`, active translate 1px, disabled opacity 55% |
+| Form input | `--michio-surface` | `--michio-text` | Hover border `--michio-border-strong`, focus border/ring `--michio-focus`, disabled `--michio-surface-muted` |
 | Category chip | `--michio-surface-muted` | `--michio-navy` | Border `--michio-border`; active dùng navy |
 | Product card | `--michio-surface` | `--michio-text` | Border `--michio-border`, shadow nhẹ khi hover |
 | Product price | Không bắt buộc | `--michio-primary` | Giá gốc dùng `--michio-text-subtle` + line-through |
@@ -87,4 +89,4 @@ Các token được khai báo tại `src/app/globals.css`. Component mới phả
 </a>
 ```
 
-Mọi focus state dùng `:focus-visible` với outline rose có offset; animation chỉ ở mức nhẹ khoảng 150–250ms và phải tôn trọng `prefers-reduced-motion`.
+Mọi focus state dùng `:focus-visible` với outline rose có offset; form input có focus ring riêng và placeholder subtle. Button primary, secondary và navy có hover/active/disabled state rõ ràng; disabled dùng cursor not-allowed, opacity giảm và không nhận pointer. Animation chỉ ở mức nhẹ khoảng 150–250ms và phải tôn trọng `prefers-reduced-motion`. Product gallery dùng `next/image`, thumbnail có `aria-current`, lightbox có `role=dialog`, `aria-modal`, Escape để đóng và trả focus về trigger.

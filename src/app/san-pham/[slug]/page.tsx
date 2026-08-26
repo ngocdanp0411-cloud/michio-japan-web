@@ -39,7 +39,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <div className="pb-24 md:pb-0">
           <div className="michio-chip inline-flex rounded-full px-3 py-1">{cat?.name}</div>
           <h1 className="michio-h1 mt-2 text-[2rem] md:text-[2.5rem]">{p.name}</h1>
-          <div className="mt-2 text-sm leading-6 text-[var(--michio-text-muted)]">⭐ {p.rating.toFixed(1)} · {p.ratingCount} đánh giá <span className="mx-2 text-[var(--michio-border-strong)]">|</span> <span className="font-semibold text-[var(--michio-success)]">✓ Chính hãng</span></div>
+          <div className="mt-2 text-sm leading-6 text-[var(--michio-text-muted)]"><span aria-label={`Đánh giá ${p.rating.toFixed(1)} trên 5, ${p.ratingCount} lượt đánh giá`}><span aria-hidden="true">★</span> {p.rating.toFixed(1)} · {p.ratingCount} đánh giá</span> <span className="mx-2 text-[var(--michio-border-strong)]" aria-hidden="true">|</span> <span className="font-semibold text-[var(--michio-success)]">✓ Chính hãng</span></div>
 
           <div className="michio-card mt-4 flex flex-wrap items-baseline gap-2 bg-[var(--michio-surface-warm)] p-4">
             <span className="text-2xl font-bold leading-7 text-[var(--michio-primary)]">{formatPrice(p.price)}</span>

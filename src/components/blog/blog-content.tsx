@@ -48,9 +48,9 @@ export function BlogContent({ content }: { content: string }) {
       if (rows.length) {
         blocks.push(
           <div key={`table-${blocks.length}`} className="overflow-x-auto rounded-xl border border-[var(--michio-border)]">
-            <table className="min-w-full text-left text-sm leading-6">
+            <table className="min-w-full text-left text-sm leading-6"><caption className="sr-only">Bảng thông tin trong bài viết</caption>
               <thead className="bg-[var(--michio-primary-soft)] text-[var(--michio-navy)]">
-                <tr>{rows[0].map((cell, index) => <th key={index} className="px-3 py-2 text-xs font-semibold leading-5">{inline(cell)}</th>)}</tr>
+                <tr>{rows[0].map((cell, index) => <th key={index} scope="col" className="px-3 py-2 text-xs font-semibold leading-5">{inline(cell)}</th>)}</tr>
               </thead>
               <tbody>{rows.slice(1).map((row, rowIndex) => <tr key={rowIndex} className="border-t border-[var(--michio-border)]"><>{row.map((cell, index) => <td key={index} className="px-3 py-2 align-top text-[var(--michio-text-muted)]">{inline(cell)}</td>)}</></tr>)}</tbody>
             </table>
@@ -121,5 +121,5 @@ export function BlogContent({ content }: { content: string }) {
   flushList();
   flushTable();
 
-  return <div className="space-y-5 text-[var(--michio-text-muted)]">{blocks}</div>;
+  return <div className="space-y-5 break-words text-[var(--michio-text-muted)]">{blocks}</div>;
 }

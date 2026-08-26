@@ -22,8 +22,8 @@ export function ProductCard({ p }: { p: Product }) {
             -{discount}%
           </span>
         )}
-        <span className="absolute bottom-2 right-2 rounded-full border border-[var(--michio-border)] bg-white/95 px-2 py-1 text-[10px] font-medium leading-4 shadow-sm">
-          ⭐ {p.rating.toFixed(1)} · {p.ratingCount}
+        <span aria-label={`Đánh giá ${p.rating.toFixed(1)} trên 5, ${p.ratingCount} lượt đánh giá`} className="absolute bottom-2 right-2 rounded-full border border-[var(--michio-border)] bg-white/95 px-2 py-1 text-[10px] font-medium leading-4 shadow-sm">
+          <span aria-hidden="true">★</span> {p.rating.toFixed(1)} · {p.ratingCount}
         </span>
       </Link>
       <div className="flex flex-1 flex-col p-2.5 md:p-3">
