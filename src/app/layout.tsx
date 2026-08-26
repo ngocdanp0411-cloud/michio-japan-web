@@ -44,7 +44,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="vi" className={`${beVN.variable} ${barlow.variable} h-full`}>
-      <body className="min-h-full flex flex-col bg-white text-[var(--michio-deep-navy)] antialiased">
+      <body className="min-h-full flex flex-col bg-white text-[var(--michio-navy)] antialiased">
         <TopBar />
         <Header />
         <main className="flex-1 pb-20 md:pb-0">{children}</main>

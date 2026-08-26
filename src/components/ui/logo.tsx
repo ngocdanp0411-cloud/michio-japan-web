@@ -8,9 +8,9 @@ function MichioM({ size = 42, id }: { size?: number; id: string }) {
         </clipPath>
       </defs>
       {/* M shape - left navy */}
-      <rect x="0" y="0" width="60" height="44" fill="#13233F" clipPath={`url(#${id})`} />
+      <rect x="0" y="0" width="60" height="44" fill="var(--michio-navy)" clipPath={`url(#${id})`} />
       {/* Right half pink overlay */}
-      <rect x="30" y="0" width="30" height="44" fill="#B83B68" clipPath={`url(#${id})`} />
+      <rect x="30" y="0" width="30" height="44" fill="var(--michio-primary)" clipPath={`url(#${id})`} />
     </svg>
   );
 }
@@ -33,9 +33,9 @@ export function Logo({
     return (
       <div className={`flex flex-col items-center text-center ${className}`}>
         <MichioM size={44} id="michio-m-vertical" />
-        <div className="mt-1 font-display text-[15px] font-bold tracking-[0.32em] leading-none text-[var(--michio-deep-navy)]">MICHIO</div>
-        <div className="font-display text-[15px] font-semibold tracking-[0.32em] leading-none text-[var(--michio-deep-rose)]">JAPAN</div>
-        <div className="mt-1 text-[7px] tracking-[0.12em] text-[var(--michio-taupe)]">CHỌN ĐÚNG ĐỒ NHẬT – SỐNG THẬT MỖI NGÀY.</div>
+        <div className="mt-1 font-display text-[15px] font-bold tracking-[0.32em] leading-none text-[var(--michio-navy)]">MICHIO</div>
+        <div className="font-display text-[15px] font-semibold tracking-[0.32em] leading-none text-[var(--michio-primary)]">JAPAN</div>
+        <div className="mt-1 text-[7px] tracking-[0.12em] text-[var(--michio-text-subtle)]">CHỌN ĐÚNG ĐỒ NHẬT – SỐNG THẬT MỖI NGÀY.</div>
       </div>
     );
   }
@@ -44,10 +44,10 @@ export function Logo({
       <MichioM size={42} id="michio-m-horizontal" />
       <div className="leading-none">
         <div className="flex gap-2 font-display text-[19px] font-bold tracking-[0.22em]">
-          <span className="text-[var(--michio-deep-navy)]">MICHIO</span>
-          <span className="text-[var(--michio-deep-rose)]">JAPAN</span>
+          <span className="text-[var(--michio-navy)]">MICHIO</span>
+          <span className="text-[var(--michio-primary)]">JAPAN</span>
         </div>
-        <div className="text-[8.5px] tracking-[0.14em] text-[var(--michio-deep-navy)] opacity-70">CHỌN ĐÚNG ĐỒ NHẬT – SỐNG THẬT MỖI NGÀY.</div>
+        <div className="text-[8.5px] tracking-[0.14em] text-[var(--michio-navy)] opacity-70">CHỌN ĐÚNG ĐỒ NHẬT – SỐNG THẬT MỖI NGÀY.</div>
       </div>
     </div>
   );

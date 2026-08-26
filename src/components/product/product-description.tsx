@@ -3,7 +3,7 @@ function parseInline(text: string) {
   return parts.map((part, i) => {
     if (part.startsWith("**") && part.endsWith("**") && part.length >= 4) {
       return (
-        <strong key={i} className="font-semibold text-[var(--michio-deep-navy)]">
+        <strong key={i} className="font-semibold text-[var(--michio-navy)]">
           {part.slice(2, -2)}
         </strong>
       );
@@ -16,7 +16,7 @@ export function ProductDescription({ text }: { text: string }) {
   // split by double newline -> blocks, but within each block handle mixed heading+list+paragraph
   const blocks = text.split(/\n\s*\n/);
   return (
-    <div className="mt-4 space-y-4 text-sm leading-7 text-[var(--michio-deep-navy)]/80">
+    <div className="michio-body mt-4 space-y-4">
       {blocks.map((block, idx) => {
         const trimmed = block.trim();
         if (!trimmed) return null;
@@ -30,7 +30,7 @@ export function ProductDescription({ text }: { text: string }) {
           const flushList = (key: string) => {
             if (listBuffer.length) {
               elements.push(
-                <ul key={key} className="list-disc pl-5 space-y-1.5">
+                <ul key={key} className="list-disc space-y-1.5 pl-5">
                   {listBuffer.map((it, j) => (
                     <li key={j} className="pl-1">
                       {parseInline(it)}
@@ -49,7 +49,7 @@ export function ProductDescription({ text }: { text: string }) {
             } else if (t.startsWith("**") && t.endsWith("**")) {
               flushList(`${idx}-list-${li}`);
               elements.push(
-                <h3 key={`${idx}-h-${li}`} className="font-display text-sm font-semibold tracking-wide text-[var(--michio-deep-navy)]">
+                <h3 key={`${idx}-h-${li}`} className="michio-h3 text-base text-[var(--michio-navy)]">
                   {parseInline(t)}
                 </h3>
               );
@@ -66,7 +66,7 @@ export function ProductDescription({ text }: { text: string }) {
         if (trimmed.startsWith("- ")) {
           const items = trimmed.split("\n").map((l) => l.replace(/^-+\s*/, "").trim()).filter(Boolean);
           return (
-            <ul key={idx} className="list-disc pl-5 space-y-1.5">
+            <ul key={idx} className="list-disc space-y-1.5 pl-5">
               {items.map((it, j) => (
                 <li key={j} className="pl-1">{parseInline(it)}</li>
               ))}
@@ -81,7 +81,7 @@ export function ProductDescription({ text }: { text: string }) {
           const rest = lines.slice(1).join("\n").trim();
           return (
             <div key={idx}>
-              <h3 className="font-display text-sm font-semibold tracking-wide text-[var(--michio-deep-navy)]">
+              <h3 className="michio-h3 text-base text-[var(--michio-navy)]">
                 {parseInline(first)}
               </h3>
               {rest && <p className="mt-1.5">{parseInline(rest)}</p>}

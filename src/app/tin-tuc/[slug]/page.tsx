@@ -23,20 +23,20 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
   return (
     <article className="mx-auto max-w-[920px] px-4 py-8">
-      <Link href="/tin-tuc" className="text-sm font-semibold text-[var(--michio-deep-rose)]">← Tin tức</Link>
+      <Link href="/tin-tuc" className="text-sm font-semibold text-[var(--michio-primary)] transition-colors duration-200 hover:text-[var(--michio-primary-hover)]">← Tin tức</Link>
       <header className="mt-5">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--michio-deep-rose)]">Michio Journal</p>
-        <h1 className="mt-2 font-display text-3xl font-bold leading-tight text-[var(--michio-deep-navy)] md:text-4xl">{post.title}</h1>
-        <p className="mt-4 max-w-3xl text-base leading-7 text-[var(--michio-deep-navy)]/70">{post.description}</p>
+        <p className="michio-eyebrow">Michio Journal</p>
+        <h1 className="michio-h1 mt-2 max-w-[22ch]">{post.title}</h1>
+        <p className="michio-body mt-4 max-w-3xl text-base">{post.description}</p>
       </header>
-      <Image src={post.image} alt={post.title} width={1600} height={900} priority className="mt-7 aspect-video w-full rounded-2xl border border-[var(--michio-line)] object-cover" />
-      <div className="mt-8 rounded-2xl border border-[var(--michio-line)] bg-white p-5 md:p-8">
+      <Image src={post.image} alt={post.title} width={1600} height={900} priority className="mt-7 aspect-video w-full rounded-xl border border-[var(--michio-border)] object-cover" />
+      <div className="michio-card mt-8 p-5 md:p-8">
         <BlogContent content={post.content} />
       </div>
       <div className="mt-8 rounded-2xl bg-[var(--michio-deep-navy)] p-6 text-white">
-        <h2 className="font-display text-xl font-semibold">Chọn sản phẩm phù hợp với thói quen của bạn</h2>
+        <h2 className="michio-h2 text-white">Chọn sản phẩm phù hợp với thói quen của bạn</h2>
         <p className="mt-2 text-sm leading-6 text-white/75">Tham khảo các sản phẩm Nhật được chọn lọc tại Michio Japan và đọc kỹ thông tin trên nhãn trước khi mua.</p>
-        <Link href="/" className="mt-4 inline-flex rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[var(--michio-deep-navy)]">Về trang chủ Michio Japan</Link>
+        <Link href="/" className="michio-btn-secondary mt-4 inline-flex rounded-full border-0 bg-white px-5 py-2.5 text-sm">Về trang chủ Michio Japan</Link>
       </div>
     </article>
   );
