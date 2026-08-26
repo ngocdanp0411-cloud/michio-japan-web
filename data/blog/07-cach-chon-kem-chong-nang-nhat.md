@@ -38,7 +38,7 @@ PA là chỉ số phổ biến trong sản phẩm châu Á, biểu thị mức b
 - Da nhạy cảm: tìm sản phẩm dành cho da nhạy cảm, ít hương liệu, thử trước trên vùng nhỏ.
 - Hoạt động ngoài trời nhiều, bơi lội: chọn kem chống nước hoặc water resistant, và bôi lại thường xuyên.
 
-Ví dụ sản phẩm tham khảo: nếu bạn muốn thử kem chống nắng dạng gel phổ biến ở thị trường Nhật, có thể xem thông tin sản phẩm như /san-pham/gel-chong-nang-anessa-perfect-uv-sunscreen-skincare-spf50-pa để biết chỉ số SPF/PA và tính năng chống nước.
+Ví dụ sản phẩm tham khảo: nếu bạn muốn thử kem chống nắng dạng gel phổ biến ở thị trường Nhật, có thể xem thông tin sản phẩm như /san-pham/sua-chong-nang-anessa-perfect-uv-sunscreen-skincare-spf50-pa-60ml để biết chỉ số SPF/PA và tính năng chống nước.
 
 ## Cách bôi kem chống nắng đúng: bước chi tiết
 
@@ -83,7 +83,7 @@ A5: Kiểm tra hạn dùng trên bao bì, thay đổi mùi hoặc màu có thể
 
 ## Lời khuyên cuối và CTA nhẹ nhàng
 
-Khi chọn "kem chống nắng Nhật loại nào tốt", hãy so sánh SPF/PA, kiểm tra tính năng chống nước, xem thành phần phù hợp với loại da và hoàn cảnh sử dụng. Nếu cần tham khảo các sản phẩm chăm sóc da khác, xem thêm mục chăm sóc da của chúng tôi tại /danh-muc/cham-soc-da. Để biết thông tin chi tiết về một dạng gel chống nắng đang phổ biến, bạn có thể xem trang sản phẩm /san-pham/gel-chong-nang-anessa-perfect-uv-sunscreen-skincare-spf50-pa.
+Khi chọn "kem chống nắng Nhật loại nào tốt", hãy so sánh SPF/PA, kiểm tra tính năng chống nước, xem thành phần phù hợp với loại da và hoàn cảnh sử dụng. Nếu cần tham khảo các sản phẩm chăm sóc da khác, xem thêm mục chăm sóc da của chúng tôi tại /danh-muc/cham-soc-da. Để biết thông tin chi tiết về một dạng gel chống nắng đang phổ biến, bạn có thể xem trang sản phẩm /san-pham/sua-chong-nang-anessa-perfect-uv-sunscreen-skincare-spf50-pa-60ml.
 
 Michio Japan cung cấp nhiều lựa chọn sản phẩm Nhật để bạn so sánh và chọn sản phẩm phù hợp với nhu cầu. Nếu bạn có da nhạy cảm hoặc bệnh nền, tham khảo ý kiến chuyên gia da liễu trước khi thay đổi liệu trình chăm sóc da.
 
