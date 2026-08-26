@@ -1,13 +1,19 @@
+import Link from "next/link";
 import type { ReactNode } from "react";
 
+const INTERNAL_PATH = /^\/(?:san-pham|danh-muc|tin-tuc|cua-hang|gioi-thieu|huong-dan-mua-hang|chinh-sach-[a-z-]+|tim-kiem)(?:\/[a-z0-9-]+)?(?:\?[^\s]+)?$/i;
+
 function inline(text: string): ReactNode[] {
-  const tokens = text.split(/(\*\*.*?\*\*|\[[0-9]+\])/g);
+  const tokens = text.split(/(\*\*.*?\*\*|\[[0-9]+\]|\/(?:san-pham|danh-muc|tin-tuc|cua-hang|gioi-thieu|huong-dan-mua-hang|chinh-sach-[a-z-]+|tim-kiem)(?:\/[a-z0-9-]+)?(?:\?[^\s]+)?)/gi);
   return tokens.map((token, index) => {
     if (token.startsWith("**") && token.endsWith("**")) {
       return <strong key={index} className="font-semibold text-[var(--michio-navy)]">{token.slice(2, -2)}</strong>;
     }
     if (/^\[[0-9]+\]$/.test(token)) {
       return <sup key={index} className="ml-0.5 text-[10px] font-semibold text-[var(--michio-primary)]">{token}</sup>;
+    }
+    if (INTERNAL_PATH.test(token)) {
+      return <Link key={index} href={token} className="font-medium text-[var(--michio-primary)] underline decoration-[var(--michio-primary)]/35 underline-offset-4 transition-colors hover:text-[var(--michio-primary-hover)]">{token}</Link>;
     }
     return <span key={index}>{token}</span>;
   });
