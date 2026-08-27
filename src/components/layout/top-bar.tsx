@@ -7,7 +7,7 @@ export function TopBar() {
         <span className="h-1.5 w-1.5 rounded-full bg-[var(--michio-primary)]" /> Freeship nội thành Hà Nội cho đơn từ 499.000đ
       </span>
       <span className="opacity-60">|</span>
-      <span>100% chính hãng</span>
+      <span>Hàng Nhật nội địa</span>
       <span className="opacity-60">|</span>
       <span>Tư vấn tận tâm 8h–21h</span>
       <span className="opacity-60">|</span>

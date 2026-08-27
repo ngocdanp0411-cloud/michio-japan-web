@@ -26,14 +26,14 @@ export const metadata: Metadata = {
     template: "%s | Michio Japan",
   },
   description:
-    "Michio Japan chọn lọc sản phẩm chăm sóc cá nhân, làm đẹp và đồ gia dụng từ Nhật Bản. Tư vấn tận tâm, 100% chính hãng, giao hàng tinh tế.",
+    "Michio Japan chọn lọc sản phẩm chăm sóc cá nhân, làm đẹp và đồ gia dụng từ Nhật Bản. Tư vấn tận tâm, hàng Nhật nội địa, giao hàng tinh tế.",
   metadataBase: new URL(SITE_URL),
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
   openGraph: {
     title: "Michio Japan — Chọn đúng đồ Nhật, sống thật mỗi ngày",
     description:
-      "Sản phẩm Nhật Bản chính hãng — chăm sóc da, chăm sóc cơ thể, đồ dùng cá nhân, đồ gia dụng.",
+      "Sản phẩm Nhật Bản nội địa — chăm sóc da, chăm sóc cơ thể, đồ dùng cá nhân, đồ gia dụng.",
     url: absoluteUrl("/"),
     siteName: SITE_NAME,
     locale: "vi_VN",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Michio Japan — Chọn đúng đồ Nhật, sống thật mỗi ngày",
-    description: "Sản phẩm Nhật Bản chính hãng và tư vấn chọn đúng theo nhu cầu.",
+    description: "Sản phẩm Nhật Bản nội địa và tư vấn chọn đúng theo nhu cầu.",
     images: [absoluteUrl(DEFAULT_OG_IMAGE)],
   },
 };
