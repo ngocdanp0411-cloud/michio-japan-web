@@ -10,7 +10,7 @@ export function ProductCard({ p }: { p: Product }) {
       : null;
 
   return (
-    <div className="group flex flex-col overflow-hidden bg-white transition-transform duration-200 hover:-translate-y-0.5">
+    <div className="group flex flex-col overflow-hidden rounded-md border border-[#eeeeee] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.06)] transition-[box-shadow,border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-[var(--michio-border-strong)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.1)]">
       <Link href={`/san-pham/${p.slug}`} className="relative aspect-[4/5] overflow-hidden bg-white">
         <span className="pointer-events-none absolute left-3 top-3 z-10 h-9 w-9 overflow-hidden rounded-full border border-white bg-white/95 shadow-sm">
           <Image src="/images/brand/michio-authentic-logo.jpg" alt="" fill sizes="36px" className="object-cover" />
