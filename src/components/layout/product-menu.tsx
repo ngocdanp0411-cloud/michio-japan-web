@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { CATEGORIES } from "@/lib/categories";
 
 const CLOSE_DELAY = 140;
@@ -27,6 +27,23 @@ export function ProductMenu() {
     }, CLOSE_DELAY);
   };
 
+  const updatePosition = useCallback(() => {
+    const rect = triggerRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    const width = Math.min(320, window.innerWidth - 32);
+    setMenuPosition({
+      top: rect.bottom,
+      left: Math.max(16, Math.min(rect.left, window.innerWidth - width - 16)),
+      width,
+    });
+  }, []);
+
+  const openMenu = () => {
+    cancelClose();
+    updatePosition();
+    setOpen(true);
+  };
+
   useEffect(() => {
     return () => cancelClose();
   }, []);
@@ -44,17 +61,6 @@ export function ProductMenu() {
       if (!triggerRef.current?.parentElement?.contains(target)) setOpen(false);
     };
 
-    const updatePosition = () => {
-      const rect = triggerRef.current?.getBoundingClientRect();
-      if (!rect) return;
-      const width = Math.min(320, window.innerWidth - 32);
-      setMenuPosition({
-        top: rect.bottom,
-        left: Math.max(16, Math.min(rect.left, window.innerWidth - width - 16)),
-        width,
-      });
-    };
-
     updatePosition();
     document.addEventListener("keydown", closeOnEscapeOrOutside);
     document.addEventListener("pointerdown", closeOnEscapeOrOutside);
@@ -66,16 +72,18 @@ export function ProductMenu() {
       window.removeEventListener("resize", updatePosition);
       window.removeEventListener("scroll", updatePosition, true);
     };
-  }, [open]);
+  }, [open, updatePosition]);
 
   return (
     <div
       className="group relative shrink-0"
-      onMouseEnter={() => {
-        cancelClose();
-        setOpen(true);
+      onPointerEnter={(event) => {
+        if (event.pointerType !== "mouse") return;
+        openMenu();
       }}
-      onMouseLeave={scheduleClose}
+      onPointerLeave={(event) => {
+        if (event.pointerType === "mouse") scheduleClose();
+      }}
     >
       <button
         ref={triggerRef}
@@ -84,8 +92,11 @@ export function ProductMenu() {
         aria-haspopup="menu"
         aria-controls="product-category-menu"
         onClick={() => {
-          cancelClose();
-          setOpen((value) => !value);
+          if (open) {
+            setOpen(false);
+          } else {
+            openMenu();
+          }
         }}
         className="flex min-h-[46px] items-center gap-3 border-x-2 border-[var(--michio-primary)] bg-black px-4 py-2 text-left text-xs font-extrabold uppercase text-white transition-colors hover:bg-[var(--michio-primary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-white md:min-h-[52px] md:gap-4 md:px-5 md:text-sm"
       >
@@ -115,8 +126,12 @@ export function ProductMenu() {
         id="product-category-menu"
         role="menu"
         aria-label="Danh mục sản phẩm"
-        onMouseEnter={cancelClose}
-        onMouseLeave={scheduleClose}
+        onPointerEnter={(event) => {
+          if (event.pointerType === "mouse") cancelClose();
+        }}
+        onPointerLeave={(event) => {
+          if (event.pointerType === "mouse") scheduleClose();
+        }}
         style={{ top: menuPosition.top, left: menuPosition.left, width: menuPosition.width }}
         className={`fixed z-[70] origin-top rounded-b-md border border-t-0 border-[var(--michio-border-strong)] bg-white p-2 text-[var(--michio-text)] shadow-[0_14px_30px_rgba(17,17,22,0.16)] transition-all duration-200 ${open ? "visible pointer-events-auto translate-y-0 opacity-100" : "invisible pointer-events-none -translate-y-1 opacity-0"}`}
       >
