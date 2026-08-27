@@ -13,9 +13,9 @@ export function ProductCard({ p }: { p: Product }) {
     <div className="group flex flex-col overflow-hidden rounded-md border border-[#eeeeee] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.06)] transition-[box-shadow,border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-[var(--michio-border-strong)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.1)]">
       <Link href={`/san-pham/${p.slug}`} className="relative aspect-[4/5] overflow-hidden bg-white">
         <span className="pointer-events-none absolute left-3 top-3 z-10 h-9 w-9 overflow-hidden rounded-full border border-white bg-white/95 shadow-sm">
-          <Image src="/images/brand/michio-authentic-logo.jpg" alt="" fill sizes="36px" className="object-cover" />
+          <Image src="/images/brand/michio-authentic-logo.jpg" alt="" fill sizes="36px" quality={60} className="object-cover" />
         </span>
-        <Image src={p.image} alt={p.name} fill sizes="(min-width: 1280px) 20vw, (min-width: 768px) 30vw, 50vw" className="object-contain p-3 transition-transform duration-300 group-hover:scale-[1.03]" />
+        <Image src={p.image} alt={p.name} fill sizes="(min-width: 1280px) 18vw, (min-width: 1024px) 23vw, (min-width: 768px) 30vw, 45vw" quality={68} className="object-contain p-3 transition-transform duration-300 group-hover:scale-[1.03]" />
         {discount !== null && (
           <span className="absolute right-2 top-2 rounded-md bg-[var(--michio-primary)] px-2 py-1 text-xs font-bold leading-5 text-white shadow-sm">
             -{discount}%

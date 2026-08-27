@@ -12,7 +12,7 @@ export function Logo({
   if (variant === "icon") {
     return (
       <span className={`inline-flex items-center ${className}`} aria-label="Michio Japan">
-        <Image src={LOGO_SRC} alt="Michio Japan — Authentic From Japan, Hàng Nhật nội địa" width={52} height={52} className="h-11 w-11 object-contain" />
+        <Image src={LOGO_SRC} alt="Michio Japan — Authentic From Japan, Hàng Nhật nội địa" width={52} height={52} quality={55} className="h-11 w-11 object-contain" />
       </span>
     );
   }
@@ -20,14 +20,14 @@ export function Logo({
   if (variant === "vertical") {
     return (
       <span className={`inline-flex flex-col items-center text-center ${className}`}>
-        <Image src={LOGO_SRC} alt="Michio Japan — Authentic From Japan, Hàng Nhật nội địa" width={180} height={180} className="h-[112px] w-[112px] object-contain md:h-[128px] md:w-[128px]" />
+        <Image src={LOGO_SRC} alt="Michio Japan — Authentic From Japan, Hàng Nhật nội địa" width={180} height={180} quality={55} className="h-[112px] w-[112px] object-contain md:h-[128px] md:w-[128px]" />
       </span>
     );
   }
 
   return (
     <span className={`inline-flex items-center ${className}`}>
-      <Image src={LOGO_SRC} alt="Michio Japan — Authentic From Japan, Hàng Nhật nội địa" width={180} height={180} className="h-[58px] w-[58px] object-contain md:h-[66px] md:w-[66px]" priority />
+      <Image src={LOGO_SRC} alt="Michio Japan — Authentic From Japan, Hàng Nhật nội địa" width={180} height={180} quality={60} className="h-[58px] w-[58px] object-contain md:h-[66px] md:w-[66px]" priority />
     </span>
   );
 }

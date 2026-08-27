@@ -53,11 +53,11 @@ export default function HomePage() {
             <div className="absolute right-0 top-0 h-36 w-36 rounded-full bg-white/70 blur-2xl md:h-64 md:w-64" aria-hidden="true" />
             <div className="relative grid h-full grid-cols-[1.2fr_0.8fr] gap-3">
               <div className="relative row-span-2 flex items-center justify-center overflow-hidden rounded bg-white p-3 shadow-sm">
-                <Image src={heroImages[0].src} alt={heroImages[0].alt} width={720} height={720} priority sizes="(min-width: 768px) 38vw, 78vw" className="h-full max-h-[370px] w-full object-contain" />
+                <Image src={heroImages[0].src} alt={heroImages[0].alt} width={720} height={720} priority sizes="(min-width: 1024px) 38vw, (min-width: 768px) 44vw, 78vw" quality={72} className="h-full max-h-[370px] w-full object-contain" />
               </div>
               {heroImages.slice(1).map((image) => (
                 <div key={image.src} className="relative flex min-h-[130px] items-center justify-center overflow-hidden rounded bg-white p-3 shadow-sm">
-                  <Image src={image.src} alt={image.alt} width={420} height={420} sizes="(min-width: 768px) 18vw, 36vw" className="h-full max-h-[175px] w-full object-contain" />
+                  <Image src={image.src} alt={image.alt} width={420} height={420} sizes="(min-width: 1024px) 18vw, (min-width: 768px) 22vw, 36vw" quality={62} className="h-full max-h-[175px] w-full object-contain" />
                 </div>
               ))}
             </div>
@@ -106,8 +106,8 @@ export default function HomePage() {
             <Link href="/gioi-thieu" className="michio-btn-primary mt-6 inline-flex h-11 items-center rounded px-5 text-sm uppercase">Tìm hiểu thêm về chúng tôi</Link>
           </div>
           <div className="relative overflow-hidden rounded-md bg-[var(--michio-surface-muted)] p-4 md:p-7">
-            <Image src="/images/blog/cach-chon-kem-chong-nang-nhat.jpg" alt="Sản phẩm Nhật Bản được Michio Japan chọn lọc" width={1200} height={800} sizes="(min-width: 768px) 50vw, 100vw" className="aspect-[4/3] w-full rounded object-cover" />
-            <span className="absolute bottom-7 right-7 rounded-full border-2 border-white bg-white p-1 shadow-md md:bottom-10 md:right-10"><Image src="/images/brand/michio-authentic-logo.jpg" alt="Michio Japan" width={58} height={58} className="h-12 w-12 rounded-full object-cover md:h-14 md:w-14" /></span>
+            <Image src="/images/blog/cach-chon-kem-chong-nang-nhat.jpg" alt="Sản phẩm Nhật Bản được Michio Japan chọn lọc" width={1200} height={800} sizes="(min-width: 1024px) 50vw, 100vw" quality={70} className="aspect-[4/3] w-full rounded object-cover" />
+            <span className="absolute bottom-7 right-7 rounded-full border-2 border-white bg-white p-1 shadow-md md:bottom-10 md:right-10"><Image src="/images/brand/michio-authentic-logo.jpg" alt="Michio Japan" width={58} height={58} quality={55} className="h-12 w-12 rounded-full object-cover md:h-14 md:w-14" /></span>
           </div>
         </section>
 
@@ -124,7 +124,7 @@ export default function HomePage() {
           <div className="mt-5 grid gap-4 md:grid-cols-3">
             {posts.map((post) => (
               <Link key={post.slug} href={`/tin-tuc/${post.slug}`} className="group overflow-hidden rounded-md border border-[var(--michio-border)] bg-white transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-[var(--michio-primary)] hover:shadow-[0_10px_24px_rgba(17,17,22,0.08)]">
-                <Image src={post.image} alt={post.title} width={900} height={520} sizes="(min-width: 768px) 33vw, 100vw" className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
+                <Image src={post.image} alt={post.title} width={900} height={520} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" quality={68} className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
                 <div className="p-4"><p className="michio-eyebrow">Góc chăm sóc</p><h3 className="michio-h3 mt-2 line-clamp-2 text-xl">{post.title}</h3><p className="michio-body mt-2 line-clamp-2 text-sm">{post.description}</p><span className="mt-4 inline-flex text-sm font-semibold text-[var(--michio-primary)]">Đọc bài viết →</span></div>
               </Link>
             ))}
