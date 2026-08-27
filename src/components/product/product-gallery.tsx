@@ -55,7 +55,7 @@ export function ProductGallery({ images, name }: { images: string[]; name: strin
           aria-controls="product-lightbox"
         >
           <span className="pointer-events-none absolute left-3 top-3 z-10 h-11 w-11 overflow-hidden rounded-full border border-white bg-white/95 shadow-sm">
-            <Image src="/images/brand/michio-authentic-logo.jpg" alt="" fill sizes="44px" className="object-cover" />
+            <Image src="/images/brand/michio-authentic-logo.jpg" alt="" width={44} height={44} className="h-11 w-11 object-contain" />
           </span>
           <Image src={src} alt={name} width={1200} height={1200} priority sizes="(min-width: 768px) 50vw, 100vw" className="aspect-square w-full rounded-lg object-cover" />
           <span aria-hidden="true" className="absolute bottom-2 right-2 rounded-full bg-black/70 px-2 py-1 text-xs leading-5 text-white opacity-100 transition-opacity duration-200 md:opacity-0 md:group-hover:opacity-100 md:group-focus-visible:opacity-100">
@@ -105,7 +105,7 @@ export function ProductGallery({ images, name }: { images: string[]; name: strin
           <div className="relative max-h-[85vh] max-w-[90vw]">
             <Image src={src} alt={name} width={1600} height={1600} sizes="90vw" className="max-h-[85vh] max-w-[90vw] rounded-xl bg-white p-2 object-contain" onClick={(e) => e.stopPropagation()} />
             <span className="pointer-events-none absolute left-5 top-5 h-14 w-14 overflow-hidden rounded-full border border-white bg-white/95 shadow-md">
-              <Image src="/images/brand/michio-authentic-logo.jpg" alt="" fill sizes="56px" className="object-cover" />
+              <Image src="/images/brand/michio-authentic-logo.jpg" alt="" width={56} height={56} className="h-14 w-14 object-contain" />
             </span>
           </div>
           <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-black/50 p-2">
