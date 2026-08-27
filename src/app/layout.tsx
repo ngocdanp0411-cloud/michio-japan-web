@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Be_Vietnam_Pro, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
+import { TopBar } from "@/components/layout/top-bar";
 import { Footer } from "@/components/layout/footer";
 import { StickyDock } from "@/components/layout/sticky-dock";
 import { absoluteUrl, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
@@ -57,6 +58,7 @@ export default function RootLayout({
     <html lang="vi" className={`${beVN.variable} ${barlow.variable} h-full`}>
       <body className="min-h-full flex flex-col bg-white text-[var(--michio-navy)] antialiased">
         <Header />
+        <TopBar />
         <main className="flex-1 pb-20 md:pb-0">{children}</main>
         <Footer />
         <StickyDock />
