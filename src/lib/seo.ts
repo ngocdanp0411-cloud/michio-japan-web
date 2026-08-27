@@ -6,7 +6,7 @@ export function absoluteUrl(pathname: string) {
   return new URL(pathname, SITE_URL).toString();
 }
 
-export function limitTitle(value: string, max = 58) {
+export function limitTitle(value: string, max = 48) {
   const clean = value.replace(/\s+/g, " ").trim();
   if (clean.length <= max) return clean;
   return `${clean.slice(0, max - 1).trim()}…`;
