@@ -10,8 +10,8 @@ export function ProductCard({ p }: { p: Product }) {
       : null;
 
   return (
-    <div className="group flex flex-col overflow-hidden border border-[var(--michio-border)] bg-[var(--michio-surface)] transition-[box-shadow,border-color] duration-200 hover:border-[var(--michio-border-strong)] hover:shadow-[0_12px_30px_rgba(19,35,63,0.08)]">
-      <Link href={`/san-pham/${p.slug}`} className="relative aspect-[4/5] overflow-hidden bg-[var(--michio-surface-muted)]">
+    <div className="group flex flex-col overflow-hidden bg-white transition-transform duration-200 hover:-translate-y-0.5">
+      <Link href={`/san-pham/${p.slug}`} className="relative aspect-[4/5] overflow-hidden bg-white">
         <span className="pointer-events-none absolute left-3 top-3 z-10 h-9 w-9 overflow-hidden rounded-full border border-white bg-white/95 shadow-sm">
           <Image src="/images/brand/michio-authentic-logo.jpg" alt="" fill sizes="36px" className="object-cover" />
         </span>
@@ -21,11 +21,11 @@ export function ProductCard({ p }: { p: Product }) {
             -{discount}%
           </span>
         )}
-        <span aria-label={`Đánh giá ${p.rating.toFixed(1)} trên 5, ${p.ratingCount} lượt đánh giá`} className="absolute bottom-2 left-2 rounded-md border border-[var(--michio-border)] bg-white/95 px-2 py-1 text-[10px] font-medium leading-4 shadow-sm">
+        <span aria-label={`Đánh giá ${p.rating.toFixed(1)} trên 5, ${p.ratingCount} lượt đánh giá`} className="absolute bottom-2 left-2 rounded-md bg-white px-2 py-1 text-[10px] font-medium leading-4 shadow-sm">
           <span aria-hidden="true">★</span> {p.rating.toFixed(1)} · {p.ratingCount}
         </span>
       </Link>
-      <div className="flex flex-1 flex-col p-3 md:p-4">
+      <div className="flex flex-1 flex-col bg-white p-3 md:p-4">
         <Link href={`/san-pham/${p.slug}`} className="line-clamp-2 min-h-[40px] text-[13px] font-semibold leading-5 transition-colors duration-200 hover:text-[var(--michio-primary)] md:min-h-[42px] md:text-sm">
           {p.name}
         </Link>
