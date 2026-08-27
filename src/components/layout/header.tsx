@@ -46,10 +46,10 @@ export function Header() {
       <nav aria-label="Điều hướng chính" className="bg-[var(--michio-navy)] text-white">
         <div className="mx-auto flex max-w-[1280px] items-center gap-0 overflow-x-auto px-4 scrollbar-none">
           {primaryNav.map((item) => (
-            <Link key={item.label} href={item.href} className="shrink-0 border-b-2 border-transparent px-4 py-3 text-xs font-semibold transition-colors hover:border-[var(--michio-primary)] hover:bg-white/5 hover:text-white focus-visible:outline-white md:px-6 md:text-sm">{item.label}</Link>
+            <Link key={item.label} href={item.href} className="shrink-0 border-b-2 border-transparent px-4 py-3 text-xs font-semibold uppercase transition-colors hover:border-[var(--michio-primary)] hover:bg-white/5 hover:text-white focus-visible:outline-white md:px-6 md:text-sm">{item.label}</Link>
           ))}
           <div className="ml-auto hidden items-center gap-4 pl-4 text-[11px] text-white/70 lg:flex">
-            {CATEGORIES.slice(0, 3).map((category) => <Link key={category.slug} href={`/danh-muc/${category.slug}`} className="transition-colors hover:text-white">{category.shortName}</Link>)}
+            {CATEGORIES.slice(0, 3).map((category) => <Link key={category.slug} href={`/danh-muc/${category.slug}`} className="uppercase transition-colors hover:text-white">{category.shortName}</Link>)}
           </div>
         </div>
       </nav>
