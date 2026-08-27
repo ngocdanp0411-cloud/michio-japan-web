@@ -1,19 +1,40 @@
 import Image from "next/image";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BlogContent } from "@/components/blog/blog-content";
 import { getBlogPost, getBlogPosts } from "@/lib/blog";
+import { absoluteUrl, limitDescription, limitTitle, SITE_NAME } from "@/lib/seo";
 
 export function generateStaticParams() {
   return getBlogPosts().map((post) => ({ slug: post.slug }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const post = getBlogPost(slug);
-  return post
-    ? { title: `${post.title} | Michio Japan`, description: post.description }
-    : {};
+  if (!post) return {};
+  const url = absoluteUrl(`/tin-tuc/${post.slug}`);
+  const title = limitTitle(post.title);
+  const description = limitDescription(post.description);
+  const image = absoluteUrl(post.image);
+  return {
+    title,
+    description,
+    keywords: [post.primaryKeyword, ...post.secondaryKeywords, "Michio Journal"].filter(Boolean),
+    alternates: { canonical: url },
+    robots: { index: true, follow: true },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: SITE_NAME,
+      locale: "vi_VN",
+      type: "article",
+      images: [{ url: image, alt: post.title }],
+    },
+    twitter: { card: "summary_large_image", title, description, images: [image] },
+  };
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
@@ -47,6 +68,22 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         <p className="mt-2 text-sm leading-6 text-white/75">Tham khảo các sản phẩm Nhật được chọn lọc tại Michio Japan và đọc kỹ thông tin trên nhãn trước khi mua.</p>
         <Link href="/" className="michio-btn-secondary mt-4 inline-flex rounded-md border-0 bg-white px-5 py-2.5 text-sm">Về trang chủ Michio Japan</Link>
       </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: post.title,
+            description: post.description,
+            image: absoluteUrl(post.image),
+            mainEntityOfPage: absoluteUrl(`/tin-tuc/${post.slug}`),
+            author: { "@type": "Organization", name: SITE_NAME },
+            publisher: { "@type": "Organization", name: SITE_NAME },
+            inLanguage: "vi-VN",
+          }),
+        }}
+      />
     </article>
   );
 }

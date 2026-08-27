@@ -1,8 +1,10 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { PRODUCTS, getProductBySlug, formatPrice } from "@/lib/products";
 import { CATEGORY_MAP } from "@/lib/categories";
 import { LINKS } from "@/lib/links";
+import { absoluteUrl, limitDescription, limitTitle, SITE_NAME } from "@/lib/seo";
 import { ProductGrid } from "@/components/product/product-card";
 import { ProductGallery } from "@/components/product/product-gallery";
 import { ProductDescription } from "@/components/product/product-description";
@@ -11,11 +13,31 @@ export function generateStaticParams() {
   return PRODUCTS.map((p) => ({ slug: p.slug }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const p = getProductBySlug(slug);
   if (!p) return {};
-  return { title: p.name, description: p.excerpt };
+  const url = absoluteUrl(`/san-pham/${p.slug}`);
+  const title = limitTitle(p.name);
+  const description = limitDescription(p.excerpt);
+  const image = absoluteUrl(p.image);
+  return {
+    title,
+    description,
+    keywords: [p.name, p.category, "hàng Nhật nội địa", "Michio Japan"],
+    alternates: { canonical: url },
+    robots: { index: true, follow: true },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: SITE_NAME,
+      locale: "vi_VN",
+      type: "website",
+      images: [{ url: image, alt: p.name }],
+    },
+    twitter: { card: "summary_large_image", title, description, images: [image] },
+  };
 }
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -100,16 +122,36 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             "@type": "Product",
             name: p.name,
             description: p.description,
-            image: p.image,
-            brand: { "@type": "Brand", name: "Michio Japan" },
+            image: [absoluteUrl(p.image), ...(p.gallery ?? []).map(absoluteUrl)],
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: p.rating,
+              reviewCount: p.ratingCount,
+              bestRating: 5,
+              worstRating: 1,
+            },
             offers: {
               "@type": "Offer",
               price: p.price,
               priceCurrency: "VND",
               availability: "https://schema.org/InStock",
-              url: `https://michiojapan.vn/san-pham/${p.slug}`,
-              seller: { "@type": "Organization", name: "Michio Japan" },
+              url: absoluteUrl(`/san-pham/${p.slug}`),
+              seller: { "@type": "Organization", name: SITE_NAME },
             },
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Trang chủ", item: absoluteUrl("/") },
+              { "@type": "ListItem", position: 2, name: cat?.name ?? p.category, item: absoluteUrl(`/danh-muc/${p.category}`) },
+              { "@type": "ListItem", position: 3, name: p.name, item: absoluteUrl(`/san-pham/${p.slug}`) },
+            ],
           }),
         }}
       />
