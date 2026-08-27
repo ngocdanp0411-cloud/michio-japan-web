@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Be_Vietnam_Pro, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
-import { TopBar } from "@/components/layout/top-bar";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { StickyDock } from "@/components/layout/sticky-dock";
@@ -57,7 +56,6 @@ export default function RootLayout({
   return (
     <html lang="vi" className={`${beVN.variable} ${barlow.variable} h-full`}>
       <body className="min-h-full flex flex-col bg-white text-[var(--michio-navy)] antialiased">
-        <TopBar />
         <Header />
         <main className="flex-1 pb-20 md:pb-0">{children}</main>
         <Footer />

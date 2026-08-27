@@ -3,67 +3,56 @@ import { Logo } from "@/components/ui/logo";
 import { LINKS } from "@/lib/links";
 import { CATEGORIES } from "@/lib/categories";
 
+const primaryNav = [
+  { label: "Trang chủ", href: "/" },
+  { label: "Sản phẩm", href: "/cua-hang" },
+  { label: "Bài viết", href: "/tin-tuc" },
+  { label: "Về Michio", href: "/gioi-thieu" },
+  { label: "Chính sách", href: "/chinh-sach-quyen-rieng-tu" },
+  { label: "Liên hệ", href: LINKS.messenger },
+];
+
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--michio-border)] bg-[var(--michio-surface)]/95 backdrop-blur">
+    <header className="sticky top-0 z-40 bg-white shadow-[0_2px_12px_rgba(17,17,22,0.06)]">
       <div className="mx-auto max-w-[1280px] px-4">
-        {/* Top row */}
-        <div className="flex items-center gap-3 py-3 md:gap-6">
-          <Link href="/" aria-label="Trang chủ" className="shrink-0">
+        <div className="flex min-h-[76px] items-center gap-4 py-2.5 md:gap-7">
+          <Link href="/" aria-label="Trang chủ Michio Japan" className="shrink-0">
             <Logo variant="horizontal" />
           </Link>
 
-          {/* Desktop search */}
-          <form action="/tim-kiem" method="get" className="hidden md:flex max-w-[560px] flex-1 items-center gap-2 rounded-md border border-[var(--michio-border)] bg-[var(--michio-surface)] px-3 py-1.5 transition-shadow focus-within:border-[var(--michio-focus)] focus-within:shadow-[0_0_0_4px_rgba(159,47,88,0.12)]">
-            <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="opacity-50"><circle cx={11} cy={11} r={7} /><path d="M20 20L16 16" /></svg>
-            <input
-              name="q"
-              placeholder="Tìm collagen, Hatomugi, dầu gội..."
-              className="michio-input min-h-0 flex-1 border-0 bg-transparent text-sm leading-5 outline-none placeholder:text-[var(--michio-text-subtle)] focus-visible:outline-0"
-            />
-            <button type="submit" className="michio-btn-navy rounded-full px-4 py-1.5 text-xs leading-5">Tìm kiếm</button>
+          <form action="/tim-kiem" method="get" className="hidden min-w-0 max-w-[530px] flex-1 items-center gap-2 rounded-md border border-[var(--michio-border-strong)] bg-white px-3 py-2 md:flex">
+            <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="shrink-0 text-[var(--michio-text-subtle)]" aria-hidden="true"><circle cx={11} cy={11} r={7} /><path d="M20 20L16 16" /></svg>
+            <input name="q" placeholder="Tìm sản phẩm..." className="michio-input min-h-0 min-w-0 flex-1 border-0 bg-transparent px-0 text-sm outline-none focus-visible:shadow-none" />
+            <button type="submit" aria-label="Tìm kiếm" className="text-[var(--michio-text)] transition-colors hover:text-[var(--michio-primary)]">
+              <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden="true"><circle cx={11} cy={11} r={7} /><path d="M20 20L16 16" /></svg>
+            </button>
           </form>
 
-          {/* Desktop CTAs */}
-          <div className="ml-auto hidden sm:flex items-center gap-2">
-            <a href={LINKS.zalo} target="_blank" rel="noopener" className="michio-btn-primary inline-flex h-11 items-center gap-2 rounded-md px-5 text-sm leading-5">
-              Chat Zalo
-            </a>
-            <a href={LINKS.messenger} target="_blank" rel="noopener" className="michio-btn-secondary inline-flex h-11 items-center gap-2 rounded-md px-5 text-sm leading-5">
-              Inbox
-            </a>
-          </div>
-
-          {/* Mobile call + inbox */}
-          <div className="ml-auto flex sm:hidden items-center gap-2">
-            <a href={LINKS.zalo} target="_blank" rel="noopener" className="inline-flex h-10 items-center justify-center rounded-md bg-[var(--michio-zalo)] px-3.5 text-xs font-semibold leading-5 text-white transition-colors hover:bg-[#0057d9] active:scale-[0.98]">Zalo</a>
-            <a href={LINKS.hotline} className="michio-btn-primary inline-flex h-10 items-center justify-center rounded-md px-3 text-xs" aria-label={`Gọi ${LINKS.hotlineDisplay}`}>Gọi</a>
+          <div className="ml-auto flex items-center gap-3 text-xs font-semibold text-[var(--michio-text)] md:gap-5">
+            <a href={LINKS.zalo} target="_blank" rel="noopener" className="hidden items-center gap-1.5 transition-colors hover:text-[var(--michio-primary)] sm:inline-flex"><span className="h-2.5 w-2.5 rounded-full bg-[var(--michio-zalo)]" aria-hidden="true" /> Zalo</a>
+            <a href={LINKS.messenger} target="_blank" rel="noopener" className="hidden items-center gap-1.5 transition-colors hover:text-[var(--michio-primary)] sm:inline-flex"><span className="h-2.5 w-2.5 rounded-full bg-[var(--michio-primary)]" aria-hidden="true" /> Inbox</a>
+            <a href={LINKS.hotline} className="michio-btn-primary inline-flex h-10 items-center rounded-md px-3 text-[11px] md:px-5 md:text-xs">Hotline: {LINKS.hotlineDisplay}</a>
           </div>
         </div>
 
-        {/* Mobile search - full width, easy thumb reach */}
-        <form action="/tim-kiem" method="get" className="mb-3 flex items-center gap-2 rounded-md border border-[var(--michio-border)] bg-[var(--michio-surface)] px-3 py-2 shadow-sm md:hidden">
-          <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="opacity-40 shrink-0"><circle cx={11} cy={11} r={7} /><path d="M20 20L16 16" /></svg>
-          <input
-            name="q"
-            placeholder="Bạn cần tìm gì? (ví dụ: Kose, Collagen, Hatomugi)"
-            className="michio-input min-h-0 flex-1 border-0 bg-transparent text-[15px] leading-6 outline-none placeholder:text-[var(--michio-text-subtle)] focus-visible:outline-0"
-            autoComplete="off"
-          />
-          <button type="submit" className="michio-btn-navy shrink-0 rounded-full px-4 py-1.5 text-xs leading-5 active:scale-95">Tìm</button>
+        <form action="/tim-kiem" method="get" className="mb-3 flex items-center gap-2 rounded-md border border-[var(--michio-border-strong)] bg-white px-3 py-2 md:hidden">
+          <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="shrink-0 text-[var(--michio-text-subtle)]" aria-hidden="true"><circle cx={11} cy={11} r={7} /><path d="M20 20L16 16" /></svg>
+          <input name="q" placeholder="Tìm sản phẩm..." className="michio-input min-h-0 min-w-0 flex-1 border-0 bg-transparent px-0 text-sm outline-none focus-visible:shadow-none" autoComplete="off" />
+          <button type="submit" className="michio-btn-navy rounded px-3 py-1.5 text-xs">Tìm</button>
         </form>
-
-        {/* Category scroll - thumb friendly, snap */}
-        <nav className="flex items-center gap-2 overflow-x-auto scrollbar-none border-t py-2.5 -mx-4 px-4 md:mx-0 md:px-0 snap-x snap-mandatory">
-          <Link href="/cua-hang" className="michio-nav-label shrink-0 snap-start border-b-2 border-[var(--michio-primary)] px-2.5 py-3 text-[var(--michio-navy)]">Tất cả</Link>
-          {CATEGORIES.map((c) => (
-            <Link key={c.slug} href={`/danh-muc/${c.slug}`} className="michio-nav-label shrink-0 snap-start border-b-2 border-transparent px-2.5 py-3 text-[var(--michio-navy)] transition-colors duration-200 hover:border-[var(--michio-primary)] hover:text-[var(--michio-primary)] active:bg-[var(--michio-primary-soft)]">
-              {c.shortName}
-            </Link>
-          ))}
-          <Link href="/tin-tuc" className="michio-nav-label shrink-0 snap-start border-b-2 border-transparent px-2.5 py-3 text-[var(--michio-navy)] transition-colors duration-200 hover:border-[var(--michio-primary)] hover:text-[var(--michio-primary)]">Tin tức</Link>
-        </nav>
       </div>
+
+      <nav aria-label="Điều hướng chính" className="bg-[var(--michio-navy)] text-white">
+        <div className="mx-auto flex max-w-[1280px] items-center gap-0 overflow-x-auto px-4 scrollbar-none">
+          {primaryNav.map((item) => (
+            <Link key={item.label} href={item.href} className="shrink-0 border-b-2 border-transparent px-4 py-3 text-xs font-semibold transition-colors hover:border-[var(--michio-primary)] hover:bg-white/5 hover:text-white focus-visible:outline-white md:px-6 md:text-sm">{item.label}</Link>
+          ))}
+          <div className="ml-auto hidden items-center gap-4 pl-4 text-[11px] text-white/70 lg:flex">
+            {CATEGORIES.slice(0, 3).map((category) => <Link key={category.slug} href={`/danh-muc/${category.slug}`} className="transition-colors hover:text-white">{category.shortName}</Link>)}
+          </div>
+        </div>
+      </nav>
     </header>
   );
 }

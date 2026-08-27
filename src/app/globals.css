@@ -2,33 +2,33 @@
 
 :root {
   /* Michio Japan — semantic color system */
-  --michio-primary: #b83b68;
-  --michio-primary-hover: #7f2348;
-  --michio-primary-soft: #f4d9e2;
+  --michio-primary: #d71920;
+  --michio-primary-hover: #b51219;
+  --michio-primary-soft: #fde8eb;
   --michio-primary-foreground: #ffffff;
 
-  --michio-navy: #13233f;
-  --michio-navy-strong: #0c172b;
+  --michio-navy: #111116;
+  --michio-navy-strong: #050507;
   --michio-navy-foreground: #ffffff;
 
-  --michio-text: #171923;
-  --michio-text-muted: #526078;
-  --michio-text-subtle: #6b7280;
+  --michio-text: #171717;
+  --michio-text-muted: #5a5a5a;
+  --michio-text-subtle: #737373;
   --michio-text-on-dark: #f8fafc;
 
   --michio-bg: #ffffff;
   --michio-surface: #ffffff;
-  --michio-surface-muted: #f8fafc;
-  --michio-surface-warm: #fffafc;
-  --michio-border: #e5e7eb;
-  --michio-border-strong: #cbd5e1;
+  --michio-surface-muted: #f7f7f7;
+  --michio-surface-warm: #fff7f8;
+  --michio-border: #e7e7e7;
+  --michio-border-strong: #d2d2d2;
 
   --michio-zalo: #0068ff;
   --michio-messenger: #13233f;
   --michio-success: #0f766e;
   --michio-warning: #a15c00;
   --michio-danger: #b42318;
-  --michio-focus: #9f2f58;
+  --michio-focus: #d71920;
 
   /* Backward-compatible aliases used by existing components. */
   --michio-deep-rose: var(--michio-primary);

@@ -1,19 +1,26 @@
+import Image from "next/image";
 import Link from "next/link";
 import { CATEGORIES } from "@/lib/categories";
+import { PRODUCTS } from "@/lib/products";
 
 export function CategoryRail() {
   return (
-    <div className="grid grid-cols-3 gap-2.5 md:grid-cols-6">
-      {CATEGORIES.map((c) => (
-        <Link
-          key={c.slug}
-          href={`/danh-muc/${c.slug}`}
-          className="group flex min-h-[96px] flex-col items-center justify-center border border-[var(--michio-border)] bg-[var(--michio-surface)] p-2.5 text-center transition-[border-color,background-color,transform] duration-200 hover:border-[var(--michio-primary)] hover:bg-[var(--michio-surface-warm)] active:scale-[0.98] md:p-3"
-        >
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-[var(--michio-border)] bg-[var(--michio-surface-muted)] text-xs font-semibold text-[var(--michio-navy)] transition-colors duration-200 group-hover:border-[var(--michio-primary)] group-hover:text-[var(--michio-primary)] md:h-12 md:w-12">{c.shortName.slice(0,2)}</div>
-          <div className="michio-nav-label mt-2 line-clamp-2 text-[11px] leading-4 transition-colors duration-200 group-hover:text-[var(--michio-primary)] md:text-xs">{c.name}</div>
-        </Link>
-      ))}
+    <div className="grid grid-cols-3 gap-2 md:grid-cols-6 md:gap-3">
+      {CATEGORIES.map((category) => {
+        const preview = PRODUCTS.find((product) => product.category === category.slug)?.image;
+        return (
+          <Link
+            key={category.slug}
+            href={`/danh-muc/${category.slug}`}
+            className="group flex min-h-[118px] flex-col items-center justify-center rounded-md border border-[var(--michio-border)] bg-white p-2 text-center transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-[var(--michio-primary)] hover:shadow-[0_8px_20px_rgba(17,17,22,0.08)] active:scale-[0.98] md:min-h-[140px] md:p-3"
+          >
+            <span className="relative flex h-16 w-full items-center justify-center overflow-hidden rounded bg-[var(--michio-surface-muted)] md:h-20">
+              {preview ? <Image src={preview} alt="" fill sizes="(min-width: 768px) 130px, 30vw" className="object-contain p-2 transition-transform duration-300 group-hover:scale-105" /> : <span className="text-xs font-bold text-[var(--michio-primary)]">{category.shortName}</span>}
+            </span>
+            <span className="michio-nav-label mt-2 line-clamp-2 text-[11px] leading-4 transition-colors duration-200 group-hover:text-[var(--michio-primary)] md:text-xs">{category.name}</span>
+          </Link>
+        );
+      })}
     </div>
   );
 }

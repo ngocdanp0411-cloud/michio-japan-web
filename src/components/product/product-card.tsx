@@ -48,9 +48,12 @@ export function ProductCard({ p }: { p: Product }) {
   );
 }
 
-export function ProductGrid({ products }: { products: Product[] }) {
+export function ProductGrid({ products, columns = "home" }: { products: Product[]; columns?: "home" | "category" }) {
+  const gridClass = columns === "category"
+    ? "grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4"
+    : "grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5";
   return (
-    <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+    <div className={`grid ${gridClass}`}>
       {products.map((p) => (
         <ProductCard key={p.slug} p={p} />
       ))}
