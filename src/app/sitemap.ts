@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getBlogPosts } from "@/lib/blog";
-import { CATEGORY_MAP } from "@/lib/categories";
-import { PRODUCTS } from "@/lib/products";
+import { CATEGORIES } from "@/lib/categories";
+import { getCategoriesWithProducts, PRODUCTS } from "@/lib/products";
 import { absoluteUrl } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -16,8 +16,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/chinh-sach-quyen-rieng-tu", priority: 0.3, changeFrequency: "yearly" as const },
     { path: "/chinh-sach-van-chuyen", priority: 0.3, changeFrequency: "yearly" as const },
   ];
-  const categoryRoutes = Object.keys(CATEGORY_MAP).map((slug) => ({
-    url: absoluteUrl(`/danh-muc/${slug}`),
+  const categoryRoutes = getCategoriesWithProducts(CATEGORIES).map((category) => ({
+    url: absoluteUrl(`/danh-muc/${category.slug}`),
     lastModified: now,
     changeFrequency: "weekly" as const,
     priority: 0.7,

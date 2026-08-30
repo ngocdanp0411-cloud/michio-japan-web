@@ -41,10 +41,10 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-[1280px] gap-8 px-4 py-8 md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-12 md:py-14">
           <div className="max-w-xl">
             <p className="michio-eyebrow">Michio Japan / Hàng Nhật nội địa</p>
-            <h1 className="michio-display mt-4 text-[2.65rem] uppercase leading-[0.98] sm:text-5xl md:text-6xl">Sống thật mỗi ngày<br />với đồ <span className="text-[var(--michio-primary)]">Nhật nội địa</span></h1>
+            <h1 className="michio-display mt-4 text-pretty text-[2.65rem] uppercase leading-[0.98] sm:text-5xl md:text-6xl">Sống thật mỗi ngày<br />với đồ <span className="text-[var(--michio-primary)]">Nhật nội địa</span></h1>
             <p className="michio-body mt-5 max-w-[48ch] text-base">Tuyển chọn hàng Nhật nội địa chất lượng cao, cho cuộc sống khỏe đẹp và những thói quen tốt mỗi ngày.</p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <a href={LINKS.zalo} target="_blank" rel="noopener" className="michio-btn-primary inline-flex h-12 items-center justify-center rounded px-6 text-sm uppercase">Mua hàng ngay</a>
+              <a href={LINKS.zalo} target="_blank" rel="noopener noreferrer" className="michio-btn-primary inline-flex h-12 items-center justify-center rounded px-6 text-sm uppercase">Nhắn Zalo đặt hàng</a>
               <Link href="/gioi-thieu" className="michio-btn-secondary inline-flex h-12 items-center justify-center rounded bg-white px-6 text-sm uppercase">Tìm hiểu thêm</Link>
             </div>
           </div>
@@ -89,11 +89,6 @@ export default function HomePage() {
 
         <section className="border-t border-[var(--michio-border)] py-12 md:py-16">
           <SectionHeading eyebrow="Chọn lọc từ Nhật Bản" title="Sản phẩm nổi bật" href="/cua-hang" />
-          <div className="mt-5 flex gap-2 border-b border-[var(--michio-border)] pb-3 text-xs font-semibold">
-            <span className="rounded-full bg-[var(--michio-primary)] px-4 py-2 text-white">Bán chạy</span>
-            <span className="rounded-full border border-[var(--michio-border-strong)] px-4 py-2 text-[var(--michio-text-muted)]">Mới nhất</span>
-            <span className="rounded-full border border-[var(--michio-border-strong)] px-4 py-2 text-[var(--michio-text-muted)]">Ưu đãi</span>
-          </div>
           <div className="mt-5"><ProductGrid products={featured} /></div>
         </section>
 

@@ -59,7 +59,7 @@ export function ProductGallery({ images, name }: { images: string[]; name: strin
             className="pointer-events-none absolute left-3 top-3 z-10 h-11 w-11 rounded-full border border-white bg-white bg-contain bg-center bg-no-repeat shadow-sm"
             style={{ backgroundImage: "url('/images/brand/michio-authentic-logo.jpg')" }}
           />
-          <Image src={src} alt={name} width={1200} height={1200} priority sizes="(min-width: 1024px) 50vw, (min-width: 768px) 55vw, 100vw" quality={72} className="aspect-square w-full rounded-lg object-cover" />
+          <Image src={src} alt={name} width={1200} height={1200} priority sizes="(min-width: 1024px) 50vw, (min-width: 768px) 55vw, 100vw" quality={72} className="aspect-square w-full rounded-lg bg-white object-contain" />
           <span aria-hidden="true" className="absolute bottom-2 right-2 rounded-full bg-black/70 px-2 py-1 text-xs leading-5 text-white opacity-100 transition-opacity duration-200 md:opacity-0 md:group-hover:opacity-100 md:group-focus-visible:opacity-100">
             Nhấn để phóng to • Vuốt để đổi
           </span>
@@ -80,7 +80,7 @@ export function ProductGallery({ images, name }: { images: string[]; name: strin
               aria-label={`Xem ảnh ${i + 1} của ${name}`}
               aria-current={i === active ? "true" : undefined}
             >
-                  <Image src={s} alt="" width={160} height={160} sizes="96px" quality={55} className="aspect-square w-full object-cover" loading="lazy" />
+              <Image src={s} alt="" width={160} height={160} sizes="96px" quality={55} className="aspect-square w-full bg-white object-contain" loading="lazy" />
             </button>
           ))}
         </div>

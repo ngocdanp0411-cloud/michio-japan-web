@@ -1,3 +1,5 @@
+Đầu mỗi phiên, hãy đọc memory.md để biết những gì đã học. Mỗi khi tôi chỉnh hành vi của bạn, cập nhật một sở thích, hoặc dạy điều mới, hãy lập tức ghi lại vào đúng phần trong memory.md ngay lúc đó.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 # This is NOT the Next.js you know

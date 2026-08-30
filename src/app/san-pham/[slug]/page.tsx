@@ -50,7 +50,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
           <section>
             <p className="michio-eyebrow">{cat?.name ?? p.category} / Michio Japan</p>
-            <h1 className="michio-display mt-2 text-4xl uppercase leading-[1.02] md:text-5xl">{p.name}</h1>
+            <h1 className="michio-display mt-2 text-pretty text-[2rem] uppercase leading-[1.05] md:text-5xl">{p.name}</h1>
             <div className="mt-4 flex flex-wrap items-center gap-3 border-b border-[var(--michio-border)] pb-4 text-sm"><span className="tracking-[0.18em] text-[var(--michio-primary)]" aria-hidden="true">★★★★★</span><span>{p.rating.toFixed(1)} ({p.ratingCount} đánh giá)</span><span className="text-[var(--michio-text-subtle)]">|</span><span className="text-[var(--michio-text-muted)]">Tư vấn qua Zalo/Fanpage</span></div>
 
             <div className="mt-5 flex flex-wrap items-baseline gap-3"><span className="text-3xl font-bold text-[var(--michio-primary)]">{formatPrice(p.price)}</span>{p.originalPrice && <span className="text-sm text-[var(--michio-text-subtle)] line-through">{formatPrice(p.originalPrice)}</span>}{discount !== null && <span className="rounded bg-[var(--michio-primary)] px-2 py-1 text-xs font-bold text-white">-{discount}%</span>}</div>
@@ -68,7 +68,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         </div>
 
         <section className="mt-12 border-t border-[var(--michio-border)] pt-8 md:mt-16">
-          <div className="flex flex-wrap gap-1 border-b border-[var(--michio-border)]"><span className="border-b-2 border-[var(--michio-primary)] px-4 py-3 text-xs font-bold uppercase text-[var(--michio-primary)]">Mô tả sản phẩm</span><span className="px-4 py-3 text-xs font-bold uppercase text-[var(--michio-text-muted)]">Thông tin bổ sung</span><span className="px-4 py-3 text-xs font-bold uppercase text-[var(--michio-text-muted)]">Đánh giá ({p.ratingCount})</span></div>
+          <h2 className="michio-h2 border-b border-[var(--michio-border)] pb-4 uppercase">Mô tả sản phẩm</h2>
           <div className="mx-auto mt-7 max-w-3xl"><ProductDescription text={p.description} /></div>
         </section>
 

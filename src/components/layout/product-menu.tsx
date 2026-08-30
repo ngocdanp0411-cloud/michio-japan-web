@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { CATEGORIES } from "@/lib/categories";
+import type { Category } from "@/lib/categories";
 
 const CLOSE_DELAY = 140;
 
-export function ProductMenu() {
+export function ProductMenu({ categories = [] }: { categories?: Category[] }) {
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -98,12 +98,12 @@ export function ProductMenu() {
             openMenu();
           }
         }}
-        className="flex min-h-[46px] items-center gap-3 border-x-2 border-[var(--michio-primary)] bg-black px-4 py-2 text-left text-xs font-extrabold uppercase text-white transition-colors hover:bg-[var(--michio-primary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-white md:min-h-[52px] md:gap-4 md:px-5 md:text-sm"
+        className="flex min-h-[46px] items-center gap-2 border-x-2 border-[var(--michio-primary)] bg-black px-2 py-2 text-left text-[11px] font-extrabold uppercase text-white transition-colors hover:bg-[var(--michio-primary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-white md:min-h-[52px] md:gap-4 md:px-5 md:text-sm"
       >
-        <span className="flex w-7 flex-col gap-1" aria-hidden="true">
-          <span className="h-1 w-7 rounded-full bg-white" />
-          <span className="h-1 w-7 rounded-full bg-white" />
-          <span className="h-1 w-7 rounded-full bg-white" />
+        <span className="flex w-5 flex-col gap-1 md:w-7" aria-hidden="true">
+          <span className="h-0.5 w-5 rounded-full bg-white md:h-1 md:w-7" />
+          <span className="h-0.5 w-5 rounded-full bg-white md:h-1 md:w-7" />
+          <span className="h-0.5 w-5 rounded-full bg-white md:h-1 md:w-7" />
         </span>
         <span className="whitespace-nowrap">Danh mục sản phẩm</span>
         <svg
@@ -144,7 +144,7 @@ export function ProductMenu() {
           Tất cả sản phẩm
           <span aria-hidden="true">→</span>
         </Link>
-        {CATEGORIES.map((category) => (
+        {categories.map((category) => (
           <Link
             key={category.slug}
             href={`/danh-muc/${category.slug}`}

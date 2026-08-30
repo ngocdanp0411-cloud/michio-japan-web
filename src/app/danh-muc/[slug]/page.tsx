@@ -3,12 +3,14 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CATEGORIES, CATEGORY_MAP } from "@/lib/categories";
-import { getProductsByCategory } from "@/lib/products";
+import { getCategoriesWithProducts, getProductsByCategory } from "@/lib/products";
 import { ProductGrid } from "@/components/product/product-card";
 import { absoluteUrl, limitDescription, limitTitle } from "@/lib/seo";
 
+const storefrontCategories = getCategoriesWithProducts(CATEGORIES);
+
 export function generateStaticParams() {
-  return CATEGORIES.map((c) => ({ slug: c.slug }));
+  return storefrontCategories.map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -57,7 +59,7 @@ export default async function CategoryPage({ params, searchParams }: { params: P
             <div>
               <h2 className="text-xs font-bold uppercase tracking-[0.14em]">Danh mục</h2>
               <ul className="mt-4 space-y-2.5">
-                {CATEGORIES.map((category) => <li key={category.slug}><Link href={`/danh-muc/${category.slug}`} className={`text-sm transition-colors hover:text-[var(--michio-primary)] ${category.slug === slug ? "font-bold text-[var(--michio-primary)]" : "text-[var(--michio-text-muted)]"}`}>{category.name} <span className="text-xs text-[var(--michio-text-subtle)]">({getProductsByCategory(category.slug).length})</span></Link></li>)}
+                {storefrontCategories.map((category) => <li key={category.slug}><Link href={`/danh-muc/${category.slug}`} className={`text-sm transition-colors hover:text-[var(--michio-primary)] ${category.slug === slug ? "font-bold text-[var(--michio-primary)]" : "text-[var(--michio-text-muted)]"}`}>{category.name} <span className="text-xs text-[var(--michio-text-subtle)]">({getProductsByCategory(category.slug).length})</span></Link></li>)}
               </ul>
             </div>
             <div className="my-5 h-px bg-[var(--michio-border)]" />

@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { CATEGORIES } from "@/lib/categories";
+import { getCategoriesWithProducts } from "@/lib/products";
 
 export function CategoryRail() {
+  const categories = getCategoriesWithProducts(CATEGORIES);
+
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6 md:gap-4">
-      {CATEGORIES.map((category) => (
+      {categories.map((category) => (
         <Link
           key={category.slug}
           href={`/danh-muc/${category.slug}`}

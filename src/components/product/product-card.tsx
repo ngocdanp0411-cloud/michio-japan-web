@@ -11,7 +11,7 @@ export function ProductCard({ p }: { p: Product }) {
 
   return (
     <div className="group flex flex-col overflow-hidden rounded-md border border-[#eeeeee] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.06)] transition-[box-shadow,border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-[var(--michio-border-strong)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.1)]">
-      <Link href={`/san-pham/${p.slug}`} className="relative aspect-[4/5] overflow-hidden bg-white">
+      <Link href={`/san-pham/${p.slug}`} prefetch={false} className="relative aspect-[4/5] overflow-hidden bg-white">
         <span className="pointer-events-none absolute left-3 top-3 z-10 h-9 w-9 overflow-hidden rounded-full border border-white bg-white/95 shadow-sm">
           <Image src="/images/brand/michio-authentic-logo.jpg" alt="" fill sizes="36px" quality={60} className="object-cover" />
         </span>
@@ -26,7 +26,7 @@ export function ProductCard({ p }: { p: Product }) {
         </span>
       </Link>
       <div className="flex flex-1 flex-col bg-white p-3 md:p-4">
-        <Link href={`/san-pham/${p.slug}`} className="line-clamp-2 min-h-[40px] text-[13px] font-semibold leading-5 transition-colors duration-200 hover:text-[var(--michio-primary)] md:min-h-[42px] md:text-sm">
+        <Link href={`/san-pham/${p.slug}`} prefetch={false} className="line-clamp-2 min-h-[40px] text-[13px] font-semibold leading-5 transition-colors duration-200 hover:text-[var(--michio-primary)] md:min-h-[42px] md:text-sm">
           {p.name}
         </Link>
         <div className="michio-caption mt-1 line-clamp-1">{p.excerpt}</div>
@@ -34,15 +34,9 @@ export function ProductCard({ p }: { p: Product }) {
           <span className="michio-price md:text-lg">{formatPrice(p.price)}</span>
           {p.originalPrice && <span className="text-xs text-[var(--michio-taupe)] line-through">{formatPrice(p.originalPrice)}</span>}
         </div>
-        {/* Mobile: 11px height tap >=44px, sticky feel */}
-        <div className="mt-4 grid grid-cols-2 gap-2">
-          <a href={LINKS.zalo} target="_blank" rel="noopener" className="michio-btn-primary inline-flex h-11 items-center justify-center rounded-md px-3 text-center text-xs active:scale-[0.98]">
-            Zalo
-          </a>
-          <a href={LINKS.messenger} target="_blank" rel="noopener" className="michio-btn-secondary inline-flex h-11 items-center justify-center rounded-md px-3 text-center text-xs active:scale-[0.98]">
-            Inbox
-          </a>
-        </div>
+        <a href={LINKS.zalo} target="_blank" rel="noopener noreferrer" className="michio-btn-primary mt-4 inline-flex h-11 items-center justify-center rounded-md px-3 text-center text-xs active:scale-[0.98]">
+          Tư vấn Zalo
+        </a>
       </div>
     </div>
   );

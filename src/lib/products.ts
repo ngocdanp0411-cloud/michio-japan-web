@@ -27,6 +27,11 @@ export function getProductsByCategory(cat: string) {
   return PRODUCTS.filter((p) => p.category === cat);
 }
 
+export function getCategoriesWithProducts<T extends { slug: string }>(categories: T[]) {
+  const categorySlugs = new Set(PRODUCTS.map((product) => product.category));
+  return categories.filter((category) => categorySlugs.has(category.slug));
+}
+
 export function formatPrice(v: number) {
   return new Intl.NumberFormat("vi-VN").format(v) + " ₫";
 }
