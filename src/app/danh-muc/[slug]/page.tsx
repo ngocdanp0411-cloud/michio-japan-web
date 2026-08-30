@@ -47,7 +47,7 @@ export default async function CategoryPage({ params, searchParams }: { params: P
             <p className="michio-body mt-3 max-w-[50ch]">Sản phẩm {cat.name.toLowerCase()} Nhật Bản được chọn lọc theo nhu cầu thật, thông tin rõ ràng và tư vấn tận tâm.</p>
           </div>
           <div className="relative flex min-h-[190px] items-center justify-center overflow-hidden rounded-md bg-white p-4 md:min-h-[245px]">
-            {preview ? <Image src={preview} alt={`Sản phẩm ${cat.name}`} width={640} height={420} sizes="(min-width: 768px) 48vw, 100vw" className="h-full max-h-[220px] w-full object-contain" /> : <span className="michio-h2">{cat.name}</span>}
+            {preview ? <Image src={preview} alt={`Sản phẩm ${cat.name}`} width={640} height={420} priority sizes="(min-width: 768px) 48vw, 100vw" className="h-full max-h-[220px] w-full object-contain" /> : <span className="michio-h2">{cat.name}</span>}
             <span className="absolute bottom-3 right-3 rounded-full border-2 border-white bg-white p-1 shadow"><Image src="/images/brand/michio-authentic-logo.jpg" alt="Michio Japan" width={48} height={48} className="h-10 w-10 rounded-full object-cover" /></span>
           </div>
         </div>

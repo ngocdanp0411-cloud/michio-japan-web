@@ -12,7 +12,7 @@ export function Logo({
   if (variant === "icon") {
     return (
       <span className={`inline-flex items-center ${className}`} aria-label="Michio Japan">
-        <Image src={LOGO_SRC} alt="Michio Japan — Authentic From Japan, Hàng Nhật nội địa" width={52} height={52} quality={55} className="h-11 w-11 object-contain" />
+        <Image src={LOGO_SRC} alt="Michio Japan — Authentic From Japan, Hàng Nhật nội địa" width={52} height={52} quality={55} className="h-11 w-11 object-contain" priority />
       </span>
     );
   }
