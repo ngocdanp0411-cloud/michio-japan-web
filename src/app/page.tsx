@@ -4,7 +4,7 @@ import { CategoryRail } from "@/components/product/category-rail";
 import { ProductGrid } from "@/components/product/product-card";
 import { LINKS } from "@/lib/links";
 import { PRODUCTS } from "@/lib/products";
-import { getBlogPosts } from "@/lib/blog";
+import { BLOG_CATEGORY_MAP, getBlogPosts } from "@/lib/blog";
 
 const trustItems = [
   { number: "01", title: "100% HÀNG NHẬT NỘI ĐỊA", text: "Nhập trực tiếp từ Nhật Bản" },
@@ -119,7 +119,7 @@ export default function HomePage() {
             {posts.map((post) => (
               <Link key={post.slug} href={`/tin-tuc/${post.slug}`} className="group overflow-hidden rounded-md border border-[var(--michio-border)] bg-white transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-[var(--michio-primary)] hover:shadow-[0_10px_24px_rgba(17,17,22,0.08)]">
                 <Image src={post.image} alt={post.title} width={1200} height={675} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" quality={68} className="aspect-video w-full bg-[#fff8f6] object-contain transition-transform duration-300 group-hover:scale-[1.02]" />
-                <div className="p-4"><p className="michio-eyebrow">Góc chăm sóc</p><h3 className="michio-h3 mt-2 line-clamp-2 text-xl">{post.title}</h3><p className="michio-body mt-2 line-clamp-2 text-sm">{post.description}</p><span className="mt-4 inline-flex text-sm font-semibold text-[var(--michio-primary)]">Đọc bài viết →</span></div>
+                <div className="p-4"><p className="michio-eyebrow">{BLOG_CATEGORY_MAP[post.category]?.shortName ?? "Michio Journal"}</p><h3 className="michio-h3 mt-2 line-clamp-2 text-xl">{post.title}</h3><p className="michio-body mt-2 line-clamp-2 text-sm">{post.description}</p><span className="mt-4 inline-flex text-sm font-semibold text-[var(--michio-primary)]">Đọc bài viết →</span></div>
               </Link>
             ))}
           </div>

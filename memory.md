@@ -8,6 +8,8 @@
 - Không làm giỏ hàng hoặc thanh toán online nếu chưa được yêu cầu lại.
 - Khách chốt đơn và giao hàng trực tiếp qua Zalo hoặc Fanpage.
 - Ưu tiên trải nghiệm mobile, tốc độ tải và CTA rõ ràng.
+- Blog được tổ chức thành các chuyên mục cụ thể theo nhu cầu tìm kiếm và liên kết về sản phẩm phù hợp.
+- Mỗi ngày AI tạo thêm một bài blog mới theo các chuyên mục đã duyệt để mở rộng nội dung website.
 
 ## Sở thích làm việc
 

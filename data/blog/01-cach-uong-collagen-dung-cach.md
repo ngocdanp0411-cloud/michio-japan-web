@@ -2,6 +2,8 @@
 title: "Cách uống collagen đúng cách: dạng nước, viên và bột | Michio Jap"
 description: "Hướng dẫn cách uống collagen đúng cách theo dạng nước, viên và bột cho người mới. Lưu ý an toàn, đọc nhãn, tương tác thuốc và khi nào nên hỏi chuyên gia."
 slug: cach-uong-collagen-dung-cach
+category: collagen-lam-dep
+published_at: "2026-08-30"
 primary_keyword: "cách uống collagen đúng cách"
 secondary_keywords:
   - "cách uống collagen dạng nước"

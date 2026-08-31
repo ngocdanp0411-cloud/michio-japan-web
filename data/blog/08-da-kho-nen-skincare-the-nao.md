@@ -2,6 +2,8 @@
 title: "Da khô nên skincare thế nào? Routine dưỡng ẩm tối giản"
 description: "Hướng dẫn skincare cho da khô: nguyên tắc làm sạch dịu, dưỡng ẩm sâu và chống nắng. Routine tối giản sáng và tối, checklist sản phẩm, khi nào cần gặp bác sĩ da liễu."
 slug: da-kho-nen-skincare-the-nao
+category: skincare-nhat-ban
+published_at: "2026-08-16"
 primary_keyword: "da khô nên skincare thế nào"
 secondary_keywords:
   - "routine cho da khô"

@@ -2,6 +2,8 @@
 title: "Double cleansing là gì? Cách tẩy trang và rửa mặt không làm khô d"
 description: "Hiểu rõ double cleansing: khi nào cần, cách thực hiện từng bước và dấu hiệu rửa mặt quá mức để tránh khô da. Lời khuyên chọn sản phẩm và lưu ý an toàn."
 slug: double-cleansing-la-gi
+category: skincare-nhat-ban
+published_at: "2026-08-20"
 primary_keyword: "double cleansing là gì"
 secondary_keywords:
   - "tẩy trang và sữa rửa mặt"

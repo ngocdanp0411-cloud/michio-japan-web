@@ -2,6 +2,8 @@
 title: "Collagen Nhật dạng nước, viên hay bột: nên chọn loại nào? | Michi"
 description: "So sánh collagen Nhật dạng nước, viên và bột theo tiện lợi, thói quen, ngân sách và khả năng đọc nhãn. Lời khuyên an toàn khi dùng thực phẩm bổ sung."
 slug: collagen-nhat-dang-nuoc-vien-bot
+category: collagen-lam-dep
+published_at: "2026-08-26"
 primary_keyword: "collagen Nhật dạng nào tốt"
 secondary_keywords:
   - "collagen Nhật dạng nước"

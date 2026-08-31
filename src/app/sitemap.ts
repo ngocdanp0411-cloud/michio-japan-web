@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getBlogPosts } from "@/lib/blog";
+import { BLOG_CATEGORIES, getBlogPosts } from "@/lib/blog";
 import { CATEGORIES } from "@/lib/categories";
 import { getCategoriesWithProducts, PRODUCTS } from "@/lib/products";
 import { absoluteUrl } from "@/lib/seo";
@@ -30,14 +30,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
   const blogRoutes = getBlogPosts().map((post) => ({
     url: absoluteUrl(`/tin-tuc/${post.slug}`),
-    lastModified: now,
+    lastModified: new Date(post.publishedAt),
     changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+  const blogCategoryRoutes = BLOG_CATEGORIES.map((category) => ({
+    url: absoluteUrl(`/tin-tuc/chuyen-muc/${category.slug}`),
+    lastModified: now,
+    changeFrequency: "daily" as const,
     priority: 0.7,
   }));
 
   return [
     ...staticRoutes.map((route) => ({ url: absoluteUrl(route.path), lastModified: now, changeFrequency: route.changeFrequency, priority: route.priority })),
     ...categoryRoutes,
+    ...blogCategoryRoutes,
     ...productRoutes,
     ...blogRoutes,
   ];

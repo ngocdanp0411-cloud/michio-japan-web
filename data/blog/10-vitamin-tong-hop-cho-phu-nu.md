@@ -2,6 +2,8 @@
 title: "Vitamin tổng hợp cho phụ nữ: cách đọc nhãn và chọn đúng nhu cầu"
 description: "Hướng dẫn đọc nhãn vitamin tổng hợp cho phụ nữ: thành phần, liều, cảnh báo tránh chồng chéo và khi nào cần hỏi chuyên gia. Lời khuyên an toàn khi dùng thực phẩm bổ sung."
 slug: vitamin-tong-hop-cho-phu-nu
+category: vitamin-suc-khoe
+published_at: "2026-08-12"
 primary_keyword: "vitamin tổng hợp cho phụ nữ"
 secondary_keywords:
   - "cách chọn vitamin tổng hợp"

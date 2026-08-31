@@ -2,6 +2,8 @@
 title: "Cách kiểm tra mỹ phẩm Nhật chính hãng trước khi mua | Michio Japa"
 description: "Checklist thực tế để kiểm tra mỹ phẩm Nhật chính hãng: nguồn bán, đọc nhãn, bao bì, batch/lot, hạn dùng và chính sách đổi trả. Hướng dẫn dễ áp dụng trước khi mua."
 slug: cach-kiem-tra-my-pham-nhat-chinh-hang
+category: kinh-nghiem-hang-nhat
+published_at: "2026-08-10"
 primary_keyword: "cách kiểm tra mỹ phẩm Nhật chính hãng"
 secondary_keywords:
   - "check mỹ phẩm Nhật thật giả"

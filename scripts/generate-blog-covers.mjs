@@ -1,18 +1,35 @@
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 
 const root = process.cwd();
 const blogDir = path.join(root, "public/images/blog");
 const logoSource = path.join(root, "public/images/brand/michio-authentic-logo.jpg");
-const boldFont = "/System/Library/Fonts/Supplemental/Arial Bold.ttf";
-const regularFont = "/System/Library/Fonts/Supplemental/Arial.ttf";
+const font = (candidates) => candidates.find(existsSync) ?? "Arial";
+const boldFont = font([
+  "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
+  "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+]);
+const regularFont = font([
+  "/System/Library/Fonts/Supplemental/Arial.ttf",
+  "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+]);
 const productImages = new Map(
   JSON.parse(readFileSync(path.join(root, "data/products.json"), "utf8"))
     .map(({ slug, image }) => [slug, path.join(root, "public", image)]),
 );
 const product = (slug) => productImages.get(slug) ?? "";
+
+function option(name) {
+  const index = process.argv.indexOf(name);
+  return index >= 0 ? process.argv[index + 1] : undefined;
+}
+
+const outputDir = option("--output-dir")
+  ? path.resolve(root, option("--output-dir"))
+  : blogDir;
+mkdirSync(outputDir, { recursive: true });
 
 const covers = [
   ["cach-uong-collagen-dung-cach.jpg", "CẨM NANG COLLAGEN", "CÁCH UỐNG\nCOLLAGEN\nĐÚNG CÁCH", "Collagen nước hay viên — dùng sao cho đúng?", "#c61f3a", "#f5dce2", "#efbdc9", [
@@ -65,7 +82,8 @@ function render([file, category, title, subtitle, accent, soft, circle, products
     return output;
   });
 
-  const titleSize = title.replaceAll("\n", "").length > 30 ? "76" : "88";
+  const titleLength = title.replaceAll("\n", "").length;
+  const titleSize = titleLength > 48 ? "64" : titleLength > 30 ? "76" : "88";
   const args = [
     "-size", "1920x1080", "xc:#fff8f6",
     "-fill", soft, "-draw", "circle 1480,540 2160,540",
@@ -85,10 +103,32 @@ function render([file, category, title, subtitle, accent, soft, circle, products
     args.push("(", cutout, "(", "+clone", "-background", "#4b3340", "-shadow", "35x14+0+28", ")", "+swap", "-background", "none", "-layers", "merge", "+repage", ")", "-gravity", "northwest", "-geometry", `+${x}+${y}`, "-composite");
   });
 
-  args.push("-strip", "-quality", "90", path.join(blogDir, file));
+  args.push("-strip", "-quality", "90", path.join(outputDir, file));
   run(args);
   rmSync(temp, { recursive: true, force: true });
   console.log(`Generated ${file}`);
 }
 
-covers.forEach(render);
+const singleSlug = option("--slug");
+if (singleSlug) {
+  if (!/^[a-z0-9-]+$/.test(singleSlug)) throw new Error("Slug chỉ được chứa chữ thường, số và dấu gạch ngang.");
+  const selectedProducts = (option("--products") ?? "").split(",").map((item) => item.trim()).filter(Boolean);
+  if (selectedProducts.length < 2 || selectedProducts.length > 4) throw new Error("Cover cần từ 2 đến 4 sản phẩm.");
+  const palette = {
+    "collagen-lam-dep": ["#c61f3a", "#f5dce2", "#efbdc9"],
+    "skincare-nhat-ban": ["#1e6f8a", "#ddeff2", "#a8d7df"],
+    "vitamin-suc-khoe": ["#1d4d75", "#dbe7f0", "#a9c8de"],
+    "me-va-be-nhat-ban": ["#a65b72", "#f5e2e8", "#e9bdca"],
+    "kinh-nghiem-hang-nhat": ["#8a5d3b", "#eee4dc", "#d5bca9"],
+  }[option("--category-slug") ?? ""] ?? ["#c61f3a", "#f5dce2", "#efbdc9"];
+  render([
+    `${singleSlug}.jpg`,
+    (option("--category") ?? "MICHIO JOURNAL").toUpperCase(),
+    (option("--title") ?? singleSlug.replaceAll("-", " ")).toUpperCase(),
+    option("--subtitle") ?? "Hướng dẫn ngắn gọn, dễ áp dụng mỗi ngày.",
+    ...palette,
+    selectedProducts,
+  ]);
+} else {
+  covers.forEach(render);
+}

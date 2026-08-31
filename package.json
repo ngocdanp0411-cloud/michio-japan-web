@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "blog:cover": "node scripts/generate-blog-covers.mjs",
+    "blog:validate": "node scripts/validate-blog-content.mjs"
   },
   "dependencies": {
     "next": "16.3.2",

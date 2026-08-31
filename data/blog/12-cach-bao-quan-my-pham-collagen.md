@@ -2,6 +2,8 @@
 title: "Cách bảo quản mỹ phẩm, collagen và thực phẩm bổ sung đúng cách | "
 description: "Hướng dẫn cách bảo quản mỹ phẩm, collagen và thực phẩm bổ sung: nhiệt độ, ánh sáng, độ ẩm, nắp đóng, dấu hiệu nên ngừng dùng và lưu ý đọc nhãn. Thông tin tham khảo từ ngu"
 slug: cach-bao-quan-my-pham-collagen
+category: kinh-nghiem-hang-nhat
+published_at: "2026-08-08"
 primary_keyword: "cách bảo quản mỹ phẩm"
 secondary_keywords:
   - "cách bảo quản collagen"

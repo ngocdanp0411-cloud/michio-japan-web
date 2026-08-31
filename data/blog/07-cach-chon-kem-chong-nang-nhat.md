@@ -2,6 +2,8 @@
 title: "Cách chọn kem chống nắng Nhật: hiểu SPF, PA và cách bôi đủ lượng"
 description: "Hướng dẫn đọc SPF/PA, chọn kem chống nắng Nhật phù hợp theo da và hoàn cảnh, cùng cách bôi đủ lượng và tần suất bôi lại. Lưu ý an toàn và khi cần gặp bác sĩ da liễu."
 slug: cach-chon-kem-chong-nang-nhat
+category: skincare-nhat-ban
+published_at: "2026-08-18"
 primary_keyword: "kem chống nắng Nhật loại nào tốt"
 secondary_keywords:
   - "cách chọn kem chống nắng"

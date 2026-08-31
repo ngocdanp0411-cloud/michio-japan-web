@@ -2,6 +2,8 @@
 title: "Omega-3 là gì? Cách chọn dầu cá và dầu nhuyễn thể"
 description: "Tìm hiểu omega-3 (EPA, DHA, ALA), khác biệt giữa dầu cá và dầu nhuyễn thể, checklist đọc nhãn khi chọn sản phẩm bổ sung, và lưu ý an toàn. Thông tin tham khảo từ NIH."
 slug: omega-3-la-gi-cach-chon
+category: vitamin-suc-khoe
+published_at: "2026-08-14"
 primary_keyword: "omega-3 là gì"
 secondary_keywords:
   - "cách chọn omega-3"

@@ -2,6 +2,8 @@
 title: "Thứ tự skincare buổi sáng và buổi tối đúng cách | Michio Japan"
 description: "Hướng dẫn thứ tự skincare sáng tối: từ làm sạch, serum, đến dưỡng ẩm và chống nắng. Có cả trường hợp tối giản và lưu ý an toàn. Tham khảo nguồn chuyên môn."
 slug: thu-tu-skincare-sang-toi
+category: skincare-nhat-ban
+published_at: "2026-08-22"
 primary_keyword: "thứ tự skincare sáng tối"
 secondary_keywords:
   - "các bước skincare buổi sáng"

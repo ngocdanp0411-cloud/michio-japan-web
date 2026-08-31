@@ -2,6 +2,8 @@
 title: "Uống collagen lúc nào tốt? Lịch dùng dễ nhớ cho người mới | Michi"
 description: "Tìm hiểu uống collagen lúc nào tốt, uống buổi sáng hay tối, trước hay sau ăn, cùng lịch dùng dễ nhớ cho người mới. Lưu ý an toàn, đọc nhãn và hỏi chuyên gia."
 slug: uong-collagen-luc-nao-tot
+category: collagen-lam-dep
+published_at: "2026-08-28"
 primary_keyword: "uống collagen lúc nào tốt"
 secondary_keywords:
   - "uống collagen buổi sáng hay tối"
