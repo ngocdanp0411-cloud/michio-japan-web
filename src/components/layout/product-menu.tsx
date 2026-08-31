@@ -4,28 +4,10 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Category } from "@/lib/categories";
 
-const CLOSE_DELAY = 140;
-
 export function ProductMenu({ categories = [] }: { categories?: Category[] }) {
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
-  const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [menuPosition, setMenuPosition] = useState({ top: 0, left: 16, width: 320 });
-
-  const cancelClose = () => {
-    if (closeTimeoutRef.current) {
-      clearTimeout(closeTimeoutRef.current);
-      closeTimeoutRef.current = null;
-    }
-  };
-
-  const scheduleClose = () => {
-    cancelClose();
-    closeTimeoutRef.current = setTimeout(() => {
-      setOpen(false);
-      closeTimeoutRef.current = null;
-    }, CLOSE_DELAY);
-  };
 
   const updatePosition = useCallback(() => {
     const rect = triggerRef.current?.getBoundingClientRect();
@@ -39,14 +21,9 @@ export function ProductMenu({ categories = [] }: { categories?: Category[] }) {
   }, []);
 
   const openMenu = () => {
-    cancelClose();
     updatePosition();
     setOpen(true);
   };
-
-  useEffect(() => {
-    return () => cancelClose();
-  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -75,16 +52,7 @@ export function ProductMenu({ categories = [] }: { categories?: Category[] }) {
   }, [open, updatePosition]);
 
   return (
-    <div
-      className="group relative shrink-0"
-      onPointerEnter={(event) => {
-        if (event.pointerType !== "mouse") return;
-        openMenu();
-      }}
-      onPointerLeave={(event) => {
-        if (event.pointerType === "mouse") scheduleClose();
-      }}
-    >
+    <div className="group relative shrink-0">
       <button
         ref={triggerRef}
         type="button"
@@ -105,7 +73,8 @@ export function ProductMenu({ categories = [] }: { categories?: Category[] }) {
           <span className="h-0.5 w-5 rounded-full bg-white md:h-1 md:w-7" />
           <span className="h-0.5 w-5 rounded-full bg-white md:h-1 md:w-7" />
         </span>
-        <span className="whitespace-nowrap">Danh mục sản phẩm</span>
+        <span className="whitespace-nowrap md:hidden">Danh mục</span>
+        <span className="hidden whitespace-nowrap md:inline">Danh mục sản phẩm</span>
         <svg
           width="18"
           height="18"
@@ -116,7 +85,7 @@ export function ProductMenu({ categories = [] }: { categories?: Category[] }) {
           strokeLinecap="round"
           strokeLinejoin="round"
           aria-hidden="true"
-          className={`ml-auto transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          className={`ml-auto hidden transition-transform duration-200 sm:block ${open ? "rotate-180" : ""}`}
         >
           <path d="m6 9 6 6 6-6" />
         </svg>
@@ -126,12 +95,6 @@ export function ProductMenu({ categories = [] }: { categories?: Category[] }) {
         id="product-category-menu"
         role="menu"
         aria-label="Danh mục sản phẩm"
-        onPointerEnter={(event) => {
-          if (event.pointerType === "mouse") cancelClose();
-        }}
-        onPointerLeave={(event) => {
-          if (event.pointerType === "mouse") scheduleClose();
-        }}
         style={{ top: menuPosition.top, left: menuPosition.left, width: menuPosition.width }}
         className={`fixed z-[70] origin-top rounded-b-md border border-t-0 border-[var(--michio-border-strong)] bg-white p-2 text-[var(--michio-text)] shadow-[0_14px_30px_rgba(17,17,22,0.16)] transition-all duration-200 ${open ? "visible pointer-events-auto translate-y-0 opacity-100" : "invisible pointer-events-none -translate-y-1 opacity-0"}`}
       >

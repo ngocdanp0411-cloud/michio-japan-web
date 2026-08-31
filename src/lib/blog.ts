@@ -34,7 +34,7 @@ export const BLOG_CATEGORIES: BlogCategory[] = [
     description: "Cách chọn, thời điểm dùng và lưu ý an toàn khi bổ sung collagen.",
     searchIntent: "uống collagen, chọn collagen, chăm sóc da từ bên trong",
     accent: "#c61f3a",
-    productCategory: "collagen",
+    productCategory: "my-pham-skincare",
   },
   {
     slug: "skincare-nhat-ban",
@@ -43,7 +43,7 @@ export const BLOG_CATEGORIES: BlogCategory[] = [
     description: "Routine dễ áp dụng, làm sạch, dưỡng ẩm và chống nắng theo từng loại da.",
     searchIntent: "routine skincare, mỹ phẩm Nhật, kem chống nắng Nhật",
     accent: "#1e6f8a",
-    productCategory: "cham-soc-da",
+    productCategory: "my-pham-skincare",
   },
   {
     slug: "vitamin-suc-khoe",
@@ -70,7 +70,7 @@ export const BLOG_CATEGORIES: BlogCategory[] = [
     description: "Cách kiểm tra nguồn gốc, bảo quản và mua hàng Nhật phù hợp ngân sách.",
     searchIntent: "hàng Nhật chính hãng, cách kiểm tra mỹ phẩm Nhật, bảo quản mỹ phẩm",
     accent: "#8a5d3b",
-    productCategory: "hang-tieu-dung",
+    productCategory: "do-tieu-dung",
   },
 ];
 

@@ -1,13 +1,31 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { CATEGORIES, CATEGORY_MAP } from "@/lib/categories";
 import { getCategoriesWithProducts, getProductsByCategory } from "@/lib/products";
 import { ProductGrid } from "@/components/product/product-card";
 import { absoluteUrl, limitDescription, limitTitle } from "@/lib/seo";
 
 const storefrontCategories = getCategoriesWithProducts(CATEGORIES);
+const PRODUCTS_PER_PAGE = 24;
+const LEGACY_CATEGORY_REDIRECTS: Record<string, string> = {
+  collagen: "my-pham-skincare",
+  "cham-soc-da": "my-pham-skincare",
+  "cham-soc-co-the": "dau-goi-sua-tam",
+  "hang-tieu-dung": "do-tieu-dung",
+};
+
+type CategoryQuery = { sort?: string; max?: string; page?: string };
+
+function pageHref(slug: string, page: number, query: CategoryQuery) {
+  const params = new URLSearchParams();
+  if (query.sort) params.set("sort", query.sort);
+  if (query.max) params.set("max", query.max);
+  if (page > 1) params.set("page", String(page));
+  const search = params.toString();
+  return `/danh-muc/${slug}${search ? `?${search}` : ""}`;
+}
 
 export function generateStaticParams() {
   return storefrontCategories.map((c) => ({ slug: c.slug }));
@@ -22,18 +40,25 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return { title, description, alternates: { canonical: absoluteUrl(`/danh-muc/${slug}`) } };
 }
 
-export default async function CategoryPage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ sort?: string; max?: string }> }) {
+export default async function CategoryPage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<CategoryQuery> }) {
   const { slug } = await params;
   const query = await searchParams;
   const cat = CATEGORY_MAP[slug];
+  const newSlug = LEGACY_CATEGORY_REDIRECTS[slug];
+  if (!cat && newSlug) permanentRedirect(pageHref(newSlug, Number.parseInt(query.page ?? "1", 10), query));
   if (!cat) notFound();
 
   const allProducts = getProductsByCategory(slug);
   const maxPrice = query.max ? Number(query.max) : undefined;
-  let products = maxPrice ? allProducts.filter((product) => product.price <= maxPrice) : allProducts;
-  if (query.sort === "price-asc") products = [...products].sort((a, b) => a.price - b.price);
-  if (query.sort === "price-desc") products = [...products].sort((a, b) => b.price - a.price);
-  if (query.sort === "popular") products = [...products].sort((a, b) => b.ratingCount - a.ratingCount);
+  let filteredProducts = maxPrice ? allProducts.filter((product) => product.price <= maxPrice) : allProducts;
+  if (query.sort === "price-asc") filteredProducts = [...filteredProducts].sort((a, b) => a.price - b.price);
+  if (query.sort === "price-desc") filteredProducts = [...filteredProducts].sort((a, b) => b.price - a.price);
+  if (query.sort === "popular") filteredProducts = [...filteredProducts].sort((a, b) => b.ratingCount - a.ratingCount);
+  const totalPages = Math.max(1, Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE));
+  const requestedPage = Number.parseInt(query.page ?? "1", 10);
+  const currentPage = Number.isFinite(requestedPage) ? Math.min(Math.max(requestedPage, 1), totalPages) : 1;
+  const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
+  const products = filteredProducts.slice(startIndex, startIndex + PRODUCTS_PER_PAGE);
   const preview = allProducts[0]?.image;
 
   return (
@@ -73,10 +98,17 @@ export default async function CategoryPage({ params, searchParams }: { params: P
 
           <section>
             <div className="flex flex-wrap items-end justify-between gap-3 border-b border-[var(--michio-border)] pb-4">
-              <div><p className="text-sm text-[var(--michio-text-muted)]">Hiển thị <strong className="text-[var(--michio-text)]">{products.length}</strong>/{allProducts.length} sản phẩm</p></div>
+              <div><p className="text-sm text-[var(--michio-text-muted)]">Hiển thị <strong className="text-[var(--michio-text)]">{filteredProducts.length ? startIndex + 1 : 0}–{Math.min(startIndex + products.length, filteredProducts.length)}</strong>/{filteredProducts.length} sản phẩm</p></div>
               <form method="get" className="flex items-center gap-2 text-xs"><label htmlFor="sort" className="text-[var(--michio-text-subtle)]">Sắp xếp:</label><select id="sort" name="sort" defaultValue={query.sort ?? ""} className="michio-input h-10 min-h-0 rounded px-3 text-xs"><option value="">Mặc định</option><option value="popular">Bán chạy</option><option value="price-asc">Giá thấp đến cao</option><option value="price-desc">Giá cao đến thấp</option></select>{query.max && <input type="hidden" name="max" value={query.max} />}<button type="submit" className="sr-only">Áp dụng sắp xếp</button></form>
             </div>
             <div className="mt-5">{products.length ? <ProductGrid products={products} columns="category" /> : <div className="rounded-md border border-dashed border-[var(--michio-border-strong)] bg-[var(--michio-surface-muted)] p-10 text-center text-sm text-[var(--michio-text-muted)]">Chưa có sản phẩm trong khoảng giá này.</div>}</div>
+            {totalPages > 1 && (
+              <nav aria-label="Phân trang danh mục" className="mt-8 flex items-center justify-between gap-3 border-t border-[var(--michio-border)] pt-6">
+                {currentPage > 1 ? <Link href={pageHref(slug, currentPage - 1, query)} className="michio-btn-secondary inline-flex h-11 items-center justify-center rounded-md px-4 text-sm">← Trang trước</Link> : <span aria-hidden="true" />}
+                <span className="michio-caption text-center">Trang {currentPage}/{totalPages}</span>
+                {currentPage < totalPages ? <Link href={pageHref(slug, currentPage + 1, query)} className="michio-btn-primary inline-flex h-11 items-center justify-center rounded-md px-4 text-sm">Trang sau →</Link> : <span aria-hidden="true" />}
+              </nav>
+            )}
           </section>
         </div>
       </main>

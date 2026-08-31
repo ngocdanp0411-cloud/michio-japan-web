@@ -1,26 +1,42 @@
 [
   {
-    "slug": "collagen",
-    "name": "Collagen làm đẹp",
-    "shortName": "Collagen",
+    "slug": "my-pham-skincare",
+    "name": "Mỹ phẩm skincare",
+    "shortName": "Skincare",
     "color": "#B83B68",
-    "icon": "sparkle",
-    "active": true
-  },
-  {
-    "slug": "cham-soc-da",
-    "name": "Chăm sóc da",
-    "shortName": "Chăm sóc da",
-    "color": "#13233F",
     "icon": "face",
     "active": true
   },
   {
-    "slug": "cham-soc-co-the",
-    "name": "Chăm sóc cơ thể",
-    "shortName": "Chăm sóc cơ thể",
+    "slug": "dau-goi-sua-tam",
+    "name": "Dầu gội/Sữa tắm",
+    "shortName": "Tóc & cơ thể",
     "color": "#F4D9E2",
     "icon": "body",
+    "active": true
+  },
+  {
+    "slug": "do-tieu-dung",
+    "name": "Đồ tiêu dùng",
+    "shortName": "Tiêu dùng",
+    "color": "#171923",
+    "icon": "home",
+    "active": true
+  },
+  {
+    "slug": "me-va-be",
+    "name": "Mẹ&Bé",
+    "shortName": "Mẹ & Bé",
+    "color": "#B8A9A4",
+    "icon": "baby",
+    "active": true
+  },
+  {
+    "slug": "do-nha-bep",
+    "name": "Đồ nhà bếp",
+    "shortName": "Nhà bếp",
+    "color": "#8A5D3B",
+    "icon": "kitchen",
     "active": true
   },
   {
@@ -32,19 +48,11 @@
     "active": true
   },
   {
-    "slug": "me-va-be",
-    "name": "Mẹ và bé",
-    "shortName": "Mẹ & Bé",
-    "color": "#B8A9A4",
-    "icon": "baby",
-    "active": true
-  },
-  {
-    "slug": "hang-tieu-dung",
-    "name": "Hàng tiêu dùng",
-    "shortName": "Tiêu dùng",
-    "color": "#171923",
-    "icon": "home",
+    "slug": "do-cho-nam",
+    "name": "Đồ cho nam",
+    "shortName": "Cho nam",
+    "color": "#13233F",
+    "icon": "men",
     "active": true
   }
 ]

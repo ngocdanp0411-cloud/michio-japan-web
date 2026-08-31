@@ -1,7 +1,8 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-import { ALL_CATEGORIES, type Category } from "@/lib/categories";
+import { ASSIGNABLE_CATEGORIES, type Category } from "@/lib/categories";
+import { resolveProductCategory } from "@/lib/products";
 
 export type ProductRecord = {
   slug: string;
@@ -31,9 +32,9 @@ const GITHUB_PRODUCTS_PATH = "data/products.json";
 const GITHUB_CATEGORIES_PATH = "data/categories.json";
 const PUBLIC_PATH = path.join(process.cwd(), "public");
 
-export const PRODUCT_CATEGORIES = ALL_CATEGORIES.map((category) => category.slug) as [string, ...string[]];
+export const PRODUCT_CATEGORIES = ASSIGNABLE_CATEGORIES.map((category) => category.slug) as [string, ...string[]];
 
-export function validateProductInput(input: unknown, categories: Category[] = ALL_CATEGORIES) {
+export function validateProductInput(input: unknown, categories: Category[] = ASSIGNABLE_CATEGORIES) {
   if (!input || typeof input !== "object") return { ok: false as const, error: "Payload không hợp lệ" };
   const value = input as Record<string, unknown>;
   const slug = typeof value.slug === "string" ? value.slug.trim().toLowerCase() : "";
@@ -150,13 +151,17 @@ async function writeGitHubFile(config: NonNullable<ReturnType<typeof githubConfi
 
 export async function readProducts() {
   const config = githubConfig();
-  if (!config) return readLocalJson<ProductRecord[]>(DATA_PATH);
+  const normalize = (products: ProductRecord[]) => products.map((product) => ({
+    ...product,
+    category: resolveProductCategory(product),
+  }));
+  if (!config) return normalize(await readLocalJson<ProductRecord[]>(DATA_PATH));
 
   try {
-    return (await readGitHubJson<ProductRecord[]>(config, GITHUB_PRODUCTS_PATH)).data;
+    return normalize((await readGitHubJson<ProductRecord[]>(config, GITHUB_PRODUCTS_PATH)).data);
   } catch (error) {
     console.error("[Admin storage] GitHub read products failed; using bundled catalog:", error);
-    return readLocalJson<ProductRecord[]>(DATA_PATH);
+    return normalize(await readLocalJson<ProductRecord[]>(DATA_PATH));
   }
 }
 

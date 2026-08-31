@@ -39,14 +39,14 @@ export function Header() {
         </div>
       </div>
       <nav aria-label="Điều hướng chính" className="bg-[var(--michio-navy)] text-white">
-        <div className="mx-auto flex max-w-[1280px] items-center gap-0 px-2 md:px-4">
+        <div className="mx-auto flex max-w-[1280px] items-center gap-0 overflow-x-auto px-4 scrollbar-none">
           {primaryNav.slice(0, 1).map((item) => {
             const className = "hidden shrink-0 border-b-2 border-transparent px-4 py-3 text-xs font-semibold uppercase transition-colors hover:border-[var(--michio-primary)] hover:bg-white/5 hover:text-white focus-visible:outline-white md:inline-flex md:px-6 md:text-sm";
             return <Link key={item.label} href={item.href} className={className}>{item.label}</Link>;
           })}
           <ProductMenu categories={storefrontCategories} />
           {primaryNav.slice(1).map((item) => {
-            const className = `shrink-0 border-b-2 border-transparent px-3 py-3 text-[11px] font-semibold uppercase transition-colors hover:border-[var(--michio-primary)] hover:bg-white/5 hover:text-white focus-visible:outline-white md:px-6 md:text-sm ${item.label === "Mua sỉ" ? "inline-flex" : "hidden md:inline-flex"}`;
+            const className = "inline-flex shrink-0 border-b-2 border-transparent px-3 py-3 text-[11px] font-semibold uppercase transition-colors hover:border-[var(--michio-primary)] hover:bg-white/5 hover:text-white focus-visible:outline-white md:px-6 md:text-sm";
             return item.external ? <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" className={className}>{item.label}</a> : <Link key={item.label} href={item.href} className={className}>{item.label}</Link>;
           })}
         </div>
