@@ -4,6 +4,7 @@ description: "Hướng dẫn đọc SPF/PA, chọn kem chống nắng Nhật ph�
 slug: cach-chon-kem-chong-nang-nhat
 category: skincare-nhat-ban
 published_at: "2026-08-18"
+ai_assisted: false
 primary_keyword: "kem chống nắng Nhật loại nào tốt"
 secondary_keywords:
   - "cách chọn kem chống nắng"

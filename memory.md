@@ -10,6 +10,7 @@
 - Ưu tiên trải nghiệm mobile, tốc độ tải và CTA rõ ràng.
 - Blog được tổ chức thành các chuyên mục cụ thể theo nhu cầu tìm kiếm và liên kết về sản phẩm phù hợp.
 - Mỗi ngày AI tạo thêm một bài blog mới theo các chuyên mục đã duyệt để mở rộng nội dung website.
+- Bài AI hằng ngày phải theo format SEO + AI-friendly/GEO 2026 của dự án: trả lời đúng intent ngay đầu bài, có tóm tắt nhanh, cấu trúc H2/H3 rõ, thông tin từ dữ liệu thật, nguồn tin cậy, internal link, FAQ khi phù hợp và CTA dẫn về Zalo/Fanpage hoặc sản phẩm.
 
 ## Sở thích làm việc
 
@@ -17,6 +18,7 @@
 - Giữ giải pháp đơn giản, thực tế, phù hợp quy mô dự án.
 - Giữ phong cách thương hiệu hiện tại khi tối ưu giao diện.
 - Cover blog dùng ảnh sản phẩm thật liên quan, logo Michio và tiêu đề ngắn; không dùng hình AI chung chung khiến người xem khó nhận biết sản phẩm.
+- Không bịa trải nghiệm, thử nghiệm, phản hồi khách hàng, số liệu bán hàng hoặc tuyên bố chuyên môn để tạo “information gain”; chỉ dùng dữ liệu kiểm chứng được.
 - Với một bộ thiết kế hình ảnh, làm và kiểm tra kỹ 1 mẫu để người dùng duyệt trước khi nhân ra toàn bộ; không tự chấp nhận thiết kế còn cảm giác ghép tự động.
 - Trước khi deploy thay đổi hình ảnh, phải kiểm tra trực quan trên website thật ở mobile: trạng thái tải ban đầu, sau khi cuộn, crop/tỷ lệ và các trang đại diện; build, HTTP hoặc checksum không đủ để kết luận giao diện đúng.
 - Ưu tiên tiết kiệm token: việc nhỏ không lập kế hoạch dài hoặc gọi nhiều agent; chỉ đọc file liên quan và chạy kiểm tra cần thiết một lần ở cuối.

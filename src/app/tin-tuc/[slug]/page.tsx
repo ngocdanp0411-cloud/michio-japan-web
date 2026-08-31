@@ -32,6 +32,30 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     ...candidates.filter((item) => item.category === post.category),
     ...candidates.filter((item) => item.category !== post.category),
   ].slice(0, 3);
+  const schemas = [
+    {
+      "@type": "Article",
+      headline: post.title,
+      description: post.description,
+      image: absoluteUrl(post.image),
+      mainEntityOfPage: absoluteUrl(`/tin-tuc/${post.slug}`),
+      datePublished: post.publishedAt,
+      dateModified: post.publishedAt,
+      articleSection: category?.name,
+      author: { "@type": "Organization", name: SITE_NAME },
+      publisher: { "@type": "Organization", name: SITE_NAME, logo: { "@type": "ImageObject", url: absoluteUrl("/images/brand/michio-authentic-logo.jpg") } },
+      inLanguage: "vi-VN",
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Trang chủ", item: absoluteUrl("/") },
+        { "@type": "ListItem", position: 2, name: "Bài viết", item: absoluteUrl("/tin-tuc") },
+        { "@type": "ListItem", position: 3, name: post.title, item: absoluteUrl(`/tin-tuc/${post.slug}`) },
+      ],
+    },
+    ...(post.faqs.length ? [{ "@type": "FAQPage", mainEntity: post.faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) }] : []),
+  ];
 
   return (
     <div>
@@ -47,7 +71,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         <section className="mx-auto mt-12 max-w-5xl border-y border-[var(--michio-primary)] bg-[var(--michio-primary)] p-6 text-white md:mt-16 md:p-8"><h2 className="michio-h2 text-white uppercase">Chọn sản phẩm phù hợp với thói quen của bạn</h2><p className="mt-2 max-w-2xl text-sm leading-6 text-white/80">Tham khảo các sản phẩm Nhật được chọn lọc tại Michio Japan và đọc kỹ thông tin trên nhãn trước khi mua.</p><div className="mt-5 flex flex-wrap gap-3"><Link href="/cua-hang" className="inline-flex h-11 items-center rounded bg-white px-5 text-sm font-bold uppercase text-[var(--michio-primary)]">Xem sản phẩm</Link><a href={LINKS.zalo} target="_blank" rel="noopener" className="inline-flex h-11 items-center rounded border border-white/60 px-5 text-sm font-bold uppercase text-white hover:bg-white/10">Nhắn Zalo</a></div></section>
       </main>
 
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", headline: post.title, description: post.description, image: absoluteUrl(post.image), mainEntityOfPage: absoluteUrl(`/tin-tuc/${post.slug}`), datePublished: post.publishedAt, articleSection: category?.name, author: { "@type": "Organization", name: SITE_NAME }, publisher: { "@type": "Organization", name: SITE_NAME }, inLanguage: "vi-VN" }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": schemas }) }} />
     </div>
   );
 }

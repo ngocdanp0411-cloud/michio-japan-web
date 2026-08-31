@@ -4,6 +4,7 @@ description: "Hướng dẫn đọc nhãn vitamin tổng hợp cho phụ nữ: t
 slug: vitamin-tong-hop-cho-phu-nu
 category: vitamin-suc-khoe
 published_at: "2026-08-12"
+ai_assisted: false
 primary_keyword: "vitamin tổng hợp cho phụ nữ"
 secondary_keywords:
   - "cách chọn vitamin tổng hợp"

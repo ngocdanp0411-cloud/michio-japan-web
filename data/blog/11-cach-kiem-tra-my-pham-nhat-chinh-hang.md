@@ -4,6 +4,7 @@ description: "Checklist thực tế để kiểm tra mỹ phẩm Nhật chính h
 slug: cach-kiem-tra-my-pham-nhat-chinh-hang
 category: kinh-nghiem-hang-nhat
 published_at: "2026-08-10"
+ai_assisted: false
 primary_keyword: "cách kiểm tra mỹ phẩm Nhật chính hãng"
 secondary_keywords:
   - "check mỹ phẩm Nhật thật giả"

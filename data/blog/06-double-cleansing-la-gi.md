@@ -4,6 +4,7 @@ description: "Hiểu rõ double cleansing: khi nào cần, cách thực hiện t
 slug: double-cleansing-la-gi
 category: skincare-nhat-ban
 published_at: "2026-08-20"
+ai_assisted: false
 primary_keyword: "double cleansing là gì"
 secondary_keywords:
   - "tẩy trang và sữa rửa mặt"

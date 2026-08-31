@@ -4,6 +4,7 @@ description: "Hướng dẫn cách bảo quản mỹ phẩm, collagen và thực
 slug: cach-bao-quan-my-pham-collagen
 category: kinh-nghiem-hang-nhat
 published_at: "2026-08-08"
+ai_assisted: false
 primary_keyword: "cách bảo quản mỹ phẩm"
 secondary_keywords:
   - "cách bảo quản collagen"

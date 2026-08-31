@@ -4,6 +4,7 @@ description: "Hướng dẫn skincare cho da khô: nguyên tắc làm sạch d�
 slug: da-kho-nen-skincare-the-nao
 category: skincare-nhat-ban
 published_at: "2026-08-16"
+ai_assisted: false
 primary_keyword: "da khô nên skincare thế nào"
 secondary_keywords:
   - "routine cho da khô"

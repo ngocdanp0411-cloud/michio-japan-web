@@ -11,6 +11,7 @@ export type BlogPost = {
   aiAssisted: boolean;
   primaryKeyword: string;
   secondaryKeywords: string[];
+  faqs: { question: string; answer: string }[];
   content: string;
 };
 
@@ -108,11 +109,19 @@ function slugFromFile(fileName: string) {
   return fileName.replace(/^\d+-/, "").replace(/\.md$/, "");
 }
 
+function extractFaqs(content: string) {
+  return [...content.matchAll(/^Q\d+:\s*(.+?)\s*\n+\s*A\d+:\s*([\s\S]+?)(?=\n+(?:Q\d+:|##\s)|$)/gm)].map((match) => ({
+    question: match[1].trim().replace(/\s+/g, " "),
+    answer: match[2].trim().replace(/\s+/g, " "),
+  }));
+}
+
 function readPost(fileName: string): BlogPost {
   const raw = fs.readFileSync(path.join(BLOG_DIR, fileName), "utf8");
   const { fields, content } = readFrontmatter(raw);
   const slug = slugFromFile(fileName);
   const heading = content.match(/^#\s+(.+)$/m)?.[1] ?? slug;
+  const articleContent = content.replace(/^#\s+.+(?:\n+|$)/, "").trim();
   const description = String(fields.description ?? "Đọc bài viết mới từ Michio Japan.");
   return {
     slug,
@@ -124,7 +133,8 @@ function readPost(fileName: string): BlogPost {
     aiAssisted: String(fields.ai_assisted ?? "false") === "true",
     primaryKeyword: String(fields.primary_keyword ?? ""),
     secondaryKeywords: Array.isArray(fields.secondary_keywords) ? fields.secondary_keywords : [],
-    content,
+    faqs: extractFaqs(articleContent),
+    content: articleContent,
   };
 }
 

@@ -4,6 +4,7 @@ description: "Hướng dẫn skincare routine tối giản cho người mới b�
 slug: skincare-routine-toi-gian-cho-nguoi-moi
 category: skincare-nhat-ban
 published_at: "2026-08-24"
+ai_assisted: false
 primary_keyword: "skincare routine tối giản"
 secondary_keywords:
   - "skincare cho người mới bắt đầu"

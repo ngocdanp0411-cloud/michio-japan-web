@@ -4,6 +4,7 @@ description: "Tìm hiểu uống collagen lúc nào tốt, uống buổi sáng h
 slug: uong-collagen-luc-nao-tot
 category: collagen-lam-dep
 published_at: "2026-08-28"
+ai_assisted: false
 primary_keyword: "uống collagen lúc nào tốt"
 secondary_keywords:
   - "uống collagen buổi sáng hay tối"

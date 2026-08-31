@@ -4,6 +4,7 @@ description: "So sánh collagen Nhật dạng nước, viên và bột theo ti�
 slug: collagen-nhat-dang-nuoc-vien-bot
 category: collagen-lam-dep
 published_at: "2026-08-26"
+ai_assisted: false
 primary_keyword: "collagen Nhật dạng nào tốt"
 secondary_keywords:
   - "collagen Nhật dạng nước"

@@ -4,6 +4,7 @@ description: "Hướng dẫn thứ tự skincare sáng tối: từ làm sạch, 
 slug: thu-tu-skincare-sang-toi
 category: skincare-nhat-ban
 published_at: "2026-08-22"
+ai_assisted: false
 primary_keyword: "thứ tự skincare sáng tối"
 secondary_keywords:
   - "các bước skincare buổi sáng"

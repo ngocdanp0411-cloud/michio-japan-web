@@ -4,6 +4,7 @@ description: "Hướng dẫn cách uống collagen đúng cách theo dạng nư�
 slug: cach-uong-collagen-dung-cach
 category: collagen-lam-dep
 published_at: "2026-08-30"
+ai_assisted: false
 primary_keyword: "cách uống collagen đúng cách"
 secondary_keywords:
   - "cách uống collagen dạng nước"
