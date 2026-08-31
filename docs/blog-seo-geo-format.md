@@ -11,6 +11,7 @@ slug: tu-khoa-chinh
 category: mot-trong-5-chuyen-muc
 published_at: "YYYY-MM-DD"
 ai_assisted: true
+author: "Vai trò biên tập thuộc Michio Japan"
 primary_keyword: "từ khóa chính"
 secondary_keywords:
   - "từ khóa phụ"
@@ -79,3 +80,4 @@ Tóm tắt quyết định quan trọng nhất và dẫn tới CTA Zalo, Fanpage
 - Với sức khỏe, collagen, vitamin và mẹ bé, ưu tiên cơ quan y tế, nghiên cứu gốc và tài liệu chính thức của nhà sản xuất.
 - Alt ảnh cover mô tả đúng tiêu đề; cover dùng logo và ảnh sản phẩm thật liên quan.
 - Schema chỉ phản ánh nội dung người dùng nhìn thấy: Article, BreadcrumbList và FAQPage khi bài có FAQ.
+- Author phải là vai trò biên tập thật thuộc Michio Japan; không dùng danh tính giả để tạo cảm giác bài do khách hàng tự chia sẻ.

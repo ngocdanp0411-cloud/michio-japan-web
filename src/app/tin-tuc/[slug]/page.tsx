@@ -42,7 +42,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       datePublished: post.publishedAt,
       dateModified: post.publishedAt,
       articleSection: category?.name,
-      author: { "@type": "Organization", name: SITE_NAME },
+      author: { "@type": "Organization", name: post.author },
       publisher: { "@type": "Organization", name: SITE_NAME, logo: { "@type": "ImageObject", url: absoluteUrl("/images/brand/michio-authentic-logo.jpg") } },
       inLanguage: "vi-VN",
     },
@@ -62,7 +62,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       <main className="mx-auto max-w-[1280px] px-4 py-7 md:py-10">
         <nav aria-label="Breadcrumb" className="michio-caption flex flex-wrap items-center gap-2"><Link href="/" className="hover:text-[var(--michio-primary)]">Trang chủ</Link><span>/</span><Link href="/tin-tuc" className="hover:text-[var(--michio-primary)]">Bài viết</Link><span>/</span><span className="line-clamp-1">{post.title}</span></nav>
 
-        <header className="mx-auto mt-7 max-w-4xl text-center md:mt-10"><Link href={`/tin-tuc/chuyen-muc/${post.category}`} className="michio-eyebrow hover:underline">{category?.name ?? "Michio Journal"}</Link><h1 className="michio-display mt-3 text-4xl uppercase md:text-6xl">{post.title}</h1><div className="mt-4 flex flex-wrap items-center justify-center gap-3 text-xs text-[var(--michio-text-subtle)]"><span>{new Intl.DateTimeFormat("vi-VN").format(new Date(post.publishedAt))}</span><span aria-hidden="true">•</span><span>Tác giả: Michio Japan</span></div><p className="michio-body mx-auto mt-5 max-w-2xl text-base md:text-lg">{post.description}</p>{post.aiAssisted && <p className="mx-auto mt-3 max-w-2xl text-xs leading-5 text-[var(--michio-text-subtle)]">Bài viết được AI hỗ trợ tổng hợp từ các nguồn được dẫn và chỉ nhằm mục đích cung cấp thông tin.</p>}</header>
+        <header className="mx-auto mt-7 max-w-4xl text-center md:mt-10"><Link href={`/tin-tuc/chuyen-muc/${post.category}`} className="michio-eyebrow hover:underline">{category?.name ?? "Michio Journal"}</Link><h1 className="michio-display mt-3 text-4xl uppercase md:text-6xl">{post.title}</h1><div className="mt-4 flex flex-wrap items-center justify-center gap-3 text-xs text-[var(--michio-text-subtle)]"><span>{new Intl.DateTimeFormat("vi-VN").format(new Date(post.publishedAt))}</span><span aria-hidden="true">•</span><span>Tác giả: {post.author}</span></div><p className="michio-body mx-auto mt-5 max-w-2xl text-base md:text-lg">{post.description}</p>{post.aiAssisted && <p className="mx-auto mt-3 max-w-2xl text-xs leading-5 text-[var(--michio-text-subtle)]">Bài viết được AI hỗ trợ tổng hợp từ các nguồn được dẫn và chỉ nhằm mục đích cung cấp thông tin.</p>}</header>
 
         <div className="mx-auto mt-8 max-w-5xl overflow-hidden rounded-md border border-[var(--michio-border)] bg-[#fff8f6] md:mt-10"><Image src={post.image} alt={post.title} width={1600} height={900} priority sizes="(min-width: 1024px) 960px, (min-width: 768px) 80vw, 100vw" quality={72} className="aspect-video w-full object-contain" /></div>
 

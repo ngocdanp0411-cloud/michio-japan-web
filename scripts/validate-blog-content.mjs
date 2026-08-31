@@ -10,6 +10,14 @@ const categories = new Set([
   "me-va-be-nhat-ban",
   "kinh-nghiem-hang-nhat",
 ]);
+const editorialAuthors = new Set([
+  "Ban biên tập Michio Japan",
+  "Nhóm Collagen Michio Japan",
+  "Nhóm Skincare Michio Japan",
+  "Nhóm Sức khỏe Michio Japan",
+  "Nhóm Mẹ & Bé Michio Japan",
+  "Nhóm Hàng Nhật Michio Japan",
+]);
 const requiredFields = ["title", "description", "slug", "category", "published_at", "ai_assisted", "primary_keyword"];
 const seenKeywords = new Map();
 const errors = [];
@@ -49,6 +57,7 @@ for (const file of files) {
   }
 
   if (fields.ai_assisted === "true") {
+    if (!fields.author || !editorialAuthors.has(fields.author)) errors.push(`${file}: author AI phải là vai trò biên tập Michio Japan đã duyệt`);
     const sources = content.match(/https:\/\/[^\s)]+/g) ?? [];
     const sections = content.match(/^##\s+/gm) ?? [];
     const h1s = [...content.matchAll(/^#\s+(.+)$/gm)].map((match) => match[1].trim());

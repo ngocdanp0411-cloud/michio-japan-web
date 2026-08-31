@@ -9,6 +9,7 @@ export type BlogPost = {
   category: string;
   publishedAt: string;
   aiAssisted: boolean;
+  author: string;
   primaryKeyword: string;
   secondaryKeywords: string[];
   faqs: { question: string; answer: string }[];
@@ -131,6 +132,7 @@ function readPost(fileName: string): BlogPost {
     category: String(fields.category ?? "kinh-nghiem-hang-nhat"),
     publishedAt: String(fields.published_at ?? "2026-01-01"),
     aiAssisted: String(fields.ai_assisted ?? "false") === "true",
+    author: String(fields.author ?? "Michio Japan"),
     primaryKeyword: String(fields.primary_keyword ?? ""),
     secondaryKeywords: Array.isArray(fields.secondary_keywords) ? fields.secondary_keywords : [],
     faqs: extractFaqs(articleContent),
