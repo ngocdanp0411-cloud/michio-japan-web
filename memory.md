@@ -21,7 +21,7 @@
 - Trao đổi bằng tiếng Việt, ngắn gọn và đi thẳng vào kết quả.
 - Giữ giải pháp đơn giản, thực tế, phù hợp quy mô dự án.
 - Giữ phong cách thương hiệu hiện tại khi tối ưu giao diện.
-- Cover blog chỉ dùng keyword ngắn và hình minh hoạ đúng chủ đề, không ghép ảnh sản phẩm; tuân thủ tông navy, đỏ hồng, hồng phấn và trắng của website, dùng font không chân dáng cao, rõ và dễ đọc.
+- Cover blog bắt buộc có text keyword ngắn dàn trực tiếp trên ảnh và hình minh hoạ đúng chủ đề, không ghép ảnh sản phẩm; tuân thủ tông navy, đỏ hồng, hồng phấn và trắng của website, dùng font không chân dáng cao, rõ và dễ đọc.
 - Không bịa trải nghiệm, thử nghiệm, phản hồi khách hàng, số liệu bán hàng hoặc tuyên bố chuyên môn để tạo “information gain”; chỉ dùng dữ liệu kiểm chứng được.
 - Tác giả bài AI dùng tên vai trò biên tập minh bạch thuộc Michio Japan, không giả làm khách hàng hoặc người dùng độc lập.
 - Với một bộ thiết kế hình ảnh, làm và kiểm tra kỹ 1 mẫu để người dùng duyệt trước khi nhân ra toàn bộ; không tự chấp nhận thiết kế còn cảm giác ghép tự động.
