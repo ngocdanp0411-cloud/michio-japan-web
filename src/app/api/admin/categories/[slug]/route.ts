@@ -29,7 +29,7 @@ export async function DELETE(req: Request, { params }: Params) {
   const [categories, products] = await Promise.all([readCategories(), readProducts()]);
   const index = categories.findIndex((category) => category.slug === slug);
   if (index === -1) return NextResponse.json({ error: "Không tìm thấy danh mục" }, { status: 404 });
-  if (products.some((product) => product.category === slug)) {
+  if (products.some((product) => product.categories?.includes(slug) || product.category === slug)) {
     return NextResponse.json({ error: "Không thể xóa danh mục đang có sản phẩm; hãy chuyển sản phẩm sang danh mục khác trước" }, { status: 409 });
   }
 
