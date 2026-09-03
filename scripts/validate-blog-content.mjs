@@ -20,6 +20,7 @@ const editorialAuthors = new Set([
 ]);
 const requiredFields = ["title", "description", "slug", "category", "published_at", "ai_assisted", "primary_keyword"];
 const seenKeywords = new Map();
+const categoryCounts = new Map();
 const errors = [];
 
 function parseFrontmatter(raw) {
@@ -46,6 +47,7 @@ for (const file of files) {
   }
   if (fields.slug && fields.slug !== fileSlug) errors.push(`${file}: slug không khớp tên file`);
   if (fields.category && !categories.has(fields.category)) errors.push(`${file}: chuyên mục không hợp lệ`);
+  if (fields.category) categoryCounts.set(fields.category, (categoryCounts.get(fields.category) ?? 0) + 1);
   if (fields.published_at && !/^\d{4}-\d{2}-\d{2}$/.test(fields.published_at)) errors.push(`${file}: published_at phải theo YYYY-MM-DD`);
   if (fields.ai_assisted && !/^(true|false)$/.test(fields.ai_assisted)) errors.push(`${file}: ai_assisted chỉ nhận true hoặc false`);
   if (!existsSync(path.join(root, "public", "images", "blog", `${fileSlug}.jpg`))) errors.push(`${file}: thiếu ảnh cover`);
@@ -85,6 +87,10 @@ for (const file of files) {
     if (/chữa khỏi|cam kết hiệu quả|hiệu quả 100%|thay thế thuốc/i.test(content)) errors.push(`${file}: chứa tuyên bố sức khỏe không được phép`);
     if (/chúng tôi (?:đã )?(?:thử nghiệm|test|khảo sát)|dữ liệu bán hàng (?:cho thấy|ghi nhận)|\d+\s+khách hàng (?:cho biết|phản hồi)/i.test(content)) errors.push(`${file}: có dấu hiệu bịa trải nghiệm hoặc dữ liệu nội bộ`);
   }
+}
+
+if ((categoryCounts.get("collagen-lam-dep") ?? 0) > 2) {
+  errors.push("Chuyên mục collagen chỉ được giữ tối đa 2 bài.");
 }
 
 if (errors.length) {
