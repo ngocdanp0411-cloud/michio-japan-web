@@ -15,6 +15,7 @@
 - AI tạo mỗi lần một bài theo lịch giãn cách, ưu tiên chuyên mục ít bài; riêng chủ đề collagen chỉ giữ tối đa 2 bài và không tự tạo thêm khi đã đủ.
 - Bài AI phải theo format SEO + AI-friendly/GEO 2026 của dự án: trả lời đúng intent ngay đầu bài, có tóm tắt nhanh, cấu trúc H2/H3 rõ, thông tin từ dữ liệu thật, nguồn tin cậy, internal link, FAQ khi phù hợp và CTA dẫn về Zalo/Fanpage hoặc sản phẩm.
 - Khi cần tăng số lượng nội dung, giãn thời gian giữa các lần tạo bài để tránh gọi dồn; ưu tiên cân bằng số bài giữa các chuyên mục.
+- Google Search Console đã xác minh thuộc tính `https://michio-japan-web.vercel.app/` bằng thẻ meta và đã gửi `/sitemap.xml`; không xóa metadata xác minh khỏi trang chủ.
 
 ## Sở thích làm việc
 
