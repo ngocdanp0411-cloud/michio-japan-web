@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    // Static catalog images are served directly to avoid Vercel image-optimization quota failures.
+    unoptimized: true,
     formats: ["image/avif", "image/webp"],
     deviceSizes: [320, 390, 412, 640, 750, 828, 1080, 1200, 1440, 1920],
     imageSizes: [32, 48, 64, 96, 128, 160, 240, 320, 480, 640],
