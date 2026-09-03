@@ -31,6 +31,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
+  verification: { google: "3x9LISOpF3onhsEoBj88nc6Vsqd4oFm-puCV0o2pCGI" },
   openGraph: {
     title: "Michio Japan — Chọn đúng đồ Nhật, sống thật mỗi ngày",
     description:
