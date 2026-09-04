@@ -18,6 +18,7 @@
 - Khi cần tăng số lượng nội dung, giãn thời gian giữa các lần tạo bài để tránh gọi dồn; bốn chuyên mục không phải collagen cần tối thiểu 16 bài nhưng có thể viết nhiều hơn cho cụm có nhu cầu cao.
 - Nguồn ưu tiên để chọn keyword: Search Console khi có đủ dữ liệu, sau đó Google Trends/Autocomplete Việt Nam, kết quả tìm kiếm hiện tại và độ phủ sản phẩm thật; không bịa volume hoặc độ khó.
 - Google Search Console đã xác minh thuộc tính `https://michio-japan-web.vercel.app/` bằng thẻ meta và đã gửi `/sitemap.xml`; không xóa metadata xác minh khỏi trang chủ.
+- Fanpage chính thức: `https://www.facebook.com/MichioJapanGroup`; link Inbox: `https://m.me/MichioJapanGroup`.
 
 ## Sở thích làm việc
 
