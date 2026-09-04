@@ -17,6 +17,24 @@ secondary_keywords:
   - "từ khóa phụ"
 ```
 
+## Chọn chủ đề theo nhu cầu tìm kiếm
+
+Không chia bài đều một cách cơ học. Mỗi lần tạo bài phải kiểm tra từ khóa đã có, đối chiếu sản phẩm thật và chọn chủ đề theo thứ tự dữ liệu: Search Console → Google Trends/Autocomplete Việt Nam → kết quả tìm kiếm hiện tại → độ phủ sản phẩm Michio.
+
+Chấm mỗi ứng viên theo bốn yếu tố: nhu cầu tìm kiếm 40%, mức liên quan đến sản phẩm 30%, ý định mua/tư vấn 20% và khoảng trống nội dung 10%. Không tự gán volume hoặc độ khó khi nguồn dữ liệu không cung cấp con số.
+
+Ưu tiên hiện tại:
+
+1. **Skincare Nhật:** kem chống nắng theo loại da và thương hiệu; sữa rửa mặt cho da dầu/khô/nam; serum vitamin C và cách dùng; dầu tẩy trang; kem dưỡng ẩm.
+2. **Tóc và cơ thể:** dầu gội chống rụng, giảm gàu, non-silicone, dầu gội nam; sữa tắm dưỡng ẩm, lưu hương và sản phẩm cho nam.
+3. **Vitamin và sức khỏe:** Omega-3, EPA/DHA, canxi theo đối tượng và thời điểm, glucosamine, vitamin DHC; luôn giữ giới hạn an toàn y tế.
+4. **Tin cậy và địa phương:** mỹ phẩm Nhật chính hãng mua ở đâu, hàng Nhật nội địa Hà Nội, kiểm tra mã lô/hạn dùng và chọn sản phẩm Nhật nên mua.
+5. **Mẹ & Bé:** sữa tắm theo tình trạng da, vệ sinh bình sữa, chống muỗi và cách đọc nhãn theo độ tuổi.
+
+Các chuyên mục không phải collagen vẫn cần tối thiểu 16 bài nhưng 16 không phải mức trần. Sau khi đủ nền nội dung, tiếp tục viết nhiều hơn cho cụm có dữ liệu nhu cầu tốt; collagen giữ tối đa 2 bài.
+
+Hàng tháng, dùng truy vấn thật trong Search Console để thay thế giả định ban đầu. Ưu tiên truy vấn có lượt hiển thị, vị trí trung bình 8–30, CTR thấp hoặc trang đã có tín hiệu nhưng nội dung chưa trả lời đủ intent.
+
 ## Cấu trúc nội dung
 
 ```markdown
@@ -78,6 +96,6 @@ Tóm tắt quyết định quan trọng nhất và dẫn tới CTA Zalo, Fanpage
 - Mỗi đoạn tập trung một ý, chủ ngữ rõ, hạn chế đại từ mơ hồ như “điều này”.
 - Có ít nhất một giá trị riêng từ danh mục Michio hoặc dữ liệu kiểm chứng được.
 - Với sức khỏe, collagen, vitamin và mẹ bé, ưu tiên cơ quan y tế, nghiên cứu gốc và tài liệu chính thức của nhà sản xuất.
-- Alt ảnh cover mô tả đúng tiêu đề; cover dùng logo và ảnh sản phẩm thật liên quan.
+- Alt ảnh cover mô tả đúng tiêu đề; cover bắt buộc có text keyword ngắn và minh hoạ đúng chủ đề, không ghép ảnh sản phẩm hoặc logo.
 - Schema chỉ phản ánh nội dung người dùng nhìn thấy: Article, BreadcrumbList và FAQPage khi bài có FAQ.
 - Author phải là vai trò biên tập thật thuộc Michio Japan; không dùng danh tính giả để tạo cảm giác bài do khách hàng tự chia sẻ.

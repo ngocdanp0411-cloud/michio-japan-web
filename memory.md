@@ -12,10 +12,11 @@
 - Một sản phẩm có thể thuộc nhiều danh mục theo keyword; gắn đồng thời các nhóm nhu cầu phù hợp, ví dụ sữa tắm trẻ em thuộc Dầu gội/Sữa tắm và Mẹ&Bé.
 - Không hiển thị bộ lọc giá trong trang danh mục sản phẩm.
 - Blog được tổ chức thành các chuyên mục cụ thể theo nhu cầu tìm kiếm và liên kết về sản phẩm phù hợp.
-- AI tạo mỗi lần một bài theo lịch giãn cách, ưu tiên chuyên mục ít bài; riêng chủ đề collagen chỉ giữ tối đa 2 bài và không tự tạo thêm khi đã đủ.
+- AI tạo mỗi lần một bài theo lịch giãn cách; chọn chủ đề theo nhu cầu tìm kiếm và mức liên quan đến sản phẩm, không chia đều máy móc; riêng collagen chỉ giữ tối đa 2 bài.
 - Giữ lịch tạo bài ở trạng thái hoạt động cho tới khi các chuyên mục đạt mục tiêu; không tự ý tạm dừng lịch khi chưa đủ bài.
 - Bài AI phải theo format SEO + AI-friendly/GEO 2026 của dự án: trả lời đúng intent ngay đầu bài, có tóm tắt nhanh, cấu trúc H2/H3 rõ, thông tin từ dữ liệu thật, nguồn tin cậy, internal link, FAQ khi phù hợp và CTA dẫn về Zalo/Fanpage hoặc sản phẩm.
-- Khi cần tăng số lượng nội dung, giãn thời gian giữa các lần tạo bài để tránh gọi dồn; ưu tiên cân bằng số bài giữa các chuyên mục.
+- Khi cần tăng số lượng nội dung, giãn thời gian giữa các lần tạo bài để tránh gọi dồn; bốn chuyên mục không phải collagen cần tối thiểu 16 bài nhưng có thể viết nhiều hơn cho cụm có nhu cầu cao.
+- Nguồn ưu tiên để chọn keyword: Search Console khi có đủ dữ liệu, sau đó Google Trends/Autocomplete Việt Nam, kết quả tìm kiếm hiện tại và độ phủ sản phẩm thật; không bịa volume hoặc độ khó.
 - Google Search Console đã xác minh thuộc tính `https://michio-japan-web.vercel.app/` bằng thẻ meta và đã gửi `/sitemap.xml`; không xóa metadata xác minh khỏi trang chủ.
 
 ## Sở thích làm việc
