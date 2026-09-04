@@ -1,7 +1,7 @@
 ---
 title: "Mobile Nav And Blog Title Fix"
 description: "Fix mobile primary-nav overflow and remove branded blog suffix from UI while keeping document-title branding in the root layout template."
-status: in-progress
+status: completed
 priority: P1
 effort: 2h
 branch: main
@@ -28,7 +28,7 @@ Fix 2 confirmed mobile regressions without changing desktop behavior: stop the p
 
 | # | Phase | Status |
 |---|-------|--------|
-| 1 | [Phase 1: Mobile Nav And Blog Title Normalization](./phase-01-mobile-nav-and-blog-title-normalization.md) | In progress |
+| 1 | [Phase 1: Mobile Nav And Blog Title Normalization](./phase-01-mobile-nav-and-blog-title-normalization.md) | Complete |
 
 ## Dependencies
 
@@ -41,7 +41,7 @@ Fix 2 confirmed mobile regressions without changing desktop behavior: stop the p
 - [x] At 375px, no high-priority nav control is hidden off-canvas; no horizontal nav scroll is needed for core links.
 - [x] `ProductMenu` still opens and lists 8 storefront categories.
 - [x] Article H1 no longer contains trailing `| Michio Japan` and stays within 3 lines on mobile for known polluted posts.
-- [x] Browser title/metadata keep one Michio brand suffix through the root layout template on `/tin-tuc` and `/tin-tuc/[slug]` locally.
-- [ ] Live Vercel check at 360px and 390px after push.
+- [x] Browser title/metadata keep one Michio brand suffix through the root layout template on `/tin-tuc` and `/tin-tuc/[slug]`.
+- [x] Live Vercel checks pass at 360px and 390px after push.
 
 <!-- slug: mobile-nav-blog-title-fix -->

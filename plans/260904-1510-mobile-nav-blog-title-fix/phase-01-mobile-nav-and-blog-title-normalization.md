@@ -1,7 +1,7 @@
 ---
 phase: 1
 title: "Mobile Nav And Blog Title Normalization"
-status: in-progress
+status: completed
 priority: P1
 effort: "2h"
 dependencies: []
@@ -24,7 +24,7 @@ dependencies: []
 
 ## Overview
 
-Deliver one small implementation pass. Keep desktop nav untouched at `md+`; fix mobile nav visibility in `Header`; normalize blog titles near `readPost` so current UI and metadata stop inheriting the brand suffix from markdown content.
+Deliver one small implementation pass. Keep the full desktop nav at `lg+`; fix compact nav visibility below 1024px; normalize blog titles near `readPost` so current UI and metadata stop inheriting the brand suffix from markdown content.
 
 ## Key Insights
 
@@ -53,7 +53,7 @@ Data flow:
 - Blog titles: markdown H1 (`data/blog/*.md`) -> `readPost` (`src/lib/blog.ts:120-140`) -> `post.title` -> detail-page H1 + `generateMetadata` (`src/app/tin-tuc/[slug]/page.tsx:19-22`, `src/app/tin-tuc/[slug]/page.tsx:65`) -> root title template (`src/app/layout.tsx:24-28`).
 
 Recommended implementation shape:
-1. Replace the mobile horizontal nav scroller with a non-scrolling priority layout in `Header`; keep desktop classes/markup behavior unchanged behind `md:` breakpoints.
+1. Replace the mobile horizontal nav scroller with a non-scrolling priority layout in `Header`; keep the full desktop menu from the `lg` breakpoint upward.
 2. Keep `ProductMenu` first and visible. Keep purchase/content/contact links in the always-visible mobile set; move lower-priority informational links into a wrap-safe or disclosure fallback.
 3. Add one tiny trailing-suffix normalizer in `src/lib/blog.ts` that strips only exact terminal `| Michio Japan` after whitespace cleanup.
 4. Change `src/app/tin-tuc/page.tsx` metadata title to the unbranded base string so the root layout appends the brand once.
@@ -72,7 +72,7 @@ Rejected option:
 ## Implementation Steps
 
 1. Split mobile nav rendering in `Header` into priority-visible and secondary links; remove the need to side-scroll for core actions at 375px.
-2. Preserve the current desktop nav branch and CTA behavior from `md` upward.
+2. Preserve the current desktop nav branch and CTA behavior from `lg` upward.
 3. Normalize trailing brand suffixes during blog title parsing in `src/lib/blog.ts`.
 4. Remove the hardcoded `| Michio Japan` from `/tin-tuc` page metadata and rely on the root layout template.
 5. Validate three known polluted posts and one clean control post on local + live mobile viewports.
@@ -84,7 +84,7 @@ Rejected option:
 - [x] Normalize branded blog title suffix at parse time.
 - [x] Confirm one-brand document titles on `/tin-tuc` and `/tin-tuc/[slug]` locally.
 - [x] Run lint/build/blog validate and local browser checks.
-- [ ] Verify the deployed Vercel site after push.
+- [x] Verify the deployed Vercel site after push.
 
 ## Success Criteria
 
@@ -92,7 +92,7 @@ Rejected option:
 - [x] `ProductMenu` still lists 8 storefront categories and remains tappable.
 - [x] Known polluted posts render H1 without `| Michio Japan` and within 3 lines on mobile.
 - [x] Desktop header layout does not regress.
-- [ ] `npm run lint`, `npm run build`, `npm run blog:validate`, local browser check, and live browser check all pass.
+- [x] `npm run lint`, `npm run build`, `npm run blog:validate`, local browser check, and live browser check all pass.
 
 ## Risk Assessment
 
@@ -108,7 +108,7 @@ Rejected option:
 ## Backwards Compatibility
 
 - Existing blog markdown stays valid; normalization happens at parse time, so no content migration or URL change.
-- Desktop nav behavior from `md+` stays on the current path.
+- Full desktop nav behavior from `lg+` stays on the current path; compact navigation prevents overflow below 1024px.
 
 ## Test Matrix
 
@@ -127,4 +127,4 @@ Rejected option:
 ## Next Steps
 
 - Serialize any concurrent header work with `plans/260830-1817-michio-japan-mobile-storefront-optimization/phase-01-mobile-header-cta-and-media-cleanup.md`.
-- After implementation, run local browser check first, then live site verification before merge/deploy.
+- Completed on Vercel production with responsive checks at 360, 390, 768, 997, 1024, and 1280px.

@@ -36,5 +36,5 @@ Centralizing exact suffix cleanup in the parser protects old content and every c
 
 - Verification passed: lint, production build, and blog validation.
 - Browser checks passed at 360, 390, 768, 997, 1024, and 1280px, including compact/full breakpoint behavior, ProductMenu access, clean blog H1s, and single-suffix document titles.
-- Run the same 360/390px smoke check on the deployed site after push.
+- Production deployment reached `READY`; live 360/390px smoke checks passed with no overflow, a clean three-line H1, and all 8 product categories reachable.
 - AgentWiki publishing skipped: no obvious local CLI/config found; nothing installed or transmitted.
