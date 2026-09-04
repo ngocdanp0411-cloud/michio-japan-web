@@ -1,5 +1,5 @@
 ---
-title: "Skincare routine tối giản cho người mới bắt đầu | Michio Japan"
+title: "Skincare routine tối giản cho người mới bắt đầu"
 description: "Hướng dẫn skincare routine tối giản cho người mới bắt đầu. Các bước cơ bản sáng/tối, checklist ít bước, cách theo dõi phản ứng da và lưu ý an toàn. Thích hợp cho da thườn"
 slug: skincare-routine-toi-gian-cho-nguoi-moi
 category: skincare-nhat-ban

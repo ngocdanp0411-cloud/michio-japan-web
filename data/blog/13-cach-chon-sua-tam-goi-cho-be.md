@@ -1,5 +1,5 @@
 ---
-title: "Cách chọn sữa tắm gội cho bé: 5 tiêu chí đơn giản | Michio Japan"
+title: "Cách chọn sữa tắm gội cho bé: 5 tiêu chí đơn giản"
 description: "Cách chọn sữa tắm gội cho bé theo độ tuổi, thành phần, mùi hương và phản ứng da. Có checklist tắm nhẹ nhàng cùng gợi ý sản phẩm trong danh mục Michio."
 slug: cach-chon-sua-tam-goi-cho-be
 category: me-va-be-nhat-ban
@@ -12,7 +12,7 @@ secondary_keywords:
   - "chọn sữa tắm cho bé da nhạy cảm"
   - "cách tắm cho trẻ sơ sinh"
 ---
-# Cách chọn sữa tắm gội cho bé: 5 tiêu chí đơn giản | Michio Japan
+# Cách chọn sữa tắm gội cho bé: 5 tiêu chí đơn giản
 
 Cách chọn sữa tắm gội cho bé nên bắt đầu từ độ tuổi của bé, hướng dẫn trên nhãn và mức độ đơn giản của công thức, thay vì chọn theo quảng cáo hay mùi hương. Với trẻ sơ sinh và da dễ khô, hãy ưu tiên sản phẩm dịu nhẹ, không mùi hoặc ít mùi, dùng lượng vừa đủ rồi theo dõi phản ứng của da. Nếu bé có vùng da tổn thương, phát ban kéo dài hoặc có chỉ định chăm sóc riêng từ bác sĩ, cha mẹ nên hỏi chuyên gia trước khi đổi sản phẩm.
 

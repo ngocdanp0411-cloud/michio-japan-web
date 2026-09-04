@@ -1,5 +1,5 @@
 ---
-title: "Cách rửa bình sữa cho bé: các bước làm sạch và cất khô | Michio Japan"
+title: "Cách rửa bình sữa cho bé: các bước làm sạch và cất khô"
 description: "Cách rửa bình sữa cho bé theo từng bước: tháo rời, rửa trong chậu riêng, tráng sạch, để khô tự nhiên và khi nào cần khử trùng."
 slug: cach-rua-binh-sua-cho-be
 category: me-va-be-nhat-ban
@@ -12,7 +12,7 @@ secondary_keywords:
   - "rửa núm ti bình sữa"
   - "khi nào cần khử trùng bình sữa"
 ---
-# Cách rửa bình sữa cho bé: các bước làm sạch và cất khô | Michio Japan
+# Cách rửa bình sữa cho bé: các bước làm sạch và cất khô
 
 Cách rửa bình sữa cho bé nên thực hiện sau mỗi cữ bú: bỏ sữa còn lại, tháo rời các bộ phận, rửa trong chậu riêng rồi để khô tự nhiên hoàn toàn. Không nên chỉ tráng nước hoặc lau bằng khăn bếp vì núm ti, vòng cổ và van vẫn có thể còn cặn. Khi cần khử trùng, hãy kiểm tra trước hướng dẫn của nhà sản xuất bình để chọn cách hợp với chất liệu. [1]
 

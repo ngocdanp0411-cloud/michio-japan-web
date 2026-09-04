@@ -79,6 +79,11 @@ export const BLOG_CATEGORY_MAP = Object.fromEntries(
 ) as Record<string, BlogCategory>;
 
 const BLOG_DIR = path.join(process.cwd(), "data", "blog");
+const SITE_NAME_SUFFIX = /\s*\|\s*Michio Japan\s*$/iu;
+
+function cleanBlogTitle(title: string) {
+  return title.replace(SITE_NAME_SUFFIX, "").trim();
+}
 
 function readFrontmatter(raw: string) {
   const match = raw.match(/^---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)$/);
@@ -121,7 +126,7 @@ function readPost(fileName: string): BlogPost {
   const raw = fs.readFileSync(path.join(BLOG_DIR, fileName), "utf8");
   const { fields, content } = readFrontmatter(raw);
   const slug = slugFromFile(fileName);
-  const heading = content.match(/^#\s+(.+)$/m)?.[1] ?? slug;
+  const heading = cleanBlogTitle(content.match(/^#\s+(.+)$/m)?.[1] ?? slug);
   const articleContent = content.replace(/^#\s+.+(?:\n+|$)/, "").trim();
   const description = String(fields.description ?? "Đọc bài viết mới từ Michio Japan.");
   return {

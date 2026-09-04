@@ -1,5 +1,5 @@
 ---
-title: "Cách chọn nước rửa bình sữa: 5 tiêu chí và cách vệ sinh bình | Michio Japan"
+title: "Cách chọn nước rửa bình sữa: 5 tiêu chí và cách vệ sinh bình"
 description: "Cách chọn nước rửa bình sữa theo mục đích dùng, thành phần, hướng dẫn tráng rửa và cách vệ sinh bình sau mỗi cữ bú. Có checklist và gợi ý từ danh mục Michio."
 slug: cach-chon-nuoc-rua-binh-sua
 category: me-va-be-nhat-ban
@@ -12,7 +12,7 @@ secondary_keywords:
   - "cách vệ sinh bình sữa"
   - "rửa bình sữa đúng cách"
 ---
-# Cách chọn nước rửa bình sữa: 5 tiêu chí và cách vệ sinh bình | Michio Japan
+# Cách chọn nước rửa bình sữa: 5 tiêu chí và cách vệ sinh bình
 
 Cách chọn nước rửa bình sữa nên bắt đầu từ việc đối chiếu đúng mục đích dùng trên nhãn, thành phần và hướng dẫn tráng rửa, thay vì chỉ dựa vào mùi thơm hoặc quảng cáo. Bình, núm ti và các bộ phận đi kèm cần được tháo rời, làm sạch sau mỗi cữ bú rồi để khô hoàn toàn để hạn chế nguy cơ nhiễm bẩn. Với bé dưới 2 tháng, sinh non hoặc suy giảm miễn dịch, cha mẹ nên hỏi bác sĩ về việc khử trùng hằng ngày theo hướng dẫn y tế. [1]
 

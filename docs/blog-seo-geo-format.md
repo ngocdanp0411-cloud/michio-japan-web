@@ -92,6 +92,7 @@ Tóm tắt quyết định quan trọng nhất và dẫn tới CTA Zalo, Fanpage
 ## Quy tắc chất lượng
 
 - Mỗi bài chỉ có một H1 trong file; website dùng H1 này ở phần đầu trang và không lặp lại trong thân bài.
+- Title và H1 không thêm hậu tố `| Michio Japan`; website tự thêm thương hiệu vào metadata.
 - Mỗi H2 giải quyết một câu hỏi hoặc search intent cụ thể; không kéo dài chữ cho đủ độ dài.
 - Mỗi đoạn tập trung một ý, chủ ngữ rõ, hạn chế đại từ mơ hồ như “điều này”.
 - Có ít nhất một giá trị riêng từ danh mục Michio hoặc dữ liệu kiểm chứng được.

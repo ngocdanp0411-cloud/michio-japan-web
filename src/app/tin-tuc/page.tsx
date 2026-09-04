@@ -8,7 +8,7 @@ import {
 } from "@/lib/blog";
 
 export const metadata = {
-  title: "Tin tức và hướng dẫn chăm sóc | Michio Japan",
+  title: "Tin tức và hướng dẫn chăm sóc",
   description: "Kiến thức collagen, skincare Nhật, thực phẩm bổ sung và hướng dẫn mua hàng từ Michio Japan.",
 };
 

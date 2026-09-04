@@ -58,11 +58,13 @@ for (const file of files) {
     seenKeywords.set(keyword, file);
   }
 
+  const h1s = [...content.matchAll(/^#\s+(.+)$/gm)].map((match) => match[1].trim());
+  if (/\|\s*Michio Japan\s*$/iu.test(fields.title) || (h1s[0] && /\|\s*Michio Japan\s*$/iu.test(h1s[0]))) errors.push(`${file}: title và H1 không thêm hậu tố | Michio Japan; website tự thêm thương hiệu vào metadata`);
+
   if (fields.ai_assisted === "true") {
     if (!fields.author || !editorialAuthors.has(fields.author)) errors.push(`${file}: author AI phải là vai trò biên tập Michio Japan đã duyệt`);
     const sources = content.match(/https:\/\/[^\s)]+/g) ?? [];
     const sections = content.match(/^##\s+/gm) ?? [];
-    const h1s = [...content.matchAll(/^#\s+(.+)$/gm)].map((match) => match[1].trim());
     const quickAnswer = content.match(/^Trả lời nhanh\s*\n+([\s\S]*?)(?=^##\s+)/im)?.[1] ?? "";
     const quickItems = quickAnswer.match(/^-\s+.+$/gm) ?? [];
     const faqQuestions = content.match(/^Q\d+:\s+.+$/gm) ?? [];

@@ -14,6 +14,7 @@ const primaryNav: Array<{ label: string; href: string; external?: boolean }> = [
   { label: "Liên hệ", href: LINKS.messenger },
 ];
 const storefrontCategories = getCategoriesWithProducts(CATEGORIES);
+const mobilePrimaryNav = new Set(["Mua sỉ", "Bài viết", "Liên hệ"]);
 
 export function Header() {
   return (
@@ -39,14 +40,15 @@ export function Header() {
         </div>
       </div>
       <nav aria-label="Điều hướng chính" className="bg-[var(--michio-navy)] text-white">
-        <div className="mx-auto flex max-w-[1280px] items-center gap-0 overflow-x-auto px-4 scrollbar-none">
+        <div className="mx-auto flex max-w-[1280px] items-center gap-0 px-2 md:px-4">
           {primaryNav.slice(0, 1).map((item) => {
-            const className = "hidden shrink-0 border-b-2 border-transparent px-4 py-3 text-xs font-semibold uppercase transition-colors hover:border-[var(--michio-primary)] hover:bg-white/5 hover:text-white focus-visible:outline-white md:inline-flex md:px-6 md:text-sm";
+            const className = "hidden shrink-0 border-b-2 border-transparent px-4 py-3 text-xs font-semibold uppercase transition-colors hover:border-[var(--michio-primary)] hover:bg-white/5 hover:text-white focus-visible:outline-white lg:inline-flex lg:px-6 lg:text-sm";
             return <Link key={item.label} href={item.href} className={className}>{item.label}</Link>;
           })}
           <ProductMenu categories={storefrontCategories} />
           {primaryNav.slice(1).map((item) => {
-            const className = "inline-flex shrink-0 border-b-2 border-transparent px-3 py-3 text-[11px] font-semibold uppercase transition-colors hover:border-[var(--michio-primary)] hover:bg-white/5 hover:text-white focus-visible:outline-white md:px-6 md:text-sm";
+            const mobileVisibility = mobilePrimaryNav.has(item.label) ? "inline-flex" : "hidden lg:inline-flex";
+            const className = `${mobileVisibility} shrink-0 border-b-2 border-transparent px-2 py-3 text-[11px] font-semibold uppercase transition-colors hover:border-[var(--michio-primary)] hover:bg-white/5 hover:text-white focus-visible:outline-white lg:px-6 lg:text-sm`;
             return item.external ? <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" className={className}>{item.label}</a> : <Link key={item.label} href={item.href} className={className}>{item.label}</Link>;
           })}
         </div>
