@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 const INTERNAL_PATH = /^\/(?:san-pham|danh-muc|tin-tuc|cua-hang|gioi-thieu|huong-dan-mua-hang|chinh-sach-[a-z-]+|tim-kiem)(?:\/[a-z0-9-]+)?(?:\?[^\s]+)?$/i;
 
 function inline(text: string): ReactNode[] {
-  const tokens = text.split(/(\*\*.*?\*\*|\[[^\]]+\]\(https?:\/\/[^)]+\)|https?:\/\/[^\s]+|\[[0-9]+\]|\/(?:san-pham|danh-muc|tin-tuc|cua-hang|gioi-thieu|huong-dan-mua-hang|chinh-sach-[a-z-]+|tim-kiem)(?:\/[a-z0-9-]+)?(?:\?[^\s]+)?)/gi);
+  const tokens = text.split(/(\*\*.*?\*\*|\[[^\]]+\]\(https?:\/\/[^)]+\)|\[[^\]]+\]\(\/(?:san-pham|danh-muc|tin-tuc|cua-hang|gioi-thieu|huong-dan-mua-hang|chinh-sach-[a-z-]+|tim-kiem)(?:\/[a-z0-9-]+)?(?:\?[^\s)]+)?\)|https?:\/\/[^\s]+|\[[0-9]+\]|\/(?:san-pham|danh-muc|tin-tuc|cua-hang|gioi-thieu|huong-dan-mua-hang|chinh-sach-[a-z-]+|tim-kiem)(?:\/[a-z0-9-]+)?(?:\?[^\s]+)?)/gi);
   return tokens.map((token, index) => {
     if (token.startsWith("**") && token.endsWith("**")) {
       return <strong key={index} className="font-semibold text-[var(--michio-navy)]">{token.slice(2, -2)}</strong>;
@@ -15,6 +15,10 @@ function inline(text: string): ReactNode[] {
     const markdownLink = token.match(/^\[([^\]]+)\]\((https?:\/\/[^)]+)\)$/i);
     if (markdownLink) {
       return <a key={index} href={markdownLink[2]} target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--michio-primary)] underline decoration-[var(--michio-primary)]/35 underline-offset-4">{markdownLink[1]}</a>;
+    }
+    const internalMarkdownLink = token.match(/^\[([^\]]+)\]\((\/(?:san-pham|danh-muc|tin-tuc|cua-hang|gioi-thieu|huong-dan-mua-hang|chinh-sach-[a-z-]+|tim-kiem)(?:\/[a-z0-9-]+)?(?:\?[^\s)]+)?)\)$/i);
+    if (internalMarkdownLink) {
+      return <Link key={index} href={internalMarkdownLink[2]} className="font-medium text-[var(--michio-primary)] underline decoration-[var(--michio-primary)]/35 underline-offset-4 transition-colors hover:text-[var(--michio-primary-hover)]">{internalMarkdownLink[1]}</Link>;
     }
     if (/^https?:\/\//i.test(token)) {
       return <a key={index} href={token} target="_blank" rel="noopener noreferrer" className="break-all font-medium text-[var(--michio-primary)] underline decoration-[var(--michio-primary)]/35 underline-offset-4">{token}</a>;
