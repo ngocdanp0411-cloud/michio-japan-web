@@ -4,19 +4,31 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Category } from "@/lib/categories";
 
-export function ProductMenu({ categories = [] }: { categories?: Category[] }) {
+type NavigationItem = { label: string; href: string; external?: boolean };
+
+export function ProductMenu({
+  categories = [],
+  navigationItems = [],
+}: {
+  categories?: Category[];
+  navigationItems?: NavigationItem[];
+}) {
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
-  const [menuPosition, setMenuPosition] = useState({ top: 0, left: 16, width: 320 });
+  const [menuPosition, setMenuPosition] = useState({ top: 0, left: 12, width: 320, maxHeight: 480 });
 
   const updatePosition = useCallback(() => {
     const rect = triggerRef.current?.getBoundingClientRect();
     if (!rect) return;
-    const width = Math.min(320, window.innerWidth - 32);
+    const mobile = window.innerWidth < 1024;
+    const inset = mobile ? 12 : 16;
+    const bottomClearance = window.innerWidth < 768 ? 88 : 12;
+    const width = Math.min(mobile ? 360 : 320, window.innerWidth - inset * 2);
     setMenuPosition({
       top: rect.bottom,
-      left: Math.max(16, Math.min(rect.left, window.innerWidth - width - 16)),
+      left: Math.max(inset, Math.min(rect.left, window.innerWidth - width - inset)),
       width,
+      maxHeight: Math.max(120, window.innerHeight - rect.bottom - bottomClearance),
     });
   }, []);
 
@@ -30,7 +42,10 @@ export function ProductMenu({ categories = [] }: { categories?: Category[] }) {
 
     const closeOnEscapeOrOutside = (event: KeyboardEvent | PointerEvent) => {
       if (event instanceof KeyboardEvent) {
-        if (event.key === "Escape") setOpen(false);
+        if (event.key === "Escape") {
+          setOpen(false);
+          triggerRef.current?.focus();
+        }
         return;
       }
 
@@ -57,8 +72,7 @@ export function ProductMenu({ categories = [] }: { categories?: Category[] }) {
         ref={triggerRef}
         type="button"
         aria-expanded={open}
-        aria-haspopup="menu"
-        aria-controls="product-category-menu"
+        aria-controls="site-navigation-menu"
         onClick={() => {
           if (open) {
             setOpen(false);
@@ -73,8 +87,8 @@ export function ProductMenu({ categories = [] }: { categories?: Category[] }) {
           <span className="h-0.5 w-5 rounded-full bg-white md:h-1 md:w-7" />
           <span className="h-0.5 w-5 rounded-full bg-white md:h-1 md:w-7" />
         </span>
-        <span className="whitespace-nowrap md:hidden">Danh mục</span>
-        <span className="hidden whitespace-nowrap md:inline">Danh mục sản phẩm</span>
+        <span className="whitespace-nowrap lg:hidden">Menu</span>
+        <span className="hidden whitespace-nowrap lg:inline">Danh mục sản phẩm</span>
         <svg
           width="18"
           height="18"
@@ -92,15 +106,27 @@ export function ProductMenu({ categories = [] }: { categories?: Category[] }) {
       </button>
 
       <div
-        id="product-category-menu"
-        role="menu"
-        aria-label="Danh mục sản phẩm"
-        style={{ top: menuPosition.top, left: menuPosition.left, width: menuPosition.width }}
-        className={`fixed z-[70] origin-top rounded-b-md border border-t-0 border-[var(--michio-border-strong)] bg-white p-2 text-[var(--michio-text)] shadow-[0_14px_30px_rgba(17,17,22,0.16)] transition-all duration-200 ${open ? "visible pointer-events-auto translate-y-0 opacity-100" : "invisible pointer-events-none -translate-y-1 opacity-0"}`}
+        id="site-navigation-menu"
+        aria-label="Menu website và danh mục sản phẩm"
+        style={{ ...menuPosition }}
+        className={`fixed z-[70] origin-top overflow-y-auto overscroll-contain rounded-b-md border border-t-0 border-[var(--michio-border-strong)] bg-white p-2 text-[var(--michio-text)] shadow-[0_14px_30px_rgba(17,17,22,0.16)] transition-all duration-200 ${open ? "visible pointer-events-auto translate-y-0 opacity-100" : "invisible pointer-events-none -translate-y-1 opacity-0"}`}
       >
+        <div role="group" aria-label="Điều hướng website" className="border-b border-[var(--michio-border)] pb-2 lg:hidden">
+          <p className="px-3 pb-1 pt-2 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[var(--michio-primary)]">Khám phá Michio</p>
+          {navigationItems.map((item) => {
+            const className = "flex items-center justify-between rounded px-3 py-2.5 text-sm font-bold uppercase transition-colors hover:bg-[var(--michio-surface-muted)] hover:text-[var(--michio-primary)]";
+            const label = <>{item.label}<span aria-hidden="true" className="text-[var(--michio-text-subtle)]">›</span></>;
+            return item.external ? (
+              <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)} className={className}>{label}</a>
+            ) : (
+              <Link key={item.label} href={item.href} onClick={() => setOpen(false)} className={className}>{label}</Link>
+            );
+          })}
+        </div>
+        <div role="group" aria-label="Danh mục sản phẩm" className="pt-2">
+          <p className="px-3 pb-1 pt-1 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[var(--michio-primary)]">Danh mục sản phẩm</p>
         <Link
           href="/cua-hang"
-          role="menuitem"
           onClick={() => setOpen(false)}
           className="flex items-center justify-between rounded px-3 py-3 text-sm font-extrabold uppercase text-[var(--michio-primary)] transition-colors hover:bg-[var(--michio-primary-soft)]"
         >
@@ -111,7 +137,6 @@ export function ProductMenu({ categories = [] }: { categories?: Category[] }) {
           <Link
             key={category.slug}
             href={`/danh-muc/${category.slug}`}
-            role="menuitem"
             onClick={() => setOpen(false)}
             className="flex items-center justify-between rounded px-3 py-2.5 text-sm font-bold uppercase transition-colors hover:bg-[var(--michio-surface-muted)] hover:text-[var(--michio-primary)]"
           >
@@ -119,6 +144,7 @@ export function ProductMenu({ categories = [] }: { categories?: Category[] }) {
             <span aria-hidden="true" className="text-[var(--michio-text-subtle)]">›</span>
           </Link>
         ))}
+        </div>
       </div>
     </div>
   );

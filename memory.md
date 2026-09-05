@@ -8,6 +8,7 @@
 - Không làm giỏ hàng hoặc thanh toán online nếu chưa được yêu cầu lại.
 - Khách chốt đơn và giao hàng trực tiếp qua Zalo hoặc Fanpage.
 - Ưu tiên trải nghiệm mobile, tốc độ tải và CTA rõ ràng.
+- Menu mobile phải cho truy cập đầy đủ các trang điều hướng chính và 8 danh mục sản phẩm; không được ẩn mục mà không có đường truy cập thay thế.
 - Thứ tự danh mục sản phẩm: Ưa thích → Mỹ phẩm skincare → Dầu gội/Sữa tắm → Đồ tiêu dùng → Mẹ&Bé → Đồ nhà bếp → Chăm sóc sức khoẻ → Đồ cho nam.
 - Một sản phẩm có thể thuộc nhiều danh mục theo keyword; gắn đồng thời các nhóm nhu cầu phù hợp, ví dụ sữa tắm trẻ em thuộc Dầu gội/Sữa tắm và Mẹ&Bé.
 - Không hiển thị bộ lọc giá trong trang danh mục sản phẩm.

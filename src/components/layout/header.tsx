@@ -11,7 +11,7 @@ const primaryNav: Array<{ label: string; href: string; external?: boolean }> = [
   { label: "Bài viết", href: "/tin-tuc" },
   { label: "Về Michio", href: "/gioi-thieu" },
   { label: "Chính sách", href: "/chinh-sach-quyen-rieng-tu" },
-  { label: "Liên hệ", href: LINKS.messenger },
+  { label: "Liên hệ", href: LINKS.messenger, external: true },
 ];
 const storefrontCategories = getCategoriesWithProducts(CATEGORIES);
 const mobilePrimaryNav = new Set(["Mua sỉ", "Bài viết", "Liên hệ"]);
@@ -45,7 +45,7 @@ export function Header() {
             const className = "hidden shrink-0 border-b-2 border-transparent px-4 py-3 text-xs font-semibold uppercase transition-colors hover:border-[var(--michio-primary)] hover:bg-white/5 hover:text-white focus-visible:outline-white lg:inline-flex lg:px-6 lg:text-sm";
             return <Link key={item.label} href={item.href} className={className}>{item.label}</Link>;
           })}
-          <ProductMenu categories={storefrontCategories} />
+          <ProductMenu categories={storefrontCategories} navigationItems={primaryNav} />
           {primaryNav.slice(1).map((item) => {
             const mobileVisibility = mobilePrimaryNav.has(item.label) ? "inline-flex" : "hidden lg:inline-flex";
             const className = `${mobileVisibility} shrink-0 border-b-2 border-transparent px-2 py-3 text-[11px] font-semibold uppercase transition-colors hover:border-[var(--michio-primary)] hover:bg-white/5 hover:text-white focus-visible:outline-white lg:px-6 lg:text-sm`;
