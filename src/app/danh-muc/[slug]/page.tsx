@@ -9,6 +9,8 @@ import { absoluteUrl, limitDescription, limitTitle } from "@/lib/seo";
 
 const storefrontCategories = getCategoriesWithProducts(CATEGORIES);
 const PRODUCTS_PER_PAGE = 24;
+const PROMOTION_BANNER = "/images/promotions/deal-nhat-xinh-yeu.webp";
+const PROMOTION_ALT = "Deal Nhật Xinh Yêu – chăm da và làm đẹp nội địa Nhật, ưu đãi nổi bật";
 const LEGACY_CATEGORY_REDIRECTS: Record<string, string> = {
   collagen: "my-pham-skincare",
   "cham-soc-da": "my-pham-skincare",
@@ -58,20 +60,27 @@ export default async function CategoryPage({ params, searchParams }: { params: P
   const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
   const products = sortedProducts.slice(startIndex, startIndex + PRODUCTS_PER_PAGE);
   const preview = allProducts[0]?.image;
+  const isSkincare = slug === "my-pham-skincare";
 
   return (
     <div>
       <section className="border-b border-[var(--michio-border)] bg-[var(--michio-primary-soft)]">
         <div className="mx-auto grid max-w-[1280px] gap-5 px-4 py-7 md:grid-cols-[1fr_1.1fr] md:items-center md:gap-12 md:py-10">
-          <div>
+          <div className={isSkincare ? "order-2 md:order-1" : undefined}>
             <nav aria-label="Breadcrumb" className="michio-caption flex flex-wrap items-center gap-2"><Link href="/" className="hover:text-[var(--michio-primary)]">Trang chủ</Link><span>/</span><Link href="/cua-hang" className="hover:text-[var(--michio-primary)]">Sản phẩm</Link><span>/</span><span>{cat.name}</span></nav>
             <p className="michio-eyebrow mt-6">Danh mục / Michio Japan</p>
             <h1 className="michio-display mt-2 text-5xl uppercase md:text-6xl">{cat.name}</h1>
             <p className="michio-body mt-3 max-w-[50ch]">Sản phẩm {cat.name.toLowerCase()} Nhật Bản được chọn lọc theo nhu cầu thật, thông tin rõ ràng và tư vấn tận tâm.</p>
           </div>
-          <div className="relative flex min-h-[190px] items-center justify-center overflow-hidden rounded-md bg-white p-4 md:min-h-[245px]">
-            {preview ? <Image src={preview} alt={`Sản phẩm ${cat.name}`} width={640} height={420} priority sizes="(min-width: 768px) 48vw, 100vw" className="h-full max-h-[220px] w-full object-contain" /> : <span className="michio-h2">{cat.name}</span>}
-            <span className="absolute bottom-3 right-3 rounded-full border-2 border-white bg-white p-1 shadow"><Image src="/images/brand/michio-authentic-logo.jpg" alt="Michio Japan" width={48} height={48} className="h-10 w-10 rounded-full object-cover" /></span>
+          <div className={`relative flex items-center justify-center overflow-hidden rounded-md bg-white ${isSkincare ? "order-1 shadow-[0_12px_30px_rgba(17,17,22,0.10)] md:order-2" : "min-h-[190px] p-4 md:min-h-[245px]"}`}>
+            {isSkincare ? (
+              <Image src={PROMOTION_BANNER} alt={PROMOTION_ALT} width={1672} height={941} preload sizes="(min-width: 1280px) 680px, (min-width: 768px) 52vw, calc(100vw - 32px)" className="aspect-[1672/941] h-auto w-full object-contain" />
+            ) : preview ? (
+              <Image src={preview} alt={`Sản phẩm ${cat.name}`} width={640} height={420} priority sizes="(min-width: 768px) 48vw, 100vw" className="h-full max-h-[220px] w-full object-contain" />
+            ) : (
+              <span className="michio-h2">{cat.name}</span>
+            )}
+            {!isSkincare && <span className="absolute bottom-3 right-3 rounded-full border-2 border-white bg-white p-1 shadow"><Image src="/images/brand/michio-authentic-logo.jpg" alt="Michio Japan" width={48} height={48} className="h-10 w-10 rounded-full object-cover" /></span>}
           </div>
         </div>
       </section>

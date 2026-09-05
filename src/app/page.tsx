@@ -13,11 +13,8 @@ const trustItems = [
   { number: "04", title: "TƯ VẤN TẬN TÂM", text: "Hỗ trợ nhanh chóng mỗi ngày" },
 ];
 
-const heroImages = [
-  { src: "/products/anessa-perfect-uv-60ml/1.jpg", alt: "Kem chống nắng Anessa Perfect UV" },
-  { src: "/products/kose-softymo-220g/kose-white.png", alt: "Sữa rửa mặt Kose Softymo" },
-  { src: "/products/aqualabel-5in1-90g/1.jpg", alt: "Kem dưỡng da Aqualabel 5in1" },
-];
+const PROMOTION_BANNER = "/images/promotions/deal-nhat-xinh-yeu.webp";
+const PROMOTION_ALT = "Deal Nhật Xinh Yêu – chăm da và làm đẹp nội địa Nhật, ưu đãi nổi bật";
 
 function SectionHeading({ eyebrow, title, href, label = "Xem tất cả" }: { eyebrow?: string; title: string; href?: string; label?: string }) {
   return (
@@ -39,27 +36,17 @@ export default function HomePage() {
     <div>
       <section className="overflow-hidden border-b border-[var(--michio-border)] bg-[var(--michio-primary-soft)]">
         <div className="mx-auto grid max-w-[1280px] gap-8 px-4 py-8 md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-12 md:py-14">
-          <div className="max-w-xl">
+          <Link href="/danh-muc/my-pham-skincare" className="block overflow-hidden rounded-md border border-white/80 bg-white shadow-[0_14px_34px_rgba(17,17,22,0.12)] transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--michio-primary)] md:order-2">
+            <Image src={PROMOTION_BANNER} alt={PROMOTION_ALT} width={1672} height={941} preload sizes="(min-width: 1280px) 680px, (min-width: 768px) 55vw, calc(100vw - 32px)" className="aspect-[1672/941] h-auto w-full object-contain" />
+          </Link>
+
+          <div className="max-w-xl md:order-1">
             <p className="michio-eyebrow">Michio Japan / Hàng Nhật nội địa</p>
             <h1 className="michio-display mt-4 text-pretty text-[2.65rem] uppercase leading-[0.98] sm:text-5xl md:text-6xl">Sống thật mỗi ngày<br />với đồ <span className="text-[var(--michio-primary)]">Nhật nội địa</span></h1>
             <p className="michio-body mt-5 max-w-[48ch] text-base">Tuyển chọn hàng Nhật nội địa chất lượng cao, cho cuộc sống khỏe đẹp và những thói quen tốt mỗi ngày.</p>
             <div className="mt-7 flex flex-wrap gap-3">
               <a href={LINKS.zalo} target="_blank" rel="noopener noreferrer" className="michio-btn-primary inline-flex h-12 items-center justify-center rounded px-6 text-sm uppercase">Nhắn Zalo đặt hàng</a>
               <Link href="/gioi-thieu" className="michio-btn-secondary inline-flex h-12 items-center justify-center rounded bg-white px-6 text-sm uppercase">Tìm hiểu thêm</Link>
-            </div>
-          </div>
-
-          <div className="relative min-h-[300px] overflow-hidden rounded-md border border-white/80 bg-white/70 p-4 md:min-h-[420px] md:p-7">
-            <div className="absolute right-0 top-0 h-36 w-36 rounded-full bg-white/70 blur-2xl md:h-64 md:w-64" aria-hidden="true" />
-            <div className="relative grid h-full grid-cols-[1.2fr_0.8fr] gap-3">
-              <div className="relative row-span-2 flex items-center justify-center overflow-hidden rounded bg-white p-3 shadow-sm">
-                <Image src={heroImages[0].src} alt={heroImages[0].alt} width={720} height={720} priority sizes="(min-width: 1024px) 38vw, (min-width: 768px) 44vw, 78vw" quality={72} className="h-full max-h-[370px] w-full object-contain" />
-              </div>
-              {heroImages.slice(1).map((image) => (
-                <div key={image.src} className="relative flex min-h-[130px] items-center justify-center overflow-hidden rounded bg-white p-3 shadow-sm">
-                  <Image src={image.src} alt={image.alt} width={420} height={420} priority sizes="(min-width: 1024px) 18vw, (min-width: 768px) 22vw, 36vw" quality={62} className="h-full max-h-[175px] w-full object-contain" />
-                </div>
-              ))}
             </div>
           </div>
         </div>
