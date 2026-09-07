@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Be_Vietnam_Pro, Barlow_Condensed } from "next/font/google";
+import { Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { TopBar } from "@/components/layout/top-bar";
@@ -14,13 +14,6 @@ const beVN = Be_Vietnam_Pro({
   display: "swap",
 });
 
-const barlow = Barlow_Condensed({
-  subsets: ["latin", "vietnamese"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-barlow",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
   title: {
     default: "Michio Japan — Chọn đúng đồ Nhật, sống thật mỗi ngày",
@@ -29,7 +22,6 @@ export const metadata: Metadata = {
   description:
     "Michio Japan chọn lọc sản phẩm chăm sóc cá nhân, làm đẹp và đồ gia dụng từ Nhật Bản. Tư vấn tận tâm, hàng Nhật nội địa, giao hàng tinh tế.",
   metadataBase: new URL(SITE_URL),
-  alternates: { canonical: "/" },
   robots: { index: true, follow: true },
   verification: { google: "3x9LISOpF3onhsEoBj88nc6Vsqd4oFm-puCV0o2pCGI" },
   openGraph: {
@@ -56,11 +48,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="vi" className={`${beVN.variable} ${barlow.variable} h-full`}>
+    <html lang="vi" className={`${beVN.variable} h-full`}>
       <body className="min-h-full flex flex-col bg-white text-[var(--michio-navy)] antialiased">
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:p-4">Chuyển đến nội dung</a>
         <Header />
         <TopBar />
-        <main className="flex-1 pb-20 md:pb-0">{children}</main>
+        <div id="main-content" tabIndex={-1} className="flex-1 pb-[calc(88px+env(safe-area-inset-bottom))] outline-none md:pb-0">{children}</div>
         <Footer />
         <StickyDock />
       </body>

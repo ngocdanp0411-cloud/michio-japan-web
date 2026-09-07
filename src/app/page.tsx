@@ -6,112 +6,85 @@ import { LINKS } from "@/lib/links";
 import { PRODUCTS } from "@/lib/products";
 import { BLOG_CATEGORY_MAP, getBlogPosts } from "@/lib/blog";
 
-const trustItems = [
-  { number: "01", title: "100% HÀNG NHẬT NỘI ĐỊA", text: "Nhập trực tiếp từ Nhật Bản" },
-  { number: "02", title: "CHÍNH HÃNG – NGUYÊN SEAL", text: "Giữ đúng sản phẩm gốc" },
-  { number: "03", title: "CAM KẾT CHẤT LƯỢNG", text: "Đảm bảo an tâm khi lựa chọn" },
-  { number: "04", title: "TƯ VẤN TẬN TÂM", text: "Hỗ trợ nhanh chóng mỗi ngày" },
-];
+export const metadata = { alternates: { canonical: "/" } };
 
-const PROMOTION_BANNER = "/images/promotions/deal-nhat-xinh-yeu.webp";
-const PROMOTION_ALT = "Deal Nhật Xinh Yêu – chăm da và làm đẹp nội địa Nhật, ưu đãi nổi bật";
-
-function SectionHeading({ eyebrow, title, href, label = "Xem tất cả" }: { eyebrow?: string; title: string; href?: string; label?: string }) {
+function SectionHeading({ eyebrow, title, href, label = "Xem tất cả" }: { eyebrow: string; title: string; href?: string; label?: string }) {
   return (
-    <div className="flex items-end justify-between gap-4 border-b border-[var(--michio-border)] pb-4">
-      <div>
-        {eyebrow && <p className="michio-eyebrow">{eyebrow}</p>}
-        <h2 className="michio-h2 mt-1 uppercase">{title}</h2>
-      </div>
-      {href && <Link href={href} className="hidden shrink-0 text-sm font-semibold text-[var(--michio-primary)] hover:text-[var(--michio-primary-hover)] sm:inline-flex">{label} <span aria-hidden="true" className="ml-1">→</span></Link>}
+    <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
+      <div><p className="michio-eyebrow">{eyebrow}</p><h2 className="michio-h2 mt-2">{title}</h2></div>
+      {href && <Link href={href} className="michio-text-link inline-flex min-h-11 items-center gap-3 text-sm font-medium">{label}<span aria-hidden="true">↗</span></Link>}
     </div>
   );
 }
 
 export default function HomePage() {
   const posts = getBlogPosts().slice(0, 3);
-  const featured = PRODUCTS.slice(0, 5);
+  const featured = PRODUCTS.slice(0, 8);
 
   return (
-    <div>
-      <section className="overflow-hidden border-b border-[var(--michio-border)] bg-[var(--michio-primary-soft)]">
-        <div className="mx-auto grid max-w-[1280px] gap-8 px-4 py-8 md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-12 md:py-14">
-          <Link href="/danh-muc/my-pham-skincare" className="block overflow-hidden rounded-md border border-white/80 bg-white shadow-[0_14px_34px_rgba(17,17,22,0.12)] transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--michio-primary)] md:order-2">
-            <Image src={PROMOTION_BANNER} alt={PROMOTION_ALT} width={1672} height={941} preload sizes="(min-width: 1280px) 680px, (min-width: 768px) 55vw, calc(100vw - 32px)" className="aspect-[1672/941] h-auto w-full object-contain" />
-          </Link>
-
-          <div className="max-w-xl md:order-1">
-            <p className="michio-eyebrow">Michio Japan / Hàng Nhật nội địa</p>
-            <h1 className="michio-display mt-4 text-pretty text-[2.65rem] uppercase leading-[0.98] sm:text-5xl md:text-6xl">Sống thật mỗi ngày<br />với đồ <span className="text-[var(--michio-primary)]">Nhật nội địa</span></h1>
-            <p className="michio-body mt-5 max-w-[48ch] text-base">Tuyển chọn hàng Nhật nội địa chất lượng cao, cho cuộc sống khỏe đẹp và những thói quen tốt mỗi ngày.</p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <a href={LINKS.zalo} target="_blank" rel="noopener noreferrer" className="michio-btn-primary inline-flex h-12 items-center justify-center rounded px-6 text-sm uppercase">Nhắn Zalo đặt hàng</a>
-              <Link href="/gioi-thieu" className="michio-btn-secondary inline-flex h-12 items-center justify-center rounded bg-white px-6 text-sm uppercase">Tìm hiểu thêm</Link>
-            </div>
+    <main className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
+      <section aria-labelledby="hero-title" className="pb-8 pt-6 md:pb-12 md:pt-10">
+        <div className="michio-enter mb-5 flex items-end justify-between gap-8 md:mb-7">
+          <div>
+            <p className="michio-eyebrow">Michio Japan · Hàng Nhật nội địa</p>
+            <h1 id="hero-title" className="mt-3 text-balance text-[clamp(1.7rem,3.6vw,3.4rem)] font-semibold leading-[1.18] tracking-[-0.045em]">Chăm chút mỗi ngày,<br className="sm:hidden" /> theo cách Nhật.</h1>
           </div>
+          <p className="hidden max-w-[29ch] text-sm leading-6 text-[var(--michio-text-muted)] lg:block">Từ bước chăm da đến góc bếp nhỏ. Tìm đồ Nhật phù hợp với cuộc sống của bạn.</p>
+        </div>
+        <div className="overflow-hidden rounded-xl border border-[var(--michio-border)] bg-[var(--michio-surface-warm)] md:rounded-2xl lg:grid lg:grid-cols-[minmax(0,3fr)_minmax(240px,1fr)]">
+          <Link href="/danh-muc/my-pham-skincare" aria-label="Khám phá bộ sưu tập mỹ phẩm skincare Nhật Bản" className="block focus-visible:-outline-offset-4">
+            <Image src="/images/promotions/deal-nhat-xinh-yeu.webp" alt="Deal Nhật Xinh Yêu – chăm da và làm đẹp nội địa Nhật, ưu đãi nổi bật" width={1672} height={941} preload sizes="(min-width: 1280px) 912px, (min-width: 1024px) 70vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)" className="h-auto w-full object-contain" />
+          </Link>
+          <div className="flex flex-wrap items-center justify-between gap-4 p-4 sm:px-6 sm:py-5 lg:flex-col lg:items-start lg:justify-center lg:gap-6">
+            <div><p className="text-xs text-[var(--michio-text-muted)]">Bộ sưu tập chăm da & làm đẹp</p><h2 className="mt-1 text-lg font-semibold tracking-tight sm:text-2xl">Một chút chăm sóc. Một ngày xinh hơn.</h2></div>
+            <Link href="/danh-muc/my-pham-skincare" className="michio-btn-primary inline-flex min-h-12 w-full items-center justify-center gap-5 rounded-lg px-6 text-sm sm:w-auto">Khám phá skincare <span aria-hidden="true">→</span></Link>
+          </div>
+        </div>
+        <div className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs leading-5 text-[var(--michio-text-muted)] sm:justify-start">
+          <span>Hàng Nhật nội địa</span><span>Tư vấn chọn sản phẩm</span><span>Đặt hàng qua Zalo / Fanpage</span>
         </div>
       </section>
 
-      <div className="relative z-10 mx-auto -mt-5 max-w-[1180px] px-4">
-        <div className="grid overflow-hidden rounded-lg border border-[var(--michio-border)] bg-white shadow-[0_10px_30px_rgba(17,17,22,0.08)] sm:grid-cols-2 lg:grid-cols-4">
-          {trustItems.map((item) => (
-            <div key={item.number} className="border-b border-[var(--michio-border)] p-5 last:border-b-0 sm:nth-[2]:border-b-0 lg:border-b-0 lg:border-r lg:last:border-r-0">
-              <span className="font-display text-2xl font-bold text-[var(--michio-primary)]">{item.number}</span>
-              <h2 className="mt-2 text-xs font-bold leading-5 text-[var(--michio-text)]">{item.title}</h2>
-              <p className="mt-1 text-xs text-[var(--michio-text-muted)]">{item.text}</p>
-            </div>
+      <section aria-labelledby="categories-title" className="border-t border-[var(--michio-border)] py-8 md:py-12">
+        <h2 id="categories-title" className="michio-h2">Bạn đang tìm gì?</h2>
+        <div className="mt-6"><CategoryRail /></div>
+      </section>
+
+      <section className="border-t border-[var(--michio-border)] py-8 md:py-12">
+        <SectionHeading eyebrow="Gợi ý từ Michio" title="Đồ Nhật cho mỗi ngày" href="/cua-hang" label="Xem cửa hàng" />
+        <div className="mt-6"><ProductGrid products={featured} /></div>
+      </section>
+
+      <section className="michio-reveal my-4 grid gap-8 rounded-2xl bg-[var(--michio-surface-warm)] p-6 md:my-8 md:grid-cols-2 md:gap-16 md:p-10">
+        <div>
+          <p className="michio-eyebrow">Mua hàng thật đơn giản</p>
+          <h2 className="michio-h2 mt-3">Chưa biết chọn gì?<br />Cứ hỏi Michio.</h2>
+          <p className="michio-body mt-4 max-w-[46ch]">Kể cho Michio điều bạn đang cần. Chúng mình sẽ cùng bạn chọn sản phẩm phù hợp, xác nhận giá và tư vấn cách dùng trước khi đặt hàng.</p>
+          <a href={LINKS.zalo} target="_blank" rel="noopener noreferrer" className="michio-text-link mt-4 inline-flex min-h-12 items-center gap-5 text-sm font-semibold">Nhắn Zalo cho Michio <span aria-hidden="true">↗</span></a>
+        </div>
+        <ol className="divide-y divide-[var(--michio-border)]">
+          {[
+            ["Chọn sản phẩm", "Xem hình ảnh, thông tin và giá ngay trên website."],
+            ["Nhắn Michio", "Gửi tên hoặc link sản phẩm qua Zalo, Fanpage."],
+            ["Xác nhận & nhận hàng", "Thống nhất sản phẩm, phí ship và địa chỉ giao hàng."],
+          ].map(([title, text], i) => <li key={title} className="flex gap-4 py-4 first:pt-0 last:pb-0"><span className="pt-1 text-xs text-[var(--michio-primary)]">0{i + 1}</span><div><h3 className="font-semibold">{title}</h3><p className="mt-1 text-sm leading-6 text-[var(--michio-text-muted)]">{text}</p></div></li>)}
+        </ol>
+      </section>
+
+      <section className="michio-reveal py-10 md:py-14">
+        <SectionHeading eyebrow="Michio Journal" title="Đọc một chút, chọn đúng hơn" href="/tin-tuc" label="Tất cả bài viết" />
+        <div className="mt-6 grid gap-8 md:grid-cols-3 md:gap-6">
+          {posts.map((post) => (
+            <Link key={post.slug} href={`/tin-tuc/${post.slug}`} className="group">
+              <div className="overflow-hidden rounded-xl bg-[var(--michio-surface-warm)]"><Image src={post.image} alt={post.title} width={1200} height={675} sizes="(min-width: 1280px) 390px, (min-width: 768px) 33vw, 100vw" quality={68} className="aspect-video w-full object-contain transition-transform duration-300 motion-safe:group-hover:scale-[1.025]" /></div>
+              <p className="michio-eyebrow mt-4">{BLOG_CATEGORY_MAP[post.category]?.shortName ?? "Michio Journal"}</p>
+              <h3 className="mt-2 text-lg font-semibold leading-snug tracking-tight group-hover:text-[var(--michio-primary)]">{post.title}</h3>
+              <p className="mt-2 line-clamp-2 text-sm leading-6 text-[var(--michio-text-muted)]">{post.description}</p>
+              <span className="mt-3 inline-flex min-h-11 items-center text-sm font-medium">Đọc bài viết <span aria-hidden="true" className="ml-3">↗</span></span>
+            </Link>
           ))}
         </div>
-      </div>
-
-      <main className="mx-auto max-w-[1280px] px-4">
-        <section className="py-12 md:py-16">
-          <div className="text-center">
-            <p className="michio-eyebrow">Khám phá theo nhu cầu</p>
-            <h2 className="michio-h2 mt-1 uppercase">Danh mục nổi bật</h2>
-          </div>
-          <div className="mt-6"><CategoryRail /></div>
-          <div className="mt-5 text-center sm:hidden"><Link href="/cua-hang" className="text-sm font-semibold text-[var(--michio-primary)]">Xem tất cả danh mục →</Link></div>
-        </section>
-
-        <section className="border-t border-[var(--michio-border)] py-12 md:py-16">
-          <SectionHeading eyebrow="Chọn lọc từ Nhật Bản" title="Sản phẩm nổi bật" href="/cua-hang" />
-          <div className="mt-5"><ProductGrid products={featured} /></div>
-        </section>
-
-        <section className="grid gap-8 border-t border-[var(--michio-border)] py-12 md:grid-cols-2 md:items-center md:gap-14 md:py-16">
-          <div>
-            <p className="michio-eyebrow">Câu chuyện Michio Japan</p>
-            <h2 className="michio-h2 mt-2 uppercase">Về Michio Japan</h2>
-            <p className="michio-body mt-4">Michio Japan tập trung vào những sản phẩm Nhật Bản được chọn theo nhu cầu thật, từ chăm sóc da, cơ thể đến sức khỏe và gia dụng.</p>
-            <p className="michio-body mt-3">Mỗi lựa chọn đều đi cùng thông tin rõ ràng, tư vấn tận tâm và cách mua hàng đơn giản qua Zalo hoặc Inbox Fanpage.</p>
-            <Link href="/gioi-thieu" className="michio-btn-primary mt-6 inline-flex h-11 items-center rounded px-5 text-sm uppercase">Tìm hiểu thêm về chúng tôi</Link>
-          </div>
-          <div className="relative overflow-hidden rounded-md bg-[var(--michio-surface-muted)] p-4 md:p-7">
-            <Image src="/images/blog/cach-chon-kem-chong-nang-nhat.jpg" alt="Sản phẩm Nhật Bản được Michio Japan chọn lọc" width={1200} height={675} sizes="(min-width: 1024px) 50vw, 100vw" quality={70} className="aspect-video w-full rounded bg-[#fff8f6] object-contain" />
-          </div>
-        </section>
-
-        <section className="border-y border-[var(--michio-primary)] bg-[var(--michio-primary)] px-5 py-7 text-white md:flex md:items-center md:justify-between md:px-8">
-          <div>
-            <h2 className="michio-h2 text-white uppercase">Nhận ưu đãi và tin tức mới nhất</h2>
-            <p className="mt-1 text-sm text-white/80">Đọc đúng, chọn đúng và duy trì những thói quen tốt mỗi ngày.</p>
-          </div>
-          <a href={`mailto:${LINKS.email}?subject=Đăng ký nhận ưu đãi Michio Japan`} className="mt-4 inline-flex h-11 items-center justify-center rounded bg-white px-5 text-sm font-bold text-[var(--michio-primary)] md:mt-0">Đăng ký qua email</a>
-        </section>
-
-        <section className="border-t border-[var(--michio-border)] py-12 md:py-16">
-          <SectionHeading eyebrow="Michio Journal" title="Tin tức và hướng dẫn" href="/tin-tuc" />
-          <div className="mt-5 grid gap-4 md:grid-cols-3">
-            {posts.map((post) => (
-              <Link key={post.slug} href={`/tin-tuc/${post.slug}`} className="group overflow-hidden rounded-md border border-[var(--michio-border)] bg-white transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-[var(--michio-primary)] hover:shadow-[0_10px_24px_rgba(17,17,22,0.08)]">
-                <Image src={post.image} alt={post.title} width={1200} height={675} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" quality={68} className="aspect-video w-full bg-[#fff8f6] object-contain transition-transform duration-300 group-hover:scale-[1.02]" />
-                <div className="p-4"><p className="michio-eyebrow">{BLOG_CATEGORY_MAP[post.category]?.shortName ?? "Michio Journal"}</p><h3 className="michio-h3 mt-2 line-clamp-2 text-xl">{post.title}</h3><p className="michio-body mt-2 line-clamp-2 text-sm">{post.description}</p><span className="mt-4 inline-flex text-sm font-semibold text-[var(--michio-primary)]">Đọc bài viết →</span></div>
-              </Link>
-            ))}
-          </div>
-        </section>
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }

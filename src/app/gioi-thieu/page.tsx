@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { LINKS } from "@/lib/links";
 
-export const metadata = { title: "Giới thiệu về Michio Japan" };
+export const metadata = { title: "Giới thiệu về Michio Japan", alternates: { canonical: "/gioi-thieu" } };
 
 const values = [
   ["01", "Nguồn gốc rõ ràng", "Hàng Nhật nội địa, tem phụ đầy đủ."],

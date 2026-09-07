@@ -54,16 +54,16 @@ export default async function ShopPage({
 
   return (
     <div>
-      <section className="border-b border-[var(--michio-border)] bg-[var(--michio-primary-soft)]">
-        <div className="mx-auto grid max-w-[1280px] gap-6 px-4 py-8 md:grid-cols-[1fr_1fr] md:items-center md:py-12">
-          <div><p className="michio-eyebrow">Michio Japan / Khám phá sản phẩm</p><h1 className="michio-display mt-2 text-5xl uppercase md:text-6xl">Cửa hàng</h1><p className="michio-body mt-3 max-w-[52ch] text-base">Tất cả sản phẩm Nhật Bản được Michio Japan chọn lọc cho cuộc sống khỏe đẹp và những thói quen tốt mỗi ngày.</p></div>
-          <div className="relative flex min-h-[180px] items-center justify-center overflow-hidden rounded-md bg-white p-4"><Image src={PRODUCTS[0]?.image ?? "/images/brand/michio-authentic-logo.jpg"} alt="Sản phẩm Nhật Bản tại Michio Japan" width={640} height={420} priority sizes="(min-width: 768px) 50vw, 100vw" className="h-full max-h-[220px] w-full object-contain" /><span className="absolute bottom-3 right-3 rounded-full border-2 border-white bg-white p-1 shadow"><Image src="/images/brand/michio-authentic-logo.jpg" alt="Michio Japan" width={48} height={48} className="h-10 w-10 rounded-full object-cover" /></span></div>
+      <section className="border-b border-[var(--michio-border)] bg-white">
+        <div className="mx-auto grid max-w-[1280px] gap-4 px-4 py-5 md:grid-cols-[1fr_160px] md:items-center md:py-7">
+          <div><p className="michio-eyebrow">Michio Japan</p><h1 className="michio-display mt-2 text-[1.75rem] leading-tight md:text-4xl">Cửa hàng</h1><p className="michio-body mt-2 max-w-[55ch] text-sm">Đồ Nhật cho chăm sóc bản thân, gia đình và những thói quen mỗi ngày.</p></div>
+          <div className="hidden h-28 items-center justify-center rounded-xl bg-white p-2 md:flex"><Image src={PRODUCTS[0]?.image ?? "/images/brand/michio-authentic-logo.jpg"} alt="Sản phẩm Nhật Bản tại Michio Japan" width={160} height={112} sizes="160px" className="h-full w-full object-contain" /></div>
         </div>
       </section>
 
-      <main className="mx-auto max-w-[1280px] px-4 py-8 md:py-12">
-        <nav aria-label="Danh mục sản phẩm" className="flex gap-2 overflow-x-auto pb-2 scrollbar-none">{storefrontCategories.map((category) => <Link key={category.slug} href={`/danh-muc/${category.slug}`} className="shrink-0 rounded-full border border-[var(--michio-border-strong)] bg-white px-4 py-2 text-sm font-semibold text-[var(--michio-text-muted)] transition-colors hover:border-[var(--michio-primary)] hover:text-[var(--michio-primary)]">{category.name}</Link>)}</nav>
-        <div className="mt-8 flex items-end justify-between gap-4 border-b border-[var(--michio-border)] pb-4"><div><p className="michio-eyebrow">Tất cả sản phẩm</p><h2 className="michio-h2 mt-1 uppercase">Danh sách sản phẩm</h2></div><span className="michio-caption text-right">{firstProductNumber}–{lastProductNumber}/{PRODUCTS.length} sản phẩm</span></div>
+      <main className="mx-auto max-w-[1280px] px-4 py-5 md:py-8">
+        <nav aria-label="Danh mục sản phẩm" className="flex flex-wrap gap-2">{storefrontCategories.map((category) => <Link key={category.slug} href={`/danh-muc/${category.slug}`} className="inline-flex min-h-11 items-center rounded-full border border-[var(--michio-border)] bg-white px-3 py-2 text-xs font-medium text-[var(--michio-text-muted)] transition-colors hover:border-[var(--michio-primary)] hover:bg-[var(--michio-primary-soft)] hover:text-[var(--michio-primary)] sm:text-sm">{category.name}</Link>)}</nav>
+        <div className="mt-6 flex items-end justify-between gap-4 border-b border-[var(--michio-border)] pb-4"><h2 className="text-lg font-semibold sm:text-xl">Tất cả sản phẩm</h2><span className="michio-caption text-right">{firstProductNumber}–{lastProductNumber}/{PRODUCTS.length} sản phẩm</span></div>
         <div className="mt-5"><ProductGrid products={visibleProducts} columns="category" /></div>
 
         {totalPages > 1 && (

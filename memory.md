@@ -10,6 +10,8 @@
 - Ưu tiên trải nghiệm mobile, tốc độ tải và CTA rõ ràng.
 - Menu mobile phải cho truy cập đầy đủ các trang điều hướng chính và 8 danh mục sản phẩm; không được ẩn mục mà không có đường truy cập thay thế.
 - Banner “Deal Nhật Xinh Yêu” dùng tại hero trang chủ và banner danh mục Mỹ phẩm skincare; luôn giữ nguyên tỷ lệ, không kéo méo hoặc crop mất chữ/sản phẩm.
+- Hero ưu tiên mobile: banner rộng, nổi bật; phần chữ ngắn, CTA dễ thấy; tránh ảnh nhỏ cạnh khối chữ lớn và khoảng trống dài.
+- Giao diện cần chuyên nghiệp, thống nhất, bớt lôm côm; ưu tiên animation nhẹ khi phù hợp, không đánh đổi tốc độ và khả năng dùng trên mobile.
 - Thứ tự danh mục sản phẩm: Ưa thích → Mỹ phẩm skincare → Dầu gội/Sữa tắm → Đồ tiêu dùng → Mẹ&Bé → Đồ nhà bếp → Chăm sóc sức khoẻ → Đồ cho nam.
 - Một sản phẩm có thể thuộc nhiều danh mục theo keyword; gắn đồng thời các nhóm nhu cầu phù hợp, ví dụ sữa tắm trẻ em thuộc Dầu gội/Sữa tắm và Mẹ&Bé.
 - Không hiển thị bộ lọc giá trong trang danh mục sản phẩm.

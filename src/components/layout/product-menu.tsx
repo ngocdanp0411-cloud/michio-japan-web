@@ -80,15 +80,15 @@ export function ProductMenu({
             openMenu();
           }
         }}
-        className="flex min-h-[46px] items-center gap-2 border-x-2 border-[var(--michio-primary)] bg-black px-2 py-2 text-left text-[11px] font-extrabold uppercase text-white transition-colors hover:bg-[var(--michio-primary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-white md:min-h-[52px] md:gap-4 md:px-5 md:text-sm"
+        className={`flex min-h-11 items-center gap-2 px-3 py-2 text-left text-xs font-semibold hover:text-[var(--michio-primary)] lg:min-h-12 lg:gap-3 lg:px-4 lg:text-sm ${open ? "bg-[var(--michio-primary-soft)] text-[var(--michio-primary)]" : "text-[var(--michio-text)]"}`}
       >
-        <span className="flex w-5 flex-col gap-1 md:w-7" aria-hidden="true">
-          <span className="h-0.5 w-5 rounded-full bg-white md:h-1 md:w-7" />
-          <span className="h-0.5 w-5 rounded-full bg-white md:h-1 md:w-7" />
-          <span className="h-0.5 w-5 rounded-full bg-white md:h-1 md:w-7" />
+        <span className="relative h-5 w-5 shrink-0" aria-hidden="true">
+          <span className={`absolute left-0 top-1 h-0.5 w-5 rounded-full bg-current transition-transform duration-200 motion-reduce:transition-none ${open ? "translate-y-[5px] rotate-45" : ""}`} />
+          <span className={`absolute left-0 top-[9px] h-0.5 w-5 rounded-full bg-current transition-opacity duration-200 motion-reduce:transition-none ${open ? "opacity-0" : ""}`} />
+          <span className={`absolute bottom-1 left-0 h-0.5 w-5 rounded-full bg-current transition-transform duration-200 motion-reduce:transition-none ${open ? "-translate-y-[5px] -rotate-45" : ""}`} />
         </span>
-        <span className="whitespace-nowrap lg:hidden">Menu</span>
-        <span className="hidden whitespace-nowrap lg:inline">Danh mục sản phẩm</span>
+        <span className="min-w-8 whitespace-nowrap lg:hidden">{open ? "Đóng" : "Menu"}</span>
+        <span className="hidden min-w-[155px] whitespace-nowrap lg:inline">{open ? "Đóng danh mục" : "Danh mục sản phẩm"}</span>
         <svg
           width="18"
           height="18"
@@ -99,7 +99,7 @@ export function ProductMenu({
           strokeLinecap="round"
           strokeLinejoin="round"
           aria-hidden="true"
-          className={`ml-auto hidden transition-transform duration-200 sm:block ${open ? "rotate-180" : ""}`}
+          className={`ml-auto hidden transition-transform duration-200 motion-reduce:transition-none lg:block ${open ? "rotate-180" : ""}`}
         >
           <path d="m6 9 6 6 6-6" />
         </svg>
@@ -108,13 +108,15 @@ export function ProductMenu({
       <div
         id="site-navigation-menu"
         aria-label="Menu website và danh mục sản phẩm"
+        aria-hidden={!open}
+        inert={!open}
         style={{ ...menuPosition }}
-        className={`fixed z-[70] origin-top overflow-y-auto overscroll-contain rounded-b-md border border-t-0 border-[var(--michio-border-strong)] bg-white p-2 text-[var(--michio-text)] shadow-[0_14px_30px_rgba(17,17,22,0.16)] transition-all duration-200 ${open ? "visible pointer-events-auto translate-y-0 opacity-100" : "invisible pointer-events-none -translate-y-1 opacity-0"}`}
+        className={`fixed z-[70] origin-top overflow-y-auto overscroll-contain rounded-b-xl border border-[var(--michio-border)] bg-white p-2 text-[var(--michio-text)] shadow-[0_12px_28px_rgba(17,17,22,0.10)] transition-[transform,opacity] duration-200 motion-reduce:transition-none ${open ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none -translate-y-1 opacity-0"}`}
       >
-        <div role="group" aria-label="Điều hướng website" className="border-b border-[var(--michio-border)] pb-2 lg:hidden">
+        <div role="group" aria-label="Điều hướng website" className="border-b border-[var(--michio-border)] pb-2">
           <p className="px-3 pb-1 pt-2 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[var(--michio-primary)]">Khám phá Michio</p>
           {navigationItems.map((item) => {
-            const className = "flex items-center justify-between rounded px-3 py-2.5 text-sm font-bold uppercase transition-colors hover:bg-[var(--michio-surface-muted)] hover:text-[var(--michio-primary)]";
+            const className = "flex min-h-11 items-center justify-between rounded-md px-3 py-2 text-sm font-medium hover:bg-[var(--michio-surface-muted)] hover:text-[var(--michio-primary)]";
             const label = <>{item.label}<span aria-hidden="true" className="text-[var(--michio-text-subtle)]">›</span></>;
             return item.external ? (
               <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)} className={className}>{label}</a>
@@ -128,7 +130,7 @@ export function ProductMenu({
         <Link
           href="/cua-hang"
           onClick={() => setOpen(false)}
-          className="flex items-center justify-between rounded px-3 py-3 text-sm font-extrabold uppercase text-[var(--michio-primary)] transition-colors hover:bg-[var(--michio-primary-soft)]"
+          className="flex min-h-11 items-center justify-between rounded-md px-3 py-2 text-sm font-semibold text-[var(--michio-primary)] hover:bg-[var(--michio-primary-soft)]"
         >
           Tất cả sản phẩm
           <span aria-hidden="true">→</span>
@@ -138,7 +140,7 @@ export function ProductMenu({
             key={category.slug}
             href={`/danh-muc/${category.slug}`}
             onClick={() => setOpen(false)}
-            className="flex items-center justify-between rounded px-3 py-2.5 text-sm font-bold uppercase transition-colors hover:bg-[var(--michio-surface-muted)] hover:text-[var(--michio-primary)]"
+            className="flex min-h-11 items-center justify-between rounded-md px-3 py-2 text-sm font-medium hover:bg-[var(--michio-surface-muted)] hover:text-[var(--michio-primary)]"
           >
             {category.name}
             <span aria-hidden="true" className="text-[var(--michio-text-subtle)]">›</span>

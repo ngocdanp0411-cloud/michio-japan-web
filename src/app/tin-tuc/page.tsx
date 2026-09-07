@@ -9,6 +9,7 @@ import {
 
 export const metadata = {
   title: "Tin tức và hướng dẫn chăm sóc",
+  alternates: { canonical: "/tin-tuc" },
   description: "Kiến thức collagen, skincare Nhật, thực phẩm bổ sung và hướng dẫn mua hàng từ Michio Japan.",
 };
 
