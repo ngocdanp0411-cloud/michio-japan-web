@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 import type { Category } from "@/lib/categories";
 
 type NavigationItem = { label: string; href: string; external?: boolean };
@@ -14,6 +14,7 @@ export function ProductMenu({
   navigationItems?: NavigationItem[];
 }) {
   const [open, setOpen] = useState(false);
+  const menuId = useId();
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const [menuPosition, setMenuPosition] = useState({ top: 0, left: 12, width: 320, maxHeight: 480 });
 
@@ -72,7 +73,7 @@ export function ProductMenu({
         ref={triggerRef}
         type="button"
         aria-expanded={open}
-        aria-controls="site-navigation-menu"
+        aria-controls={menuId}
         onClick={() => {
           if (open) {
             setOpen(false);
@@ -106,15 +107,15 @@ export function ProductMenu({
       </button>
 
       <div
-        id="site-navigation-menu"
+        id={menuId}
         aria-label="Menu website và danh mục sản phẩm"
         aria-hidden={!open}
         inert={!open}
         style={{ ...menuPosition }}
         className={`fixed z-[70] origin-top overflow-y-auto overscroll-contain rounded-b-xl border border-[var(--michio-border)] bg-white p-2 text-[var(--michio-text)] shadow-[0_12px_28px_rgba(17,17,22,0.10)] transition-[transform,opacity] duration-200 motion-reduce:transition-none ${open ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none -translate-y-1 opacity-0"}`}
       >
-        <div role="group" aria-label="Điều hướng website" className="border-b border-[var(--michio-border)] pb-2">
-          <p className="px-3 pb-1 pt-2 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[var(--michio-primary)]">Khám phá Michio</p>
+        <div role="group" aria-label="Điều hướng website" className="grid grid-cols-2 border-b border-[var(--michio-border)] pb-2 lg:hidden">
+          <p className="col-span-2 px-3 pb-1 pt-2 text-xs font-semibold text-[var(--michio-primary)]">Khám phá Michio</p>
           {navigationItems.map((item) => {
             const className = "flex min-h-11 items-center justify-between rounded-md px-3 py-2 text-sm font-medium hover:bg-[var(--michio-surface-muted)] hover:text-[var(--michio-primary)]";
             const label = <>{item.label}<span aria-hidden="true" className="text-[var(--michio-text-subtle)]">›</span></>;
@@ -125,12 +126,12 @@ export function ProductMenu({
             );
           })}
         </div>
-        <div role="group" aria-label="Danh mục sản phẩm" className="pt-2">
-          <p className="px-3 pb-1 pt-1 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[var(--michio-primary)]">Danh mục sản phẩm</p>
+        <div role="group" aria-label="Danh mục sản phẩm" className="grid grid-cols-2 gap-1 pt-2 lg:grid-cols-1">
+          <p className="col-span-2 px-3 pb-1 pt-1 text-xs font-semibold text-[var(--michio-primary)] lg:col-span-1">Danh mục sản phẩm</p>
         <Link
           href="/cua-hang"
           onClick={() => setOpen(false)}
-          className="flex min-h-11 items-center justify-between rounded-md px-3 py-2 text-sm font-semibold text-[var(--michio-primary)] hover:bg-[var(--michio-primary-soft)]"
+          className="col-span-2 flex min-h-11 items-center justify-between rounded-md bg-[var(--michio-primary-soft)] px-3 py-2 text-sm font-semibold text-[var(--michio-primary)] lg:col-span-1"
         >
           Tất cả sản phẩm
           <span aria-hidden="true">→</span>

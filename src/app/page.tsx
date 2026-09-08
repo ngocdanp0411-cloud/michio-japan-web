@@ -11,8 +11,8 @@ export const metadata = { alternates: { canonical: "/" } };
 function SectionHeading({ eyebrow, title, href, label = "Xem tất cả" }: { eyebrow: string; title: string; href?: string; label?: string }) {
   return (
     <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
-      <div><p className="michio-eyebrow">{eyebrow}</p><h2 className="michio-h2 mt-2">{title}</h2></div>
-      {href && <Link href={href} className="michio-text-link inline-flex min-h-11 items-center gap-3 text-sm font-medium">{label}<span aria-hidden="true">↗</span></Link>}
+      <div><p className="michio-eyebrow hidden md:block">{eyebrow}</p><h2 className="text-xl font-semibold tracking-tight md:mt-2 md:text-3xl">{title}</h2></div>
+      {href && <Link href={href} className="inline-flex min-h-11 items-center gap-2 text-xs font-medium text-[var(--michio-primary)] md:text-sm">{label}<span aria-hidden="true">→</span></Link>}
     </div>
   );
 }
@@ -23,11 +23,10 @@ export default function HomePage() {
 
   return (
     <main className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
-      <section aria-labelledby="hero-title" className="pb-8 pt-6 md:pb-12 md:pt-10">
-        <div className="michio-enter mb-5 flex items-end justify-between gap-8 md:mb-7">
+      <section aria-labelledby="hero-title" className="pb-4 pt-4 md:pb-8 md:pt-8">
+        <div className="michio-enter mb-3 flex items-end justify-between gap-8 md:mb-5">
           <div>
-            <p className="michio-eyebrow">Michio Japan · Hàng Nhật nội địa</p>
-            <h1 id="hero-title" className="mt-3 text-balance text-[clamp(1.7rem,3.6vw,3.4rem)] font-semibold leading-[1.18] tracking-[-0.045em]">Chăm chút mỗi ngày,<br className="sm:hidden" /> theo cách Nhật.</h1>
+            <h1 id="hero-title" className="text-balance text-[22px] font-semibold leading-tight tracking-[-0.035em] md:text-4xl">Đồ Nhật, chọn thật dễ.</h1>
           </div>
           <p className="hidden max-w-[29ch] text-sm leading-6 text-[var(--michio-text-muted)] lg:block">Từ bước chăm da đến góc bếp nhỏ. Tìm đồ Nhật phù hợp với cuộc sống của bạn.</p>
         </div>
@@ -35,24 +34,24 @@ export default function HomePage() {
           <Link href="/danh-muc/my-pham-skincare" aria-label="Khám phá bộ sưu tập mỹ phẩm skincare Nhật Bản" className="block focus-visible:-outline-offset-4">
             <Image src="/images/promotions/deal-nhat-xinh-yeu.webp" alt="Deal Nhật Xinh Yêu – chăm da và làm đẹp nội địa Nhật, ưu đãi nổi bật" width={1672} height={941} preload sizes="(min-width: 1280px) 912px, (min-width: 1024px) 70vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)" className="h-auto w-full object-contain" />
           </Link>
-          <div className="flex flex-wrap items-center justify-between gap-4 p-4 sm:px-6 sm:py-5 lg:flex-col lg:items-start lg:justify-center lg:gap-6">
-            <div><p className="text-xs text-[var(--michio-text-muted)]">Bộ sưu tập chăm da & làm đẹp</p><h2 className="mt-1 text-lg font-semibold tracking-tight sm:text-2xl">Một chút chăm sóc. Một ngày xinh hơn.</h2></div>
-            <Link href="/danh-muc/my-pham-skincare" className="michio-btn-primary inline-flex min-h-12 w-full items-center justify-center gap-5 rounded-lg px-6 text-sm sm:w-auto">Khám phá skincare <span aria-hidden="true">→</span></Link>
+          <div className="flex items-center justify-between gap-3 p-3 sm:px-6 sm:py-5 lg:flex-col lg:items-start lg:justify-center lg:gap-6">
+            <div className="min-w-0"><p className="hidden text-xs text-[var(--michio-text-muted)] lg:block">Bộ sưu tập Nhật Bản</p><h2 className="text-sm font-semibold leading-5 lg:mt-2 lg:text-2xl lg:leading-snug">Chăm da & làm đẹp</h2></div>
+            <Link href="/danh-muc/my-pham-skincare" className="michio-btn-primary inline-flex min-h-11 shrink-0 items-center justify-center gap-3 rounded-lg px-3 text-xs lg:px-5 lg:text-sm">Xem skincare <span aria-hidden="true">→</span></Link>
           </div>
         </div>
-        <div className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs leading-5 text-[var(--michio-text-muted)] sm:justify-start">
+        <div className="mt-3 hidden flex-wrap gap-x-6 gap-y-2 text-xs leading-5 text-[var(--michio-text-muted)] md:flex">
           <span>Hàng Nhật nội địa</span><span>Tư vấn chọn sản phẩm</span><span>Đặt hàng qua Zalo / Fanpage</span>
         </div>
       </section>
 
-      <section aria-labelledby="categories-title" className="border-t border-[var(--michio-border)] py-8 md:py-12">
-        <h2 id="categories-title" className="michio-h2">Bạn đang tìm gì?</h2>
-        <div className="mt-6"><CategoryRail /></div>
+      <section aria-labelledby="categories-title" className="py-4 md:border-t md:border-[var(--michio-border)] md:py-8">
+        <h2 id="categories-title" className="text-lg font-semibold tracking-tight md:text-2xl">Mua theo danh mục</h2>
+        <div className="mt-3 md:mt-5"><CategoryRail /></div>
       </section>
 
-      <section className="border-t border-[var(--michio-border)] py-8 md:py-12">
-        <SectionHeading eyebrow="Gợi ý từ Michio" title="Đồ Nhật cho mỗi ngày" href="/cua-hang" label="Xem cửa hàng" />
-        <div className="mt-6"><ProductGrid products={featured} /></div>
+      <section className="border-t border-[var(--michio-border)] py-4 md:py-8">
+        <SectionHeading eyebrow="Gợi ý từ Michio" title="Sản phẩm nổi bật" href="/cua-hang" label="Xem tất cả" />
+        <div className="mt-3 md:mt-5"><ProductGrid products={featured} /></div>
       </section>
 
       <section className="michio-reveal my-4 grid gap-8 rounded-2xl bg-[var(--michio-surface-warm)] p-6 md:my-8 md:grid-cols-2 md:gap-16 md:p-10">
