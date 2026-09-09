@@ -1,9 +1,9 @@
 export function TopBar() {
   return (
-    <div className="border-b border-[var(--michio-border)] bg-[#f3f2ef] text-[var(--michio-text-muted)]">
-      <div className="mx-auto flex max-w-[1280px] items-center justify-center px-3 py-1.5 text-center text-[11px] leading-4 sm:text-xs md:justify-between md:px-4">
-        <p>Freeship nội thành Hà Nội cho đơn từ <span className="font-semibold text-[var(--michio-text)]">499.000đ</span></p>
-        <span className="hidden text-[11px] md:inline">Hàng Nhật nội địa · Tư vấn tận tâm</span>
+    <div className="hidden border-b border-[var(--michio-border)] bg-[var(--michio-primary-soft)] text-[var(--michio-text-muted)] md:block">
+      <div className="mx-auto flex min-h-8 max-w-[1280px] items-center justify-between px-8 text-[11px]">
+        <p>Miễn phí giao hàng nội thành Hà Nội cho đơn từ <span className="font-semibold text-[var(--michio-text)]">499.000đ</span></p>
+        <span>Hàng Nhật nội địa · Tư vấn tận tâm</span>
       </div>
     </div>
   );

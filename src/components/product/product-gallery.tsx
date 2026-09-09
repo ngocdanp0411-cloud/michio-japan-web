@@ -42,25 +42,25 @@ export function ProductGallery({ images, name }: { images: string[]; name: strin
 
   return (
     <>
-      <div className="michio-card p-2.5 md:p-3">
+      <div className="overflow-hidden rounded-[16px] bg-[var(--michio-surface-muted)] p-2.5 md:p-3">
         <button
           ref={triggerRef}
           type="button"
           onClick={() => setLightbox(true)}
           onTouchStart={onTouchStart}
           onTouchEnd={onTouchEnd}
-          className="group relative block w-full cursor-zoom-in touch-pan-y overflow-hidden rounded-lg"
+          className="group relative block w-full cursor-zoom-in touch-pan-y overflow-hidden rounded-[13px] bg-white"
           aria-label={`Xem ảnh lớn của ${name}, vuốt để đổi ảnh`}
           aria-expanded={lightbox}
           aria-controls="product-lightbox"
         >
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute left-3 top-3 z-10 h-11 w-11 rounded-full border border-white bg-white bg-contain bg-center bg-no-repeat shadow-sm"
+            className="pointer-events-none absolute right-3 top-3 z-10 h-11 w-11 rounded-full border border-[var(--michio-border)] bg-white bg-contain bg-center bg-no-repeat"
             style={{ backgroundImage: "url('/images/brand/michio-authentic-logo.jpg')" }}
           />
-          <Image src={src} alt={name} width={1200} height={1200} priority sizes="(min-width: 1024px) 50vw, (min-width: 768px) 55vw, 100vw" quality={72} className="aspect-square w-full rounded-lg bg-white object-contain" />
-          <span aria-hidden="true" className="absolute bottom-2 right-2 rounded-full bg-black/70 px-2 py-1 text-xs leading-5 text-white opacity-100 transition-opacity duration-200 md:opacity-0 md:group-hover:opacity-100 md:group-focus-visible:opacity-100">
+          <Image src={src} alt={name} width={1200} height={1200} priority sizes="(min-width: 1024px) 50vw, (min-width: 768px) 55vw, 100vw" quality={72} className="aspect-square w-full rounded-[13px] bg-white object-contain p-3" />
+          <span aria-hidden="true" className="absolute bottom-2 right-2 rounded-full bg-[var(--michio-text)]/75 px-2 py-1 text-[10px] leading-4 text-white opacity-100 transition-opacity duration-200 md:opacity-0 md:group-hover:opacity-100 md:group-focus-visible:opacity-100">
             Nhấn để phóng to • Vuốt để đổi
           </span>
           {/* dots for mobile */}
@@ -70,13 +70,13 @@ export function ProductGallery({ images, name }: { images: string[]; name: strin
             ))}
           </div>
         </button>
-        <div className="mt-3 grid grid-cols-4 gap-2">
+        <div className="mt-2 grid grid-cols-4 gap-2">
           {images.slice(0, 4).map((s, i) => (
             <button
               key={i}
               type="button"
               onClick={() => setActive(i)}
-              className={`h-16 overflow-hidden rounded-lg border-2 transition duration-200 active:scale-[0.98] md:h-auto ${i === active ? "border-[var(--michio-primary)] opacity-100" : "border-transparent opacity-70 hover:opacity-100"}`}
+              className={`h-16 overflow-hidden rounded-[10px] border-2 bg-white transition duration-200 active:scale-[0.98] md:h-auto ${i === active ? "border-[var(--michio-primary)] opacity-100" : "border-white opacity-70 hover:opacity-100"}`}
               aria-label={`Xem ảnh ${i + 1} của ${name}`}
               aria-current={i === active ? "true" : undefined}
             >

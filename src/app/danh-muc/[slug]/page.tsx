@@ -10,14 +10,7 @@ import { absoluteUrl, limitDescription, limitTitle } from "@/lib/seo";
 const storefrontCategories = getCategoriesWithProducts(CATEGORIES);
 const PRODUCTS_PER_PAGE = 24;
 const PROMOTION_BANNER = "/images/promotions/deal-nhat-xinh-yeu.webp";
-const PROMOTION_ALT = "Deal Nhật Xinh Yêu – chăm da và làm đẹp nội địa Nhật, ưu đãi nổi bật";
-const LEGACY_CATEGORY_REDIRECTS: Record<string, string> = {
-  collagen: "my-pham-skincare",
-  "cham-soc-da": "my-pham-skincare",
-  "cham-soc-co-the": "dau-goi-sua-tam",
-  "hang-tieu-dung": "do-tieu-dung",
-};
-
+const LEGACY_CATEGORY_REDIRECTS: Record<string, string> = { collagen: "my-pham-skincare", "cham-soc-da": "my-pham-skincare", "cham-soc-co-the": "dau-goi-sua-tam", "hang-tieu-dung": "do-tieu-dung" };
 type CategoryQuery = { sort?: string; page?: string };
 
 function pageHref(slug: string, page: number, query: CategoryQuery) {
@@ -28,17 +21,12 @@ function pageHref(slug: string, page: number, query: CategoryQuery) {
   return `/danh-muc/${slug}${search ? `?${search}` : ""}`;
 }
 
-export function generateStaticParams() {
-  return storefrontCategories.map((c) => ({ slug: c.slug }));
-}
-
+export function generateStaticParams() { return storefrontCategories.map((category) => ({ slug: category.slug })); }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const cat = CATEGORY_MAP[slug];
   if (!cat) return {};
-  const title = limitTitle(`${cat.name} Nhật Bản`);
-  const description = limitDescription(`Khám phá sản phẩm ${cat.name.toLowerCase()} Nhật Bản được Michio Japan chọn lọc cho nhu cầu chăm sóc mỗi ngày.`);
-  return { title, description, alternates: { canonical: absoluteUrl(`/danh-muc/${slug}`) } };
+  return { title: limitTitle(`${cat.name} Nhật Bản`), description: limitDescription(`Khám phá sản phẩm ${cat.name.toLowerCase()} Nhật Bản được Michio Japan chọn lọc cho nhu cầu chăm sóc mỗi ngày.`), alternates: { canonical: absoluteUrl(`/danh-muc/${slug}`) } };
 }
 
 export default async function CategoryPage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<CategoryQuery> }) {
@@ -63,57 +51,22 @@ export default async function CategoryPage({ params, searchParams }: { params: P
   const isSkincare = slug === "my-pham-skincare";
 
   return (
-    <div>
-      <section className="border-b border-[var(--michio-border)] bg-white">
-        <div className={`mx-auto grid max-w-[1280px] gap-4 px-4 py-5 md:items-center md:gap-8 md:py-7 ${isSkincare ? "md:grid-cols-[1fr_1.1fr]" : "md:grid-cols-[1fr_160px]"}`}>
-          <div className={isSkincare ? "order-2 md:order-1" : undefined}>
-            <nav aria-label="Breadcrumb" className="michio-caption flex flex-wrap items-center gap-2"><Link href="/" className="hover:text-[var(--michio-primary)]">Trang chủ</Link><span>/</span><Link href="/cua-hang" className="hover:text-[var(--michio-primary)]">Sản phẩm</Link><span>/</span><span>{cat.name}</span></nav>
-            <h1 className="michio-display mt-3 text-[1.75rem] leading-tight md:text-4xl">{cat.name}</h1>
-            <p className="michio-body mt-2 max-w-[55ch] text-sm">Khám phá {cat.name.toLowerCase()} Nhật Bản, chọn theo nhu cầu của bạn.</p>
-          </div>
-          <div className={`items-center justify-center overflow-hidden rounded-xl bg-white ${isSkincare ? "order-1 flex md:order-2" : "hidden h-28 p-2 md:flex"}`}>
-            {isSkincare ? (
-              <Image src={PROMOTION_BANNER} alt={PROMOTION_ALT} width={1672} height={941} preload sizes="(min-width: 1280px) 637px, (min-width: 768px) 52vw, calc(100vw - 32px)" className="aspect-[1672/941] h-auto w-full object-contain" />
-            ) : preview ? (
-              <Image src={preview} alt={`Sản phẩm ${cat.name}`} width={160} height={112} sizes="160px" className="h-full w-full object-contain" />
-            ) : (
-              <span className="michio-h2">{cat.name}</span>
-            )}
-          </div>
-        </div>
+    <main className="mx-auto w-full max-w-[1280px] px-4 py-5 md:px-8 md:py-8">
+      <nav aria-label="Breadcrumb" className="text-xs text-[var(--michio-text-subtle)]"><Link href="/">Trang chủ</Link><span className="mx-2">›</span><Link href="/cua-hang">Danh mục</Link><span className="mx-2">›</span><span className="text-[var(--michio-primary)]">{cat.name}</span></nav>
+
+      <section className="mt-4 overflow-hidden rounded-[16px] bg-[var(--michio-primary-soft)] md:grid md:grid-cols-[1fr_1.2fr] md:items-center">
+        <div className="px-4 py-5 md:px-8"><p className="text-xs font-semibold uppercase tracking-[0.08em] text-[var(--michio-primary)]">Michio Japan</p><h1 className="mt-1 text-[1.65rem] font-bold tracking-[-0.035em] md:text-4xl">{cat.name}</h1><p className="mt-2 max-w-[52ch] text-sm leading-6 text-[var(--michio-text-muted)]">Khám phá {cat.name.toLowerCase()} Nhật Bản, chọn theo nhu cầu của bạn.</p></div>
+        <div className="relative min-h-[150px] bg-white/55 md:min-h-[230px]">{isSkincare ? <Image src={PROMOTION_BANNER} alt="Deal Nhật Xinh Yêu – chăm da và làm đẹp nội địa Nhật" fill priority sizes="(min-width: 768px) 55vw, 100vw" className="object-contain" /> : preview ? <Image src={preview} alt={`Sản phẩm ${cat.name}`} fill priority sizes="(min-width: 768px) 45vw, 100vw" className="object-contain p-4" /> : null}</div>
       </section>
 
-      <main className="mx-auto max-w-[1280px] px-4 py-5 md:py-8">
-        <div className="flex flex-col gap-5 lg:grid lg:grid-cols-[210px_minmax(0,1fr)] lg:gap-8">
-          <aside className="h-fit lg:sticky lg:top-40">
-            <div>
-              <h2 className="text-sm font-semibold">Danh mục</h2>
-              <ul className="mt-3 flex flex-wrap gap-2 lg:flex-col">
-                {storefrontCategories.map((category) => <li key={category.slug}><Link href={`/danh-muc/${category.slug}`} aria-current={category.slug === slug ? "page" : undefined} className={`inline-flex min-h-11 items-center gap-1.5 rounded-full border px-3 py-2 text-xs transition-colors hover:border-[var(--michio-primary)] hover:text-[var(--michio-primary)] lg:flex lg:rounded-lg lg:text-sm ${category.slug === slug ? "border-[var(--michio-primary)] bg-[var(--michio-primary-soft)] font-semibold text-[var(--michio-primary)]" : "border-[var(--michio-border)] bg-white text-[var(--michio-text-muted)]"}`}>{category.name} <span className="text-xs">({getProductsByCategory(category.slug).length})</span></Link></li>)}
-              </ul>
-            </div>
-          </aside>
+      <nav aria-label="Danh mục sản phẩm" className="mt-5 flex gap-2 overflow-x-auto pb-1 scrollbar-none">{storefrontCategories.map((category) => <Link key={category.slug} href={`/danh-muc/${category.slug}`} aria-current={category.slug === slug ? "page" : undefined} className={`inline-flex min-h-11 shrink-0 items-center rounded-full border px-3 text-xs font-medium ${category.slug === slug ? "border-[var(--michio-primary)] bg-[var(--michio-primary)] text-white" : "border-[var(--michio-border)] bg-white text-[var(--michio-text-muted)]"}`}>{category.name}</Link>)}</nav>
 
-          <section className="min-w-0">
-            <div className="flex flex-wrap items-end justify-between gap-3 border-b border-[var(--michio-border)] pb-4">
-              <div><p className="text-sm text-[var(--michio-text-muted)]">Hiển thị <strong className="text-[var(--michio-text)]">{sortedProducts.length ? startIndex + 1 : 0}–{Math.min(startIndex + products.length, sortedProducts.length)}</strong>/{sortedProducts.length} sản phẩm</p></div>
-              <form method="get" className="flex w-full flex-wrap items-center gap-2 sm:w-auto">
-                <label htmlFor="sort" className="w-full text-xs text-[var(--michio-text-muted)]">Sắp xếp sản phẩm</label>
-                <select id="sort" name="sort" defaultValue={query.sort ?? ""} className="michio-input min-h-11 min-w-0 flex-1 rounded-lg px-3 text-base sm:flex-none"><option value="">Mặc định</option><option value="popular">Bán chạy</option><option value="price-asc">Giá thấp đến cao</option><option value="price-desc">Giá cao đến thấp</option></select>
-                <button type="submit" className="michio-btn-primary inline-flex min-h-11 shrink-0 items-center justify-center rounded-lg px-4 text-sm">Áp dụng</button>
-              </form>
-            </div>
-            <div className="mt-5">{products.length ? <ProductGrid products={products} columns="category" /> : <div className="rounded-md border border-dashed border-[var(--michio-border-strong)] bg-[var(--michio-surface-muted)] p-10 text-center text-sm text-[var(--michio-text-muted)]">Chưa có sản phẩm trong danh mục này.</div>}</div>
-            {totalPages > 1 && (
-              <nav aria-label="Phân trang danh mục" className="mt-8 flex items-center justify-between gap-3 border-t border-[var(--michio-border)] pt-6">
-                {currentPage > 1 ? <Link href={pageHref(slug, currentPage - 1, query)} className="michio-btn-secondary inline-flex h-11 items-center justify-center rounded-md px-4 text-sm">← Trang trước</Link> : <span aria-hidden="true" />}
-                <span className="michio-caption text-center">Trang {currentPage}/{totalPages}</span>
-                {currentPage < totalPages ? <Link href={pageHref(slug, currentPage + 1, query)} className="michio-btn-primary inline-flex h-11 items-center justify-center rounded-md px-4 text-sm">Trang sau →</Link> : <span aria-hidden="true" />}
-              </nav>
-            )}
-          </section>
-        </div>
-      </main>
-    </div>
+      <section className="mt-6">
+        <div className="flex flex-wrap items-end justify-between gap-3 border-b border-[var(--michio-border)] pb-4"><p className="text-sm text-[var(--michio-text-muted)]"><strong className="text-[var(--michio-text)]">{sortedProducts.length ? startIndex + 1 : 0}–{Math.min(startIndex + products.length, sortedProducts.length)}</strong>/{sortedProducts.length} sản phẩm</p><form method="get" className="flex items-end gap-2"><div><label htmlFor="sort" className="block text-[11px] text-[var(--michio-text-subtle)]">Sắp xếp</label><select id="sort" name="sort" defaultValue={query.sort ?? ""} className="michio-input mt-1 min-h-11 rounded-[10px] px-3 text-base"><option value="">Mặc định</option><option value="popular">Bán chạy</option><option value="price-asc">Giá thấp đến cao</option><option value="price-desc">Giá cao đến thấp</option></select></div><button type="submit" className="michio-btn-primary inline-flex min-h-11 items-center rounded-[10px] px-4 text-sm">Áp dụng</button></form></div>
+        <div className="mt-4">{products.length ? <ProductGrid products={products} /> : <div className="rounded-[14px] bg-[var(--michio-surface-muted)] p-10 text-center text-sm text-[var(--michio-text-muted)]">Chưa có sản phẩm trong danh mục này.</div>}</div>
+      </section>
+
+      {totalPages > 1 && <nav aria-label="Phân trang danh mục" className="mt-8 flex items-center justify-between gap-3 border-t border-[var(--michio-border)] pt-6">{currentPage > 1 ? <Link href={pageHref(slug, currentPage - 1, query)} className="michio-btn-secondary inline-flex min-h-11 items-center rounded-[10px] px-4 text-sm">← Trang trước</Link> : <span aria-hidden="true" />}<span className="text-xs text-[var(--michio-text-subtle)]">{currentPage}/{totalPages}</span>{currentPage < totalPages ? <Link href={pageHref(slug, currentPage + 1, query)} className="michio-btn-primary inline-flex min-h-11 items-center rounded-[10px] px-4 text-sm">Trang sau →</Link> : <span aria-hidden="true" />}</nav>}
+    </main>
   );
 }

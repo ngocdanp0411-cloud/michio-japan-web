@@ -78,10 +78,10 @@ export default async function ProductPage({
 
   return (
     <div>
-      <main className="mx-auto max-w-[1280px] px-4 py-7 md:py-10">
+      <main className="mx-auto max-w-[1280px] px-4 py-4 md:px-8 md:py-10">
         <nav
           aria-label="Breadcrumb"
-          className="michio-caption flex flex-wrap items-center gap-2"
+          className="hidden flex-wrap items-center gap-2 text-xs text-[var(--michio-text-subtle)] md:flex"
         >
           <Link href="/" className="hover:text-[var(--michio-primary)]">
             Trang chủ
@@ -97,19 +97,19 @@ export default async function ProductPage({
           <span className="line-clamp-1">{p.name}</span>
         </nav>
 
-        <div className="mt-6 grid gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:gap-12">
+        <div className="grid gap-5 md:mt-6 lg:grid-cols-[1.02fr_0.98fr] lg:gap-12">
           <ProductGallery images={p.gallery ?? [p.image]} name={p.name} />
 
-          <section>
-            <p className="michio-eyebrow">
+          <section className="min-w-0">
+            <p className="text-xs font-semibold text-[var(--michio-primary)]">
               {cat?.name ?? p.category} / Michio Japan
             </p>
-            <h1 className="michio-display mt-2 text-pretty text-[2rem] uppercase leading-[1.05] md:text-5xl">
+            <h1 className="mt-2 text-pretty text-xl font-bold leading-[1.35] tracking-[-0.025em] md:text-4xl">
               {p.name}
             </h1>
-            <div className="mt-4 flex flex-wrap items-center gap-3 border-b border-[var(--michio-border)] pb-4 text-sm">
+            <div className="mt-3 flex flex-wrap items-center gap-2 border-b border-[var(--michio-border)] pb-3 text-xs">
               <span
-                className="tracking-[0.18em] text-[var(--michio-primary)]"
+                className="tracking-[0.08em] text-[#f39a1e]"
                 aria-hidden="true"
               >
                 ★★★★★
@@ -123,8 +123,8 @@ export default async function ProductPage({
               </span>
             </div>
 
-            <div className="mt-5 flex flex-wrap items-baseline gap-3">
-              <span className="text-3xl font-bold text-[var(--michio-primary)]">
+            <div className="mt-4 flex flex-wrap items-baseline gap-2">
+              <span className="text-2xl font-bold tabular-nums text-[var(--michio-primary)] md:text-3xl">
                 {formatPrice(p.price)}
               </span>
               {p.originalPrice && (
@@ -133,14 +133,14 @@ export default async function ProductPage({
                 </span>
               )}
               {discount !== null && (
-                <span className="rounded bg-[var(--michio-primary)] px-2 py-1 text-xs font-bold text-white">
+                <span className="rounded-full bg-[var(--michio-primary-soft)] px-2 py-1 text-xs font-semibold text-[var(--michio-primary)]">
                   -{discount}%
                 </span>
               )}
             </div>
-            <p className="michio-body mt-4 text-base">{p.excerpt}</p>
+            <p className="mt-3 text-sm leading-6 text-[var(--michio-text-muted)]">{p.excerpt}</p>
 
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            <div className="mt-5 grid grid-cols-2 gap-2">
               {[
                 "Hàng Nhật nội địa",
                 "Chính hãng – nguyên seal",
@@ -149,7 +149,7 @@ export default async function ProductPage({
               ].map((item) => (
                 <div
                   key={item}
-                  className="rounded border border-[var(--michio-border)] bg-[var(--michio-surface-muted)] p-3 text-sm font-semibold text-[var(--michio-text)]"
+                  className="rounded-[10px] bg-[var(--michio-surface-muted)] p-2.5 text-xs font-medium leading-5 text-[var(--michio-text)]"
                 >
                   <span className="mr-2 text-[var(--michio-primary)]">✓</span>
                   {item}
@@ -157,12 +157,12 @@ export default async function ProductPage({
               ))}
             </div>
 
-            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+            <div className="mt-5 grid grid-cols-2 gap-2">
               <a
                 href={LINKS.zalo}
                 target="_blank"
                 rel="noopener"
-                className="michio-btn-primary inline-flex h-12 items-center justify-center rounded text-sm uppercase"
+                className="michio-btn-primary inline-flex min-h-12 items-center justify-center rounded-[12px] px-2 text-sm"
               >
                 Nhắn Zalo tư vấn
               </a>
@@ -170,7 +170,7 @@ export default async function ProductPage({
                 href={LINKS.messenger}
                 target="_blank"
                 rel="noopener"
-                className="michio-btn-secondary inline-flex h-12 items-center justify-center rounded bg-white text-sm uppercase"
+                className="michio-btn-secondary inline-flex min-h-12 items-center justify-center rounded-[12px] bg-white px-2 text-sm"
               >
                 Inbox Fanpage
               </a>
@@ -180,7 +180,7 @@ export default async function ProductPage({
               Zalo/Fanpage.
             </p>
 
-            <div className="mt-7 grid gap-2 border-t border-[var(--michio-border)] pt-5 text-sm text-[var(--michio-text-muted)] sm:grid-cols-2">
+            <div className="mt-5 grid gap-2 border-t border-[var(--michio-border)] pt-4 text-xs leading-5 text-[var(--michio-text-muted)] sm:grid-cols-2">
               <div>
                 Đánh giá:{" "}
                 <span className="font-semibold text-[var(--michio-text)]">
@@ -220,21 +220,21 @@ export default async function ProductPage({
           </section>
         </div>
 
-        <section className="mt-12 border-t border-[var(--michio-border)] pt-8 md:mt-16">
-          <h2 className="michio-h2 border-b border-[var(--michio-border)] pb-4 uppercase">
+        <section className="mt-8 border-t border-[var(--michio-border)] pt-6 md:mt-16">
+          <h2 className="border-b border-[var(--michio-border)] pb-3 text-lg font-bold">
             Mô tả sản phẩm
           </h2>
-          <div className="mx-auto mt-7 max-w-3xl">
+          <div className="mx-auto mt-4 max-w-3xl rounded-[14px] bg-[var(--michio-surface-muted)] p-4 md:p-6">
             <ProductDescription text={p.description} />
           </div>
         </section>
 
         {related.length > 0 && (
-          <section className="mt-12 border-t border-[var(--michio-border)] pt-8 md:mt-16">
+          <section className="mt-10 border-t border-[var(--michio-border)] pt-6 md:mt-16">
             <div className="flex items-end justify-between gap-4">
               <div>
-                <p className="michio-eyebrow">Gợi ý cùng danh mục</p>
-                <h2 className="michio-h2 mt-1 uppercase">Sản phẩm liên quan</h2>
+                <p className="text-xs font-medium text-[var(--michio-primary)]">Gợi ý cùng danh mục</p>
+                <h2 className="mt-1 text-xl font-bold tracking-[-0.025em]">Sản phẩm liên quan</h2>
               </div>
               <Link
                 href={`/danh-muc/${p.category}`}
@@ -250,13 +250,13 @@ export default async function ProductPage({
         )}
       </main>
 
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[var(--michio-border)] bg-white/95 p-3 pb-[max(12px,env(safe-area-inset-bottom))] shadow-[0_-4px_16px_rgba(17,17,22,0.08)] backdrop-blur md:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[var(--michio-border)] bg-white/95 p-2 pb-[max(8px,env(safe-area-inset-bottom))] backdrop-blur md:hidden">
         <div className="mx-auto flex max-w-[640px] gap-2">
           <a
             href={LINKS.messenger}
             target="_blank"
             rel="noopener"
-            className="inline-flex h-12 flex-1 items-center justify-center rounded border border-[var(--michio-navy)] bg-white text-xs font-semibold text-[var(--michio-navy)]"
+            className="inline-flex h-12 flex-1 items-center justify-center rounded-[12px] border border-[var(--michio-primary)] bg-white text-xs font-semibold text-[var(--michio-primary)]"
           >
             Inbox Fanpage
           </a>
@@ -264,7 +264,7 @@ export default async function ProductPage({
             href={LINKS.zalo}
             target="_blank"
             rel="noopener"
-            className="michio-btn-primary inline-flex h-12 flex-[1.15] items-center justify-center rounded text-xs font-semibold"
+            className="michio-btn-primary inline-flex h-12 flex-[1.15] items-center justify-center rounded-[12px] text-xs font-semibold"
           >
             Nhắn Zalo
           </a>

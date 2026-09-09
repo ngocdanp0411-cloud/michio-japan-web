@@ -1,5 +1,12 @@
 # Project changelog
 
+## 2026-09-09 — Eight-screen storefront visual system
+
+- Applied the supplied Michio mobile UI hierarchy across home, shop/category, product, search, blog/article and About pages; cart screenshot used as spacing/style reference only.
+- Added one shared seven-destination header/menu and five-item mobile navigation mapped to existing pages, Zalo and Fanpage; no cart, account or checkout feature added.
+- Consolidated red/white/pale-pink tokens, compact cards and list density while retaining actual product/blog images, names, prices, slugs and existing search/sort/pagination behavior.
+- Validation: ESLint, TypeScript and Webpack production build passed; data/library/API checksums unchanged; representative mobile routes visually checked.
+
 ## 2026-09-08 — Compact mobile shopping layout
 
 - Rebuilt mobile header with visible wordmark, full-width search and compact two-column menu; retained every navigation/category destination.
