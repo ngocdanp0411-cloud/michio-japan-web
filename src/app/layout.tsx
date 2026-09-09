@@ -51,8 +51,8 @@ export default function RootLayout({
     <html lang="vi" className={`${beVN.variable} h-full`}>
       <body className="min-h-full flex flex-col bg-white text-[var(--michio-navy)] antialiased">
         <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:p-4">Chuyển đến nội dung</a>
-        <Header />
         <TopBar />
+        <Header />
         <div id="main-content" tabIndex={-1} className="flex-1 pb-[calc(88px+env(safe-area-inset-bottom))] outline-none md:pb-0">{children}</div>
         <Footer />
         <StickyDock />

@@ -28,7 +28,7 @@
 
 - Trao đổi bằng tiếng Việt, ngắn gọn và đi thẳng vào kết quả.
 - Giữ giải pháp đơn giản, thực tế, phù hợp quy mô dự án.
-- Giữ phong cách thương hiệu hiện tại khi tối ưu giao diện.
+- Mẫu giao diện chính đã chốt: MUJI Việt Nam; thiết kế mobile-first tối giản, tập trung danh mục và sản phẩm, giữ nhận diện đỏ–trắng Michio; không trộn nhiều mẫu. Bản preview dùng hero nền trung tính với ảnh sản phẩm thật và chữ HTML riêng; banner “Deal Nhật Xinh Yêu” vẫn giữ nguyên trên production tới khi người dùng duyệt mẫu mới. Duyệt một bản trang chủ mobile trước khi áp dụng toàn website hoặc deploy thiết kế mới.
 - Cover blog bắt buộc có text keyword ngắn dàn trực tiếp trên ảnh và hình minh hoạ đúng chủ đề, không ghép ảnh sản phẩm; tuân thủ tông navy, đỏ hồng, hồng phấn và trắng của website, dùng font không chân dáng cao, rõ và dễ đọc.
 - Không bịa trải nghiệm, thử nghiệm, phản hồi khách hàng, số liệu bán hàng hoặc tuyên bố chuyên môn để tạo “information gain”; chỉ dùng dữ liệu kiểm chứng được.
 - Tác giả bài AI dùng tên vai trò biên tập minh bạch thuộc Michio Japan, không giả làm khách hàng hoặc người dùng độc lập.

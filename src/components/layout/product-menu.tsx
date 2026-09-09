@@ -112,12 +112,12 @@ export function ProductMenu({
         aria-hidden={!open}
         inert={!open}
         style={{ ...menuPosition }}
-        className={`fixed z-[70] origin-top overflow-y-auto overscroll-contain rounded-b-xl border border-[var(--michio-border)] bg-white p-2 text-[var(--michio-text)] shadow-[0_12px_28px_rgba(17,17,22,0.10)] transition-[transform,opacity] duration-200 motion-reduce:transition-none ${open ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none -translate-y-1 opacity-0"}`}
+        className={`fixed z-[70] origin-top overflow-y-auto overscroll-contain border border-[var(--michio-border)] bg-white p-2 text-[var(--michio-text)] transition-[transform,opacity] duration-200 motion-reduce:transition-none ${open ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none -translate-y-1 opacity-0"}`}
       >
         <div role="group" aria-label="Điều hướng website" className="grid grid-cols-2 border-b border-[var(--michio-border)] pb-2 lg:hidden">
           <p className="col-span-2 px-3 pb-1 pt-2 text-xs font-semibold text-[var(--michio-primary)]">Khám phá Michio</p>
           {navigationItems.map((item) => {
-            const className = "flex min-h-11 items-center justify-between rounded-md px-3 py-2 text-sm font-medium hover:bg-[var(--michio-surface-muted)] hover:text-[var(--michio-primary)]";
+            const className = "flex min-h-11 items-center justify-between px-3 py-2 text-sm font-medium hover:bg-[var(--michio-surface-muted)] hover:text-[var(--michio-primary)]";
             const label = <>{item.label}<span aria-hidden="true" className="text-[var(--michio-text-subtle)]">›</span></>;
             return item.external ? (
               <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)} className={className}>{label}</a>
@@ -131,7 +131,7 @@ export function ProductMenu({
         <Link
           href="/cua-hang"
           onClick={() => setOpen(false)}
-          className="col-span-2 flex min-h-11 items-center justify-between rounded-md bg-[var(--michio-primary-soft)] px-3 py-2 text-sm font-semibold text-[var(--michio-primary)] lg:col-span-1"
+          className="col-span-2 flex min-h-11 items-center justify-between bg-[var(--michio-primary-soft)] px-3 py-2 text-sm font-semibold text-[var(--michio-primary)] lg:col-span-1"
         >
           Tất cả sản phẩm
           <span aria-hidden="true">→</span>
@@ -141,7 +141,7 @@ export function ProductMenu({
             key={category.slug}
             href={`/danh-muc/${category.slug}`}
             onClick={() => setOpen(false)}
-            className="flex min-h-11 items-center justify-between rounded-md px-3 py-2 text-sm font-medium hover:bg-[var(--michio-surface-muted)] hover:text-[var(--michio-primary)]"
+            className="flex min-h-11 items-center justify-between px-3 py-2 text-sm font-medium hover:bg-[var(--michio-surface-muted)] hover:text-[var(--michio-primary)]"
           >
             {category.name}
             <span aria-hidden="true" className="text-[var(--michio-text-subtle)]">›</span>
